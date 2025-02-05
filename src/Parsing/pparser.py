@@ -1,7 +1,6 @@
 import ast
 from ast import *
 
-
 # AST classes
 # ===========================================
 
@@ -31,7 +30,6 @@ class Constant:
         self.value = value
     def __repr__(self):
         return f"Constant(value={self.value})"
-
 
 class Expr:
     def __init__(self, value):
@@ -77,21 +75,21 @@ class Load:
 class Store:
     def __repr__(self):
         return "Store()"
+    
 
-# Utilities
-# ===========================================
+
+
+# DUMP METHOD (for testing)
+# =============================================
 
 def takes_single_line(str):
     return "\n" not in str
 
 
-# AST console dump method (prints the data structure with indents (for testing purposes))
-# ===========================================
-
 class ASTDump:
     
     def __init__(self):
-        self.indent = " "*4
+        self.indent = " "*3
     
     def dump(self, node, depth=0):
 
@@ -165,86 +163,8 @@ class ASTDump:
             s1 = self.indent * depth
             s2 = self.indent * (depth + 1)
             return f"{node}"
-        
-
-
-
-# tree = Module(
-#         body = [Expr(
-#             value=Call(
-#                 func=Name(id="print", ctx=Load()), 
-#                 args=BinOp(left=Constant(1), op=Add(), right=Constant(3)), 
-#                 keywords=[]))],
-#         type_ignores = []
-#     )
 
 
 
 if __name__ == "__main__":
-
-    # tree = Module(
-    #     body = [Expr(value=BinOp(left=BinOp(left=Constant(1), op=Add(), right=BinOp(left=Constant(1), op=Add(), right=Constant(2))), op=Add(), right=BinOp(left=Constant(3), op=Add(), right=Constant(4)))),
-    #             Expr(value=Constant(1)),
-    #             Expr(value=Constant(1)),
-    #             Expr(BinOp(left=Constant(112), op=Add(), right=Call(Name(id="eval", ctx=Load()), args=[Call(Name(id="input", ctx=Load()), args=[], keywords=[])], keywords=[])))],
-    #     type_ignores = []
-    # )
-
-    # tree = Module(
-    #     body = [Expr(Call(Name(id="eval", ctx=Load()), args=[Call(Name(id="input", ctx=Load()), args=[], keywords=[])], keywords=[]))],
-    #     type_ignores = []
-    # )
-
-    # tree = Module(
-    #     body = [Expr(BinOp(left=BinOp(left=Constant(1), op=Add(), right=Constant(1)), op=Add(), right=BinOp(left=Constant(1), op=Add(), right=Constant(1))))],
-    #     type_ignores = []
-    # )
-
-    # tree = Module(
-    #     body = [],
-    #     type_ignores = []
-    # )
-
-    # prog = """(1+(1+2))+(3+4)
-    # \n1
-    # \n1"""
-
-    # prog = """-eval(input())"""
-
-    # prog = """eval(input())"""
-
-    # prog = """x = 1""
-
-    prog = """y=1
-    \nprint(1,y,1+1)""" 
-
-    # tree = Module(
-    #     body=[Expr(value=UnaryOp(op=USub(), operand=Call(Name(id="eval", ctx=Load()), args=[Call(Name(id="input", ctx=Load()), args=[], keywords=[])], keywords=[])))],
-    #     type_ignores=[]
-    # )
-
-    tree = Module(
-        body=[Assign(targets=[Name(id="y", ctx=Store())], value=Constant(1)),
-            Expr(Call(func=Name(id="print", ctx=Load()), args=[Constant(1), Name(id="y", ctx=Load()), BinOp(right=Constant(1), op=Add(), left=Constant(1))], keywords=[]))],
-        type_ignores=[]
-    )
-
-    # tree = Module(
-    #     body=[Assign(targets=[Name(id="x", ctx=Store())], value=Constant(1)),
-    #           Assign(targets=[Name(id="x", ctx=Store())], value=Constant(1)),
-    #           Assign(targets=[Name(id="x", ctx=Store())], value=Constant(1)),
-    #           Assign(targets=[Name(id="x", ctx=Store())], value=Constant(1))],
-    #     type_ignores=[]
-    # )
-    
-
-
-    dumper = ASTDump()
-    print(dumper.dump(tree))
-
-    
-    
-    #print(tree)
-    print("\n====FROM AST.dump=====\n")
-    tree = ast.parse(prog)
-    print(ast.dump(tree, indent=4))
+    pass
