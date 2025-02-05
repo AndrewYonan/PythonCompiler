@@ -74,6 +74,9 @@ class Load:
     def __repr__(self):
         return "Load()"
 
+class Store:
+    def __repr__(self):
+        return "Store()"
 
 # Utilities
 # ===========================================
@@ -109,18 +112,20 @@ class ASTDump:
 
         if isinstance(node, list):
 
-            dump_str = ""
+            dump_str = "["
 
             if len(node) == 0:
                 return str(node) 
             
             s1 = self.indent * (depth + 1)
             
-            for elem in node:
+            for i in range(len(node)):
+
+                comma = "" if i == len(node) - 1 else ","
                 
-                str_elem = self.dump(elem, depth + 1)
-                nline = "" if takes_single_line(str_elem) else "\n"
-                dump_str += f"[{nline}{s1}{str_elem}" 
+                str_elem = self.dump(node[i], depth + 1)
+                nline = "\n"
+                dump_str += f"{nline}{s1}{str_elem}{comma}" 
             
             return dump_str + "]"
         
@@ -137,11 +142,31 @@ class ASTDump:
             right = self.dump(node.right, depth+1)
             return f"BinOp(\n{self.indent*(depth+1)}left={left},\n{self.indent*(depth+1)}op={node.op},\n{self.indent*(depth+1)}right={right})"
         
+        if isinstance(node, UnaryOp):
+            s1 = self.indent * depth
+            s2 = self.indent * (depth + 1)
+            operand = self.dump(node.operand, depth+1)
+            return f"UnaryOp(\n{s2}op={node.op},\n{s2}operand={operand})"
+        
         if isinstance(node, Call):
             s1 = self.indent * depth
             s2 = self.indent * (depth + 1)
             args = self.dump(node.args, depth + 1)
             return f"Call(\n{s2}func={node.func},\n{s2}args={args}{s2}\n{s2}keywords={node.keywords})"
+    
+        if isinstance(node, Assign):
+            s1 = self.indent * depth
+            s2 = self.indent * (depth + 1)
+            targets = self.dump(node.targets, depth + 1)
+            value = self.dump(node.value, depth + 1)
+            return f"Assign(\n{s2}targets={targets}\n{s2}value={value})" 
+        
+        if isinstance(node, Name):
+            s1 = self.indent * depth
+            s2 = self.indent * (depth + 1)
+            return f"{node}"
+        
+
 
 
 # tree = Module(
@@ -157,13 +182,13 @@ class ASTDump:
 
 if __name__ == "__main__":
 
-    tree = Module(
-        body = [Expr(value=BinOp(left=BinOp(left=Constant(1), op=Add(), right=BinOp(left=Constant(1), op=Add(), right=Constant(2))), op=Add(), right=BinOp(left=Constant(3), op=Add(), right=Constant(4)))),
-                Expr(value=Constant(1)),
-                Expr(value=Constant(1)),
-                Expr(BinOp(left=Constant(112), op=Add(), right=Call(Name(id="eval", ctx=Load()), args=[Call(Name(id="input", ctx=Load()), args=[], keywords=[])], keywords=[])))],
-        type_ignores = []
-    )
+    # tree = Module(
+    #     body = [Expr(value=BinOp(left=BinOp(left=Constant(1), op=Add(), right=BinOp(left=Constant(1), op=Add(), right=Constant(2))), op=Add(), right=BinOp(left=Constant(3), op=Add(), right=Constant(4)))),
+    #             Expr(value=Constant(1)),
+    #             Expr(value=Constant(1)),
+    #             Expr(BinOp(left=Constant(112), op=Add(), right=Call(Name(id="eval", ctx=Load()), args=[Call(Name(id="input", ctx=Load()), args=[], keywords=[])], keywords=[])))],
+    #     type_ignores = []
+    # )
 
     # tree = Module(
     #     body = [Expr(Call(Name(id="eval", ctx=Load()), args=[Call(Name(id="input", ctx=Load()), args=[], keywords=[])], keywords=[]))],
@@ -180,18 +205,38 @@ if __name__ == "__main__":
     #     type_ignores = []
     # )
 
-    # tree = Module(
-    #     body = [Expr()]
-    #     type_ignores = []
-    # )
-
     # prog = """(1+(1+2))+(3+4)
     # \n1
     # \n1"""
 
+    # prog = """-eval(input())"""
+
     # prog = """eval(input())"""
 
-    prog = """1 + eval(input())"""
+    # prog = """x = 1""
+
+    prog = """y=1
+    \nprint(1,y,1+1)""" 
+
+    # tree = Module(
+    #     body=[Expr(value=UnaryOp(op=USub(), operand=Call(Name(id="eval", ctx=Load()), args=[Call(Name(id="input", ctx=Load()), args=[], keywords=[])], keywords=[])))],
+    #     type_ignores=[]
+    # )
+
+    tree = Module(
+        body=[Assign(targets=[Name(id="y", ctx=Store())], value=Constant(1)),
+            Expr(Call(func=Name(id="print", ctx=Load()), args=[Constant(1), Name(id="y", ctx=Load()), BinOp(right=Constant(1), op=Add(), left=Constant(1))], keywords=[]))],
+        type_ignores=[]
+    )
+
+    # tree = Module(
+    #     body=[Assign(targets=[Name(id="x", ctx=Store())], value=Constant(1)),
+    #           Assign(targets=[Name(id="x", ctx=Store())], value=Constant(1)),
+    #           Assign(targets=[Name(id="x", ctx=Store())], value=Constant(1)),
+    #           Assign(targets=[Name(id="x", ctx=Store())], value=Constant(1))],
+    #     type_ignores=[]
+    # )
+    
 
 
     dumper = ASTDump()
