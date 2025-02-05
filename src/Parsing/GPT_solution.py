@@ -145,17 +145,13 @@ class ASTPrinter:
 # Example usage
 if __name__ == '__main__':
 
-    prog = """
-    x = 1 + -(2 + (3 + 4))
-    print(x + 4 + 5)
-    """
+    prog = """1 + -(2 + (3 + 4))"""
     
     lexer = Lexer(prog)
     print(f"TOKENS : {lexer.tokens}")
     
     parser = Parser(lexer)
     ast = parser.parse()
-    print(f"ast : {ast}")
 
 
     printer = ASTPrinter()
