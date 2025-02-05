@@ -21,7 +21,7 @@ class Lexer:
     
     def tokenize(self):
         token_spec = [
-            (r'\d+', TOKEN_INT),
+                ,
             (r'\+', TOKEN_PLUS),
             (r'-', TOKEN_MINUS),
             (r'\(', TOKEN_LPAREN),

@@ -1,0 +1,12 @@
+
+program ::= module
+module ::= simple_statement+
+simple_statement ::= "print" "(" expression ")"
+                   | name "=" expression
+                   | expression
+
+expression ::= name
+            | "-" expression
+            | expression "+" expression
+            | "(" expression ")"
+            | "eval" "(" "input" "(" ")" ")"
