@@ -96,8 +96,6 @@ class ASTDump:
 
             body = self.dump(node.body, depth+1)
 
-            type_ignores = self.dump(node.type_ignores, depth+1)
-
             if takes_single_line(body):
                 comma = ","
                 nline = ""
@@ -107,36 +105,43 @@ class ASTDump:
                 nline = "\n"
                 space=1
 
-            return f"Module({nline}{self.indent*space}body={body}{comma}{" "*(1-space)}{self.indent*space}type_ignores={type_ignores})"
+            return f"Module({nline}{self.indent*space}body={body}{comma}{" "*(1-space)}{self.indent*space}{nline}{self.indent*space}type_ignores={node.type_ignores})"
 
         if isinstance(node, list):
 
+            dump_str = ""
+
             if len(node) == 0:
                 return str(node) 
-                
-            dump_str = "["
-
-            for i in range(len(node)):
-                comma = "" if i == len(node) - 1 else ", "
-
+            
+            s1 = self.indent * (depth + 1)
+            
             for elem in node:
-                dump_str += (self.dump(elem, depth+1) + comma)
-            dump_str += "]\n"
-
-            return dump_str
+                
+                str_elem = self.dump(elem, depth + 1)
+                nline = "" if takes_single_line(str_elem) else "\n"
+                dump_str += f"[{nline}{s1}{str_elem}" 
+            
+            return dump_str + "]"
         
         if isinstance(node, Expr):
+            s1 = self.indent * depth
             value = self.dump(node.value, depth+1)
-            return f"\n{self.indent*depth}Expr(\n{self.indent*(depth+1)}value={value})" 
+            return f"Expr(\n{self.indent*(depth+1)}value={value})" 
     
         if isinstance(node, Constant):
             return f"Constant(value={node.value})"
         
         if isinstance(node, BinOp):
-
             left = self.dump(node.left, depth+1)
             right = self.dump(node.right, depth+1)
             return f"BinOp(\n{self.indent*(depth+1)}left={left},\n{self.indent*(depth+1)}op={node.op},\n{self.indent*(depth+1)}right={right})"
+        
+        if isinstance(node, Call):
+            s1 = self.indent * depth
+            s2 = self.indent * (depth + 1)
+            args = self.dump(node.args, depth + 1)
+            return f"Call(\n{s2}func={node.func},\n{s2}args={args}{s2}\n{s2}keywords={node.keywords})"
 
 
 # tree = Module(
@@ -155,9 +160,15 @@ if __name__ == "__main__":
     tree = Module(
         body = [Expr(value=BinOp(left=BinOp(left=Constant(1), op=Add(), right=BinOp(left=Constant(1), op=Add(), right=Constant(2))), op=Add(), right=BinOp(left=Constant(3), op=Add(), right=Constant(4)))),
                 Expr(value=Constant(1)),
-                Expr(value=Constant(1))],
+                Expr(value=Constant(1)),
+                Expr(BinOp(left=Constant(112), op=Add(), right=Call(Name(id="eval", ctx=Load()), args=[Call(Name(id="input", ctx=Load()), args=[], keywords=[])], keywords=[])))],
         type_ignores = []
     )
+
+    # tree = Module(
+    #     body = [Expr(Call(Name(id="eval", ctx=Load()), args=[Call(Name(id="input", ctx=Load()), args=[], keywords=[])], keywords=[]))],
+    #     type_ignores = []
+    # )
 
     # tree = Module(
     #     body = [Expr(BinOp(left=BinOp(left=Constant(1), op=Add(), right=Constant(1)), op=Add(), right=BinOp(left=Constant(1), op=Add(), right=Constant(1))))],
@@ -169,9 +180,18 @@ if __name__ == "__main__":
     #     type_ignores = []
     # )
 
-    prog = """(1+(1+2))+(3+4)
-    \n1
-    \n1"""
+    # tree = Module(
+    #     body = [Expr()]
+    #     type_ignores = []
+    # )
+
+    # prog = """(1+(1+2))+(3+4)
+    # \n1
+    # \n1"""
+
+    # prog = """eval(input())"""
+
+    prog = """1 + eval(input())"""
 
 
     dumper = ASTDump()
