@@ -3,4 +3,4 @@
 x = 1
 y = x + 2
 z = x + y + 3
-print(1 + -x,y,z,(1 + -(x + y + -z)))
+print(1 + -(1 + -(x + y + -z)))

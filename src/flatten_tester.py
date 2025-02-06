@@ -1,3 +1,4 @@
+
 import ast
 import subprocess
 import os
@@ -6,11 +7,13 @@ from ast import *
 from flatten import *
 from unparser import *
 
-
-
-def get_ast(prog):
-    return ast.parse(prog)
-
+sys.path.append(os.path.abspath("Parsing"))
+from Parsing import ASTClasses
+from Parsing import ASTParser
+from ASTParser import *
+from Parsing import ASTDump
+from Parsing import AST_to_pythonAST
+from AST_to_pythonAST import CustomToPythonASTConverter
 
 
 def get_prog_output(file_name):
@@ -33,10 +36,23 @@ def get_prog_output(file_name):
         return None, str(e)
 
 
+def get_parse_tree(prog):
+
+    lexer = Lexer(prog)
+
+    parser = Parser(lexer)
+    tree = parser.parse()
+
+    converter = CustomToPythonASTConverter()
+    py_ast_tree = converter.convert(tree)
+
+    return py_ast_tree
+
 
 def test_case_prog(prog, i):
     
-    tree = get_ast(prog)
+    tree = get_parse_tree(prog)
+    
     renamed_tree = RenameVariables().visit(tree)
     flat_tree = flatten_ast(renamed_tree)
     prog_flat = UnParser().un_parse(flat_tree)
@@ -82,8 +98,6 @@ def test_all(test_dir_name):
             
             i = i + 1
         
-
-
 
 
 if __name__ == "__main__":

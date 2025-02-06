@@ -6,3 +6,4 @@ foobar = foo + bar
 bozo = 7
 squidward = 8
 me = foo + bar + bozo + squidward
+print(me)

@@ -61,7 +61,7 @@ class CustomToPythonASTConverter():
             return ast.USub()
         
         if isinstance(node, Constant):
-            return ast.Constant()
+            return ast.Constant(value = node.value)
         
         if isinstance(node, Call):
             return ast.Call(
@@ -69,39 +69,3 @@ class CustomToPythonASTConverter():
                 args = self.convert(node.args),
                 keywords = self.convert(node.keywords)
             )
-        
-
-                    
-
-if __name__ == "__main__":
-
-    prog = """x = -(--1 + eval(input()))
-    \ny = 1
-    \n1 + 1"""
-
-    lexer = Lexer(prog)
-    lexer.tokenize()
-
-    print("======tokens=======")
-    print(lexer.tokens)
-
-    parser = Parser(lexer)
-    tree = parser.parse()
-
-    dumper = ASTDump()
-
-    print("=====from custum dump method=====\n")
-    print(dumper.dump(tree))
-
-    print(f"from astParse:\n {ast.dump(ast.parse(prog), indent=3)}")
-
-    converter = CustomToPythonASTConverter()
-
-    new_tree = converter.convert(tree)
-    print(ast.dump(new_tree, indent=2))
-
-
-
-
-
-

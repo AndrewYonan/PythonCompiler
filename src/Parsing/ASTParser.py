@@ -15,6 +15,7 @@ TOKEN_RPAREN = "RPAREN"
 TOKEN_PRINT = "PRINT"
 TOKEN_EVAL_INPUT = "EVAL_INPUT"
 TOKEN_NEWLINE =  "NEWLINE"
+TOKEN_COMMENT = "#"
 TOKEN_EOF = "EOF"
 
 
@@ -28,6 +29,7 @@ token_spec = [(r'print', TOKEN_PRINT),
               (r'\(', TOKEN_LPAREN),
               (r'\)', TOKEN_RPAREN),
               (r'\n', TOKEN_NEWLINE),
+              (r'#.*\n', TOKEN_COMMENT),
               (r'\s+', None)] # to ignore whitespace
 
 
@@ -50,7 +52,8 @@ class Lexer:
                 match = regex.match(self.text, pos)
                 if match:
                     if tag:
-                        tokens.append((tag, match.group(0)))
+                        if tag != TOKEN_COMMENT:
+                            tokens.append((tag, match.group(0)))
                     pos = match.end()
                     break
             if not match:
@@ -189,8 +192,8 @@ class Parser:
 
 if __name__ == "__main__":
 
-    prog = """x = ----2 + 1
-    \ny = 1 + -x
+    prog = """x = ----2 + 1 ####
+    \ny = 1 + -x ##helllo
     \nprint(eval(input()) + y) 
     \n1 + 1
     \nz"""
@@ -198,7 +201,6 @@ if __name__ == "__main__":
     # prog = """eval(input())"""
 
     lex = Lexer(prog)
-    lex.tokenize()
 
     print("=====prog TOKENS=====")
 
