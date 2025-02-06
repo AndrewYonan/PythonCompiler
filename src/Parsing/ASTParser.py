@@ -9,7 +9,7 @@ TOKEN_INT = "INT"
 TOKEN_PLUS = "PLUS"
 TOKEN_MINUS = "MINUS"
 TOKEN_VAR = "VAR"
-TOKEN_EQUAL = "EQUAL"
+TOKEN_ASSIGN = "ASSIGN"
 TOKEN_LPAREN = "LPAREN"
 TOKEN_RPAREN = "RPAREN"
 TOKEN_PRINT = "PRINT"
@@ -24,7 +24,7 @@ token_spec = [(r'print', TOKEN_PRINT),
               (r'\d+', TOKEN_INT),
               (r'\+', TOKEN_PLUS),
               (r'\-', TOKEN_MINUS),
-              (r'=', TOKEN_EQUAL),
+              (r'=', TOKEN_ASSIGN),
               (r'\(', TOKEN_LPAREN),
               (r'\)', TOKEN_RPAREN),
               (r'\n', TOKEN_NEWLINE),
@@ -67,6 +67,11 @@ class Lexer:
         self.token_idx += 1
         return token
 
+    def look_ahead(self):
+        if self.token_idx >= len(self.tokens) - 1:
+            return None
+        return self.tokens[self.token_idx]
+
     def empty(self):
         return self.is_empty
 
@@ -95,15 +100,26 @@ class Parser:
             self.consume(TOKEN_NEWLINE)
     
     def factor(self):
+
         token = self.current_token
+
         if token[0] == TOKEN_INT:
             self.consume(TOKEN_INT)
-            return Constant(value=int(token[1]))
+            return Constant(value = int(token[1]))
+
+        if token[0] == TOKEN_MINUS:
+            self.consume(TOKEN_MINUS)
+            return UnaryOp(op = USub(), operand=self.term())
+
         if token[0] == TOKEN_LPAREN:
             self.consume(TOKEN_LPAREN)
             node = self.expr()
             self.consume(TOKEN_RPAREN)
             return node
+        
+        if token[0] == TOKEN_VAR:
+            self.consume(TOKEN_VAR)
+            return Name(id = token[1], ctx = Load())
     
     def term(self):
         return self.factor()
@@ -119,6 +135,16 @@ class Parser:
         return node
     
     def simple_statement(self):
+        
+        if self.current_token[0] == TOKEN_VAR:
+            next_token = self.lexer.look_ahead()
+            if next_token:
+                if next_token[0] == TOKEN_ASSIGN:
+                    id_var = self.current_token[1]
+                    self.consume(TOKEN_VAR)
+                    self.consume(TOKEN_ASSIGN)
+                    return Assign(targets = [Name(id = id_var, ctx = Store())], value = self.expr())
+
         if self.current_token[0] == TOKEN_PRINT:
             self.consume(TOKEN_PRINT)
             self.consume(TOKEN_LPAREN)
@@ -155,7 +181,13 @@ class Parser:
 
 if __name__ == "__main__":
 
-    prog = """(((1)))"""
+    prog = """(((----1 + -temp_0)))
+    \nprint(2 + temp_0)
+    \nx
+    \ny
+    \nz"""
+
+    # prog = """1 + eval(input())"""
 
     lex = Lexer(prog)
     lex.tokenize()
