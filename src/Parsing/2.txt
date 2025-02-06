@@ -1,0 +1,50 @@
+Module(
+   body=[
+      Assign(
+         targets=[
+            Name(id='x', ctx=Store())],
+         value=BinOp(
+            left=UnaryOp(
+               op=USub(),
+               operand=UnaryOp(
+                  op=USub(),
+                  operand=UnaryOp(
+                     op=USub(),
+                     operand=UnaryOp(
+                        op=USub(),
+                        operand=Constant(value=2))))),
+            op=Add(),
+            right=Constant(value=1))),
+      Assign(
+         targets=[
+            Name(id='y', ctx=Store())],
+         value=BinOp(
+            left=Constant(value=1),
+            op=Add(),
+            right=UnaryOp(
+               op=USub(),
+               operand=Name(id='x', ctx=Load())))),
+      Expr(
+         value=Call(
+            func=Name(id='print', ctx=Load()),
+            args=[
+               BinOp(
+                  left=Call(
+                     func=Name(id='eval', ctx=Load()),
+                     args=[
+                        Call(
+                           func=Name(id='input', ctx=Load()),
+                           args=[],
+                           keywords=[])],
+                     keywords=[]),
+                  op=Add(),
+                  right=Name(id='y', ctx=Load()))],
+            keywords=[])),
+      Expr(
+         value=BinOp(
+            left=Constant(value=1),
+            op=Add(),
+            right=Constant(value=1))),
+      Expr(
+         value=Name(id='z', ctx=Load()))],
+   type_ignores=[])

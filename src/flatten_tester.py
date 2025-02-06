@@ -26,7 +26,7 @@ def get_prog_output(file_name):
             stderr=subprocess.PIPE,
         )
         
-        stdout, stderr = process.communicate(input="66\n"*100) 
+        stdout, stderr = process.communicate(input="1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n") 
 
         return stdout.strip()
 
@@ -49,7 +49,7 @@ def get_parse_tree(prog):
     return py_ast_tree
 
 
-def test_case_prog(prog, i):
+def test_case_prog(prog, i, file_path):
     
     tree = get_parse_tree(prog)
     
@@ -74,16 +74,19 @@ def test_case_prog(prog, i):
 
     if (output == output_flat):
         check = "\u2713"
-        print(f"TEST CASE {i+1} Passed {check} ({output} = {output_flat})")
+        print(f"{os.path.basename(file_path)} --> TEST CASE {i+1} Passed {check} ({output.replace("\n", " ")} = {output_flat.replace("\n", " ")})")
+        return 1
     else:
-        print(f"TEST CASE {i+1} FAILED : PROG_OUTPUT : {output} | FLATTENED_PROG_OUTPUT : {output_flat}")
+        print(f"{os.path.basename(file_path)} --> TEST CASE {i+1} FAILED : PROG_OUTPUT : {output.replace("\n", " ")} | FLATTENED_PROG_OUTPUT : {output_flat.replace("\n", " ")}")
         print(f"prog : {prog}")
+        return 0
 
 
 
 def test_all(test_dir_name):
 
     i = 0
+    passed_sum = 0
 
     for file_name in os.listdir(test_dir_name):
 
@@ -94,10 +97,11 @@ def test_all(test_dir_name):
             with open(file_path, "r") as test_case_file:
 
                 prog = test_case_file.read()
-                test_case_prog(prog, i)
+                passed_sum += test_case_prog(prog, i, file_path)
             
             i = i + 1
-        
+
+    print(f"\n========= {passed_sum} / {i} TEST CASES PASSED ==========\n\n")
 
 
 if __name__ == "__main__":

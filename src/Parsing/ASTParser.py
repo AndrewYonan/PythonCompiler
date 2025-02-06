@@ -16,6 +16,7 @@ TOKEN_PRINT = "PRINT"
 TOKEN_EVAL_INPUT = "EVAL_INPUT"
 TOKEN_NEWLINE =  "NEWLINE"
 TOKEN_COMMENT = "#"
+TOKEN_WHITESPACE = "WHITESPACE"
 TOKEN_EOF = "EOF"
 
 
@@ -29,8 +30,8 @@ token_spec = [(r'print', TOKEN_PRINT),
               (r'\(', TOKEN_LPAREN),
               (r'\)', TOKEN_RPAREN),
               (r'\n', TOKEN_NEWLINE),
-              (r'#.*\n', TOKEN_COMMENT),
-              (r'\s+', None)] # to ignore whitespace
+              (r'#.*(\n|\Z)', TOKEN_COMMENT),
+              (r'\s+', TOKEN_WHITESPACE)] 
 
 
 
@@ -51,13 +52,12 @@ class Lexer:
                 regex = re.compile(pattern)
                 match = regex.match(self.text, pos)
                 if match:
-                    if tag:
-                        if tag != TOKEN_COMMENT:
-                            tokens.append((tag, match.group(0)))
+                    if tag != TOKEN_WHITESPACE and tag != TOKEN_COMMENT:
+                        tokens.append((tag, match.group(0)))
                     pos = match.end()
                     break
             if not match:
-                print(f'ERR : unexpected character: {self.text[pos]}')
+                print(f'ERR : unmatched character: {self.text[pos]}')
                 return
         tokens.append((TOKEN_EOF, None))
         return tokens
