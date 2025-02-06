@@ -90,7 +90,6 @@ class Parser:
     def consume(self, token_type):
         if self.current_token[0] == token_type:
             self.current_token = self.lexer.get_next_token()
-            # print(f"[+] parser consumed token {token_type}")
         else:
             print(f"ERR : unexpected token {self.current_token}")
             exit(1)
@@ -120,6 +119,15 @@ class Parser:
         if token[0] == TOKEN_VAR:
             self.consume(TOKEN_VAR)
             return Name(id = token[1], ctx = Load())
+        
+        if token[0] == TOKEN_EVAL_INPUT:
+            self.consume(TOKEN_EVAL_INPUT)
+            return Call(func = Name(id = "eval", ctx = Load()), 
+                                    args = [
+                                        Call(func = Name(id = "input", ctx = Load()),
+                                            args = [],
+                                            keywords = [])], 
+                                    keywords = [])
     
     def term(self):
         return self.factor()
@@ -181,13 +189,13 @@ class Parser:
 
 if __name__ == "__main__":
 
-    prog = """(((----1 + -temp_0)))
-    \nprint(2 + temp_0)
-    \nx
-    \ny
+    prog = """x = ----2 + 1
+    \ny = 1 + -x
+    \nprint(eval(input()) + y) 
+    \n1 + 1
     \nz"""
 
-    # prog = """1 + eval(input())"""
+    # prog = """eval(input())"""
 
     lex = Lexer(prog)
     lex.tokenize()
