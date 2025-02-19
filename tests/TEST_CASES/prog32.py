@@ -1,0 +1,11 @@
+eval(input())
+x = -----1 + 2
+print(x)
+x = -----(1 + 2)
+print(x)
+eval(input())
+eval(input())
+eval(input())
+eval(input())
+print(eval(input()))
+print(11)

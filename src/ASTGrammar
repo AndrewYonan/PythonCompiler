@@ -1,0 +1,28 @@
+
+program ::= module
+
+module ::= simple_statement+
+
+suite ::= "\n" INDENT simple_statement+ DEDENT
+
+simple_statement ::= "print" "(" expression ")"
+                    | name "=" expression
+                    | expression
+
+                    | "if" expression ":" suite "else" ":" suite
+                    | "while" expression ":" suite
+
+
+expression ::= name
+
+            | "int" "(" "not" expression ")"
+            | expression "and" expression
+            | expression "or" expression
+            | "int" "(" expression "==" expression ")"
+            | "int" "(" expression "!=" expression ")"
+            | expression "if" expression "else" expression
+            
+            | "-" expression
+            | expression "+" expression
+            | "(" expression ")"
+            | "eval" "(" "input" "(" ")" ")"

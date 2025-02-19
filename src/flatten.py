@@ -1,5 +1,8 @@
+import sys
+import os
 import ast
 from ast import *
+from unparser import *
 
 
 class RenameVariables(ast.NodeTransformer):
@@ -13,6 +16,9 @@ class RenameVariables(ast.NodeTransformer):
                 )
         return node
 
+
+def rename_source_variables(py_prog_ast):
+    return RenameVariables().visit(py_prog_ast)
 
 
 def is_simple_BinOp(node):
@@ -158,3 +164,33 @@ def flatten_ast(tree):
         body = flattener.flattened_body,
         type_ignores = tree.type_ignores
     )
+
+
+
+
+if __name__ == "__main__":
+
+    if (len(sys.argv) < 2):
+        print("Usage : python3 flatten_tester.py <python prog>")
+        exit(1)
+
+    file = sys.argv[1]
+
+    if not os.path.exists(file):
+        print(f"filed '{file}' could not be opened")
+        sys.exit(1)
+    
+    with open(file, 'r') as f:
+        prog = f.read()
+    
+    print("========PROG========")
+    print(prog)
+
+    py_ast = ast.parse(prog)
+
+    # print("====AST PROG=====")
+    # print(ast.dump(py_ast, indent=4))
+
+
+    print("====Unparsed result=====")
+    print(un_parse(py_ast))

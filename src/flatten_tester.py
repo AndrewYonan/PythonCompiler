@@ -1,20 +1,15 @@
-
-import ast
-import subprocess
 import os
 import sys
+import subprocess
 from ast import *
 from flatten import *
 from unparser import *
 
-sys.path.append(os.path.abspath("Parsing"))
-from Parsing import ASTClasses
-from Parsing import ASTParser
+from ASTClasses import *
 from ASTParser import *
-from Parsing import ASTDump
-from Parsing import AST_to_pythonAST
+from ASTParser import *
+from ASTDump import *
 from AST_to_pythonAST import CustomToPythonASTConverter
-
 
 def get_prog_output(file_name):
     try:
@@ -36,26 +31,22 @@ def get_prog_output(file_name):
         return None, str(e)
 
 
-def get_parse_tree(prog):
+def custom_parse(prog):
 
     lexer = Lexer(prog)
-
     parser = Parser(lexer)
     tree = parser.parse()
-
     converter = CustomToPythonASTConverter()
     py_ast_tree = converter.convert(tree)
+    py_ast_tree = rename_source_variables(py_ast_tree)
 
     return py_ast_tree
 
-
 def test_case_prog(prog, i, file_path):
     
-    tree = get_parse_tree(prog)
-    
-    renamed_tree = RenameVariables().visit(tree)
-    flat_tree = flatten_ast(renamed_tree)
-    prog_flat = UnParser().un_parse(flat_tree)
+    tree = custom_parse(prog)
+    flat_tree = flatten_ast(tree)
+    prog_flat = un_parse(flat_tree)
 
     file_name = f"prog_file_{i}"
     file_name_flat = f"prog_file_{i}_FLAT"
@@ -106,12 +97,14 @@ def test_all(test_dir_name):
 
 if __name__ == "__main__":
 
-    test_dir_name = "../tests/TEST_CASES"
+    if (len(sys.argv) < 2):
+        print("Usage : python3 flatten_tester.py <directory containing python test programs>")
+        exit(1)
+
+    test_dir_name = sys.argv[1]
 
     if not os.path.exists(test_dir_name):
         print(f"directory '{test_dir_name}' could not be opened")
         sys.exit(1)
 
     test_all(test_dir_name)
-
-    subprocess.run("rm -r __pycache__", shell=True)

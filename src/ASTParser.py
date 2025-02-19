@@ -1,9 +1,10 @@
+import sys
+import os
 import re 
 import ast
 from ast import *
 from ASTClasses import *
 from ASTDump import *
-
 
 TOKEN_INT = "INT"
 TOKEN_PLUS = "PLUS"
@@ -18,20 +19,48 @@ TOKEN_NEWLINE =  "NEWLINE"
 TOKEN_COMMENT = "#"
 TOKEN_WHITESPACE = "WHITESPACE"
 TOKEN_EOF = "EOF"
-
+# p0a additions:
+TOKEN_IF = "IF"
+TOKEN_WHILE = "WHILE"
+TOKEN_EQ = "EQ"
+TOKEN_NEQ = "NEQ"
+TOKEN_INT_BCAST = "INT_BCAST"
+TOKEN_NOT = "NOT"
+TOKEN_AND = "AND"
+TOKEN_OR = "OR"
+TOKEN_COLON = "COLON"
+TOKEN_INDENT = "INDENT"
+TOKEN_DEDENT = "DEDENT"
 
 token_spec = [(r'print', TOKEN_PRINT),
               (r'eval\(\s*input\(\)\s*\)', TOKEN_EVAL_INPUT),
-              (r'[a-zA-Z_][a-zA-Z0-9_]*', TOKEN_VAR),
+              (r'if', TOKEN_IF),
+              (r'while', TOKEN_WHILE),
+              (r'!=', TOKEN_NEQ),
+              (r'int', TOKEN_INT_BCAST),
+              (r'not', TOKEN_NOT),
+              (r'and', TOKEN_AND),
+              (r'or', TOKEN_OR),
               (r'\d+', TOKEN_INT),
               (r'\+', TOKEN_PLUS),
               (r'\-', TOKEN_MINUS),
+              (r'==', TOKEN_EQ),
               (r'=', TOKEN_ASSIGN),
               (r'\(', TOKEN_LPAREN),
               (r'\)', TOKEN_RPAREN),
+              (r':', TOKEN_COLON),
+              (r'\n(\s+)\S', TOKEN_INDENT),
               (r'\n', TOKEN_NEWLINE),
+              (r'[a-zA-Z_][a-zA-Z0-9_]*', TOKEN_VAR),
               (r'#.*(\n|\Z)', TOKEN_COMMENT),
               (r'\s+', TOKEN_WHITESPACE)] 
+
+
+
+def assert_proper_indent(indent):
+    if (indent % 4 != 0):
+        print(f"Parse Err : unexpected indent size : {indent}")
+        exit(1)
 
 
 
@@ -44,18 +73,47 @@ class Lexer:
         self.is_empty = False
 
     def tokenize(self):
+
         tokens = []
         pos = 0
+
+        prev_indent = 0
+        cur_indent = 0
+
         while pos < len(self.text):
+
             match = None
+
             for pattern, tag in token_spec:
+
                 regex = re.compile(pattern)
                 match = regex.match(self.text, pos)
+
                 if match:
+
                     if tag != TOKEN_WHITESPACE and tag != TOKEN_COMMENT:
-                        tokens.append((tag, match.group(0)))
+
+                        if tag == TOKEN_INDENT:
+
+                            cur_indent = len(match.group(1))
+                            assert_proper_indent(cur_indent)
+
+                            if (cur_indent > prev_indent):
+                                tokens.append((TOKEN_INDENT, None))
+                                prev_indent = cur_indent
+                            
+                            if (cur_indent < prev_indent):
+                                tokens.append((TOKEN_DEDENT, None))
+                                prev_indent = cur_indent
+    
+                        
+                        else:
+                            tokens.append((tag, match.group(0)))
+                    
                     pos = match.end()
+
                     break
+
             if not match:
                 print(f'ERR : unmatched character: {self.text[pos]}')
                 return
@@ -192,26 +250,39 @@ class Parser:
 
 if __name__ == "__main__":
 
-    prog = """x = ----2 + 1 ####
-    \ny = 1 + -x ##helllo
-    \nprint(eval(input()) + y) 
-    \n1 + 1
-    \nz"""
+    if (len(sys.argv) < 2):
+        print("Usage : python3 ASTParser.py <python test program>")
+        exit(1)
 
-    # prog = """eval(input())"""
+    prog_file = sys.argv[1]
+
+    if not os.path.exists(prog_file):
+        print(f"file '{prog_file}' could not be opened")
+        sys.exit(1)
+
+    with open(prog_file, 'r') as file:
+        prog = file.read()
+
+
+    print(f"=======P0 Prog=======")
+    print(prog)
 
     lex = Lexer(prog)
 
     print("=====prog TOKENS=====")
-
-    print(f"{lex.tokens}")
-
+    tokens = lex.tokens
+    for i in range(len(tokens)):
+        if (i+1) % 4 == 0:
+            print(tokens[i])
+        else:
+            print(tokens[i], end="")
+    print()
     print(f"from astParse:\n {ast.dump(ast.parse(prog), indent=3)}")
 
     print("=====Parse results======")
 
-    parser = Parser(lex)
-    tree = parser.parse()
-
-    dumper = ASTDump()
-    print(dumper.dump(tree))
+    # parser = Parser(lex)
+    # tree = parser.parse()
+    
+    # dumper = ASTDump()
+    # print(dumper.dump(tree))
