@@ -188,8 +188,8 @@ if __name__ == "__main__":
 
     py_ast = ast.parse(prog)
 
-    # print("====AST PROG=====")
-    # print(ast.dump(py_ast, indent=4))
+    print("====AST PROG=====")
+    print(ast.dump(py_ast, indent=4))
 
 
     print("====Unparsed result=====")
