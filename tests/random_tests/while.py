@@ -1,4 +1,4 @@
 x = 0
-while (int(x != 10)):
-    print(x)
+while (int(not x)):
+    print(int(not x and -----x))
     x = x + 1

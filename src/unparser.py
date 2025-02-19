@@ -23,7 +23,7 @@ class UnParser():
             return self.un_parse(node.left, indent_level) + " + " + self.un_parse(node.right, indent_level)
         
         if isinstance(node, ast.UnaryOp):
-            return "-(" + self.un_parse(node.operand, indent_level) + ")"
+            return self.un_parse(node.op, indent_level) + "(" + self.un_parse(node.operand, indent_level) + ")"
 
         if isinstance(node, ast.Expr):
             return indent + self.un_parse(node.value, indent_level) + "\n"
@@ -46,6 +46,9 @@ class UnParser():
         # p0a additions
         #======================================
 
+        if isinstance(node, ast.Not):
+            return "not "
+        
         if isinstance(node, ast.And):
             return " and "
         
