@@ -214,7 +214,6 @@ class FlattenAST():
             for child_node in node.body:
                 self.flatten(child_node, if_suite)
                 if_suite.append(child_node)
-            
             node.body = if_suite
 
             if len(node.orelse) == 0:
@@ -223,8 +222,31 @@ class FlattenAST():
             for child_node in node.orelse:
                 self.flatten(child_node, else_suite)
                 else_suite.append(child_node)
-            
             node.orelse = else_suite
+
+
+        elif isinstance(node, ast.While):
+
+            test_suite = []
+
+            self.flatten(node.test, test_suite)
+
+            if not is_atomic(node.test):
+                node.test = self.get_temp_assign_node(node.test, test_suite)
+            
+            for elem in test_suite:
+                suite.append(elem)
+
+            while_suite = []
+
+            for child_node in node.body:
+                self.flatten(child_node, while_suite)
+                while_suite.append(child_node)
+
+            for elem in test_suite:
+                while_suite.append(elem)
+                
+            node.body = while_suite
 
                 
     def get_temp_assign_node(self, node, suite):
@@ -278,8 +300,8 @@ if __name__ == "__main__":
     print(un_parse(py_ast))
     flat_tree = flatten(py_ast)
 
-    print("====FLAT TREE=====")
-    print(ast.dump(flat_tree, indent=4))
+    # print("====FLAT TREE=====")
+    # print(ast.dump(flat_tree, indent=4))
 
     print("===FLAT PROG====")
     print(un_parse(flat_tree))
