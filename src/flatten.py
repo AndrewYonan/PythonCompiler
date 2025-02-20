@@ -9,7 +9,7 @@ class RenameVariables(ast.NodeTransformer):
     def visit(self, node):
         self.generic_visit(node)
         if isinstance(node, ast.Name):
-            if node.id != "print" and node.id != "eval" and node.id != "input":
+            if node.id != "print" and node.id != "eval" and node.id != "input" and node.id != "int":
                 return ast.Name(
                     id = "s_" + node.id,
                     ctx = node.ctx
@@ -21,23 +21,44 @@ def rename_source_variables(py_prog_ast):
     return RenameVariables().visit(py_prog_ast)
 
 
+
+def is_atomic(node):
+    if isinstance(node, ast.Constant):
+        return True
+    elif isinstance(node, ast.Name):
+        if node.id != "eval" and node.id != "input":
+            return True
+
+
 def is_simple_BinOp(node):
     if isinstance(node, ast.BinOp):
-        return (isinstance(node.left, ast.Constant) or isinstance(node.left, ast.Name)) and (isinstance(node.right, ast.Constant) or (isinstance(node.right, ast.Name)))
+        return is_atomic(node.left) and is_atomic(node.right)
     return False
 
 
 
 def is_simple_UnaryOp(node):
     if isinstance(node, ast.UnaryOp):
-        return isinstance(node.operand, ast.Constant) or isinstance(node.operand, ast.Name)
+        return is_atomic(node.operand)
     return False
 
 
+def is_simple_BoolOp(node):
+    if isinstance(node, ast.BoolOp):
+        return is_atomic(node.values[0]) and is_atomic(node.values[1])
+
+def is_simple_compare(node):
+    if isinstance(node, ast.Compare):
+        return is_atomic(node.left) and is_atomic(node.comparators[0])
+
 
 def is_simple_Expr(node):
-    return isinstance(node, ast.Constant) or is_simple_BinOp(node) or is_simple_UnaryOp(node)
-
+    t = is_atomic(node)
+    t = t or is_simple_BinOp(node)
+    t = t or is_simple_BoolOp(node)
+    t = t or is_simple_UnaryOp(node)
+    t = t or is_simple_compare(node)
+    return t
 
 
 def is_simple_statement(node):
@@ -48,28 +69,16 @@ def is_simple_statement(node):
     if isinstance(node, ast.BinOp):
         return is_simple_BinOp(node)
     
+    if isinstance(node, ast.BoolOp):
+        return is_simple_BoolOp(node)
+    
     if isinstance(node, ast.UnaryOp):
         return is_simple_UnaryOp(node)
 
     if isinstance(node, ast.Expr):
-        return is_simple_BinOp(node) or is_simple_UnaryOp(node)
+        return is_simple_Expr(node)
     
-    if isinstance(node, ast.Constant):
-        return True
-    
-    if isinstance(node, ast.Name):
-        if node.id != "print" and node.id != "eval":
-            return True
-
-
-
-def is_atomic(node):
-    if isinstance(node, ast.Constant):
-        return True
-    elif isinstance(node, ast.Name):
-        if node.id != "eval" and node.id != "input":
-            return True
-
+    return is_atomic(node)
 
 
 def is_eval_input(node):
@@ -79,12 +88,27 @@ def is_eval_input(node):
                 return True
 
 
+def is_int_cast(node):
+    if isinstance(node, ast.Call):
+        return node.func.id == "int" 
+
+
+def is_print(node):
+    if isinstance(node, ast.Call):
+        return node.func.id == "print"
+    
 
 def new_assign_node(node, temp_id):
-    if is_simple_BinOp(node) or is_simple_UnaryOp(node) or is_eval_input(node):
+    t = is_simple_BinOp(node) 
+    t = t or is_simple_BoolOp(node)
+    t = t or is_simple_UnaryOp(node)
+    t = t or is_eval_input(node)
+    t = t or is_int_cast(node)
+    if t:
         return ast.Assign(targets = [Name(id = temp_id, ctx = Store())],
                           value = node)
-
+    else:
+        print(f"Flatten ERR : unexpected node {node} in assign-new-temp")
 
 
 class FlattenAST():
@@ -92,80 +116,134 @@ class FlattenAST():
     def __init__(self):
 
         self.counter = 0 
-        self.flattened_body = [] 
 
-    def flatten(self, node):
+    def flatten(self, node, suite):
 
         if isinstance(node, ast.Module):
 
-            for child_node in ast.iter_child_nodes(node):
-                self.flatten(child_node)
-                self.flattened_body.append(child_node)
+            suite = []
+
+            for child_node in node.body:
+                self.flatten(child_node, suite)
+                suite.append(child_node)
+            
+            return suite
 
         elif is_simple_statement(node):
             return
 
-
         elif isinstance(node, ast.Assign):
-            self.flatten(node.value)
-
+            self.flatten(node.value, suite)
 
         elif isinstance(node, ast.Expr):
-            self.flatten(node.value)
-
+            self.flatten(node.value, suite)
 
         elif isinstance(node, ast.BinOp):
 
-            self.flatten(node.left)
+            self.flatten(node.left, suite)
             
             if not is_atomic(node.left):
-                node.left = self.get_temp_assign_node(node.left)
+                node.left = self.get_temp_assign_node(node.left, suite)
                 
-            self.flatten(node.right)
+            self.flatten(node.right, suite)
 
             if not is_atomic(node.right):
-                node.right = self.get_temp_assign_node(node.right)
+                node.right = self.get_temp_assign_node(node.right, suite)
+
+        elif isinstance(node, ast.BoolOp):
+
+            self.flatten(node.values[0], suite)
+            
+            if not is_atomic(node.values[0]):
+                node.values[0] = self.get_temp_assign_node(node.values[0], suite)
+
+            self.flatten(node.values[1], suite)
+
+            if not is_atomic(node.values[1]):
+                node.values[1] = self.get_temp_assign_node(node.values[1], suite)
+        
+        elif isinstance(node, ast.Compare):
+
+            self.flatten(node.left, suite)
+
+            if not is_atomic(node.left):
+                node.left = self.get_temp_assign_node(node.left, suite)
+            
+            self.flatten(node.comparators[0], suite)
+
+            if not is_atomic(node.comparators[0]):
+                node.comparators[0] = self.get_temp_assign_node(node.comparators[0], suite)
         
         elif isinstance(node, ast.UnaryOp):
 
-            self.flatten(node.operand)
+            self.flatten(node.operand, suite)
 
             if not is_atomic(node.operand):
-                node.operand = self.get_temp_assign_node(node.operand)
+                node.operand = self.get_temp_assign_node(node.operand, suite)
                 
-
         elif isinstance(node, ast.Call):
 
             if is_eval_input(node):
                 return
+            
+            if is_int_cast(node):
 
-            for i, arg in enumerate(node.args):
-                self.flatten(arg)
+                if is_simple_compare(node.args[0]):
+                    return
+
+                self.flatten(node.args[0], suite)
+
+            if is_print(node):
+
+                arg = node.args[0]
+                self.flatten(arg, suite)
 
                 if not is_atomic(arg):
-                    node.args[i] = self.get_temp_assign_node(arg)
+                    node.args[0] = self.get_temp_assign_node(arg, suite)
+        
+        elif isinstance(node, ast.If):
 
+            self.flatten(node.test, suite)
 
-    def get_temp_assign_node(self, node):
+            if not is_atomic(node.test):
+                node.test = self.get_temp_assign_node(node.test, suite)
+
+            if_suite = []           
+            else_suite = []
+        
+            for child_node in node.body:
+                self.flatten(child_node, if_suite)
+                if_suite.append(child_node)
+            
+            node.body = if_suite
+
+            if len(node.orelse) == 0:
+                return
+            
+            for child_node in node.orelse:
+                self.flatten(child_node, else_suite)
+                else_suite.append(child_node)
+            
+            node.orelse = else_suite
+
+                
+    def get_temp_assign_node(self, node, suite):
         temp_id = f"temp_{self.counter}"
         self.counter = self.counter + 1
-        self.flattened_body.append(new_assign_node(node, temp_id))
+        suite.append(new_assign_node(node, temp_id))
         return ast.Name(id = temp_id, ctx = Load())
 
 
 
-
-def flatten_ast(tree):
+def flatten(tree):
 
     flattener = FlattenAST()
-    flattener.flatten(tree)
+    suite = flattener.flatten(tree, tree.body)
 
     return ast.Module(
-        body = flattener.flattened_body,
+        body = suite,
         type_ignores = tree.type_ignores
     )
-
-
 
 
 if __name__ == "__main__":
@@ -188,9 +266,20 @@ if __name__ == "__main__":
 
     py_ast = ast.parse(prog)
 
-    # print("====AST PROG=====")
-    # print(ast.dump(py_ast, indent=4))
-
+    print("====AST PROG=====")
+    print(ast.dump(py_ast, indent=4))
 
     print("====Unparsed result=====")
     print(un_parse(py_ast))
+
+    py_ast = rename_source_variables(py_ast)
+
+    print("====renamed vars=====")
+    print(un_parse(py_ast))
+    flat_tree = flatten(py_ast)
+
+    print("====FLAT TREE=====")
+    print(ast.dump(flat_tree, indent=4))
+
+    print("===FLAT PROG====")
+    print(un_parse(flat_tree))

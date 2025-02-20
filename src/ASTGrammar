@@ -16,10 +16,10 @@ simple_statement ::= "print" "(" expression ")"
 expression ::= name
 
             | "int" "(" "not" expression ")"
-            | expression "and" expression
-            | expression "or" expression
             | "int" "(" expression "==" expression ")"
             | "int" "(" expression "!=" expression ")"
+            | expression "and" expression
+            | expression "or" expression
             | expression "if" expression "else" expression
             
             | "-" expression
