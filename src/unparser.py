@@ -74,11 +74,19 @@ class UnParser():
             
             un_parse_str = indent + "if " + self.un_parse(node.test, indent_level, no_indent=True) + ":\n" + self.un_parse(node.body, indent_level + 1)
 
-            if len(node.orelse) > 0:
+            if node.orelse != None or len(node.orelse) > 0:
                 un_parse_str += indent + "else:\n" + self.un_parse(node.orelse, indent_level + 1)
             
             return un_parse_str
 
+        if isinstance(node, ast.IfExp):
+
+            body = self.un_parse(node.body, indent_level, no_indent=True)
+            test = self.un_parse(node.test, indent_level, no_indent=True)
+            else_body = self.un_parse(node.orelse, indent_level, no_indent=True)
+            return body + " if " + test + " else " + else_body
+        
+        
         if isinstance(node, list):
             un_parse_str = ""
             for elem in node:
