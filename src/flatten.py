@@ -28,6 +28,7 @@ def is_atomic(node):
     elif isinstance(node, ast.Name):
         if node.id != "eval" and node.id != "input":
             return True
+    return False
 
 
 def is_simple_BinOp(node):
@@ -61,26 +62,6 @@ def is_simple_Expr(node):
     return t
 
 
-# def is_simple_statement(node):
-
-#     if isinstance(node, ast.Assign):
-#         return is_simple_Expr(node.value)
-    
-#     if isinstance(node, ast.BinOp):
-#         return is_simple_BinOp(node)
-    
-#     if isinstance(node, ast.BoolOp):
-#         return is_simple_BoolOp(node)
-    
-#     if isinstance(node, ast.UnaryOp):
-#         return is_simple_UnaryOp(node)
-
-#     if isinstance(node, ast.Expr):
-#         return is_simple_Expr(node)
-    
-#     return is_atomic(node)
-
-
 def is_eval_input(node):
     if isinstance(node, ast.Call):
         if node.func.id == "eval":
@@ -98,20 +79,6 @@ def is_print(node):
         return node.func.id == "print"
     
 
-def new_assign_node(node, temp_id):
-    t = is_simple_BinOp(node) 
-    t = t or is_simple_BoolOp(node)
-    t = t or is_simple_UnaryOp(node)
-    t = t or is_eval_input(node)
-    t = t or is_int_cast(node)
-    if t:
-        return ast.Assign(targets = [Name(id = temp_id, ctx = Store())],
-                          value = node)
-    else:
-        print(f"\033[1mFlatten ERR\033[0m : unexpected node {node} in assign-new-temp")
-
-
-
 class FlattenAST():
 
     def __init__(self):
@@ -119,8 +86,6 @@ class FlattenAST():
         self.counter = 0 
 
     def flatten(self, node, suite=None):
-
-        print(f"Flattening {node}")
 
         if isinstance(node, ast.Module):
 
@@ -186,24 +151,18 @@ class FlattenAST():
                 node.operand = self.get_temp_assign_node(node.operand, suite)
                 
         elif isinstance(node, ast.Call):
-
-            if is_eval_input(node):
-                return
             
             if is_int_cast(node):
-
-                if is_simple_compare(node.args[0]):
-                    return
 
                 node.args[0] = self.flatten(node.args[0], suite)
 
             if is_print(node):
 
-                arg = node.args[0]
-                node.args[0] = self.flatten(arg, suite)
+                node.args[0] = self.flatten(node.args[0], suite)
 
-                if not is_atomic(arg):
-                    node.args[0] = self.get_temp_assign_node(arg, suite)
+                if not is_atomic(node.args[0]):
+
+                    node.args[0] = self.get_temp_assign_node(node.args[0], suite)
         
         elif isinstance(node, ast.If):
 
@@ -266,19 +225,27 @@ class FlattenAST():
             self.flatten(node.orelse, suite)
             node.orelse = self.get_temp_assign_node(node.orelse, suite)
 
-            node = self.get_temp_assign_node_if_exp(node, suite)
+            node = self.get_temp_assign_node(node, suite)
 
         return node
-
                 
+
     def get_temp_assign_node(self, node, suite):
+        if isinstance(node, ast.IfExp):
+            return self.get_temp_assign_node_if_exp(node, suite)
+        else:
+            return self.get_temp_assign_node_regular(node, suite)
+
+    
+    def get_temp_assign_node_regular(self, node, suite):
         temp_id = f"temp_{self.counter}"
         self.counter = self.counter + 1
-        suite.append(new_assign_node(node, temp_id))
+        suite.append(ast.Assign(targets = [Name(id = temp_id, ctx = Store())], value = node))
         return ast.Name(id = temp_id, ctx = Load())
     
 
     def get_temp_assign_node_if_exp(self, node, suite):
+
         temp_id = f"temp_{self.counter}"
         self.counter = self.counter + 1
         suite.append(ast.If(
@@ -333,6 +300,7 @@ if __name__ == "__main__":
     print(un_parse(py_ast))
 
     flat_tree = flatten(py_ast)
+
     # print("====FLAT TREE=====")
     # print(ast.dump(flat_tree, indent=4))
 
