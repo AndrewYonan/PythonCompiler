@@ -224,7 +224,10 @@ class FlattenAST():
                 node.test = self.get_temp_assign_node(node.test, suite)
 
             body_suite = []
-            self.flatten(node.body, body_suite)
+            node.body = self.flatten(node.body, body_suite)
+
+            if not is_atomic(node.body):
+                node.body = self.get_temp_assign_node(node.body, body_suite)
 
             last_assign_body = body_suite[len(body_suite) - 1]
 
@@ -236,6 +239,9 @@ class FlattenAST():
 
             else_suite = []
             self.flatten(node.orelse, else_suite)
+
+            if not is_atomic(node.orelse):
+                node.body = self.get_temp_assign_node(node.orelse, else_suite)
 
             last_assign_else = else_suite[len(else_suite) - 1]
 
