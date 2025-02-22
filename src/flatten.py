@@ -87,6 +87,8 @@ class FlattenAST():
 
     def flatten(self, node, suite=None):
 
+        print(f"flattening {un_parse(node)}")
+
         if isinstance(node, ast.Module):
 
             body_suite = []
@@ -121,16 +123,13 @@ class FlattenAST():
 
         elif isinstance(node, ast.BoolOp):
 
-            node.values[0] = self.flatten(node.values[0], suite)
-            
-            if not is_atomic(node.values[0]):
-                node.values[0] = self.get_temp_assign_node(node.values[0], suite)
+            for i in range(len(node.values)):
 
-            node.values[1] = self.flatten(node.values[1], suite)
-
-            if not is_atomic(node.values[1]):
-                node.values[1] = self.get_temp_assign_node(node.values[1], suite)
-        
+                node.values[i] = self.flatten(node.values[i], suite)
+                
+                if not is_atomic(node.values[i]):
+                    node.values[i] = self.get_temp_assign_node(node.values[i], suite)
+                
         elif isinstance(node, ast.Compare):
 
             node.left = self.flatten(node.left, suite)
@@ -177,6 +176,7 @@ class FlattenAST():
             for child_node in node.body:
                 child_node = self.flatten(child_node, if_suite)
                 if_suite.append(child_node)
+            
             node.body = if_suite
 
             if isinstance(node.orelse, list):
@@ -185,9 +185,11 @@ class FlattenAST():
                 for child_node in node.orelse:
                     child_node = self.flatten(child_node, else_suite)
                     else_suite.append(child_node)
+                
                 node.orelse = else_suite
 
             else:
+
                 node.orelse = self.flatten(node.orelse, else_suite)
                 else_suite.append(node.orelse)
 
@@ -217,15 +219,46 @@ class FlattenAST():
         elif isinstance(node, ast.IfExp):
             
             self.flatten(node.test, suite)
-            node.test = self.get_temp_assign_node(node.test, suite)
 
-            self.flatten(node.body, suite)
-            node.body = self.get_temp_assign_node(node.body, suite)
+            if not is_atomic(node.test):
+                node.test = self.get_temp_assign_node(node.test, suite)
 
-            self.flatten(node.orelse, suite)
-            node.orelse = self.get_temp_assign_node(node.orelse, suite)
+            body_suite = []
+            self.flatten(node.body, body_suite)
 
-            node = self.get_temp_assign_node(node, suite)
+            last_assign_body = body_suite[len(body_suite) - 1]
+
+            temp_id = f"temp_{self.counter}"
+            self.counter += 1
+
+            body_suite.append(ast.Assign(targets = [ast.Name(id = f"{temp_id}", ctx = Load())],
+                                         value = ast.Name(id = last_assign_body.targets[0].id, ctx = Store())))
+
+            else_suite = []
+            self.flatten(node.orelse, else_suite)
+
+            last_assign_else = else_suite[len(else_suite) - 1]
+
+            else_suite.append(ast.Assign(targets = [ast.Name(id = f"{temp_id}", ctx = Load())],
+                                         value = ast.Name(id = last_assign_else.targets[0].id, ctx = Store())))
+
+            suite.append(ast.If(
+                test = node.test,
+                body = body_suite,
+                orelse = else_suite
+            ))
+
+            node = ast.Name(id = temp_id, ctx = Load())
+
+            # if not is_atomic(node.body):
+            #     node.body = self.get_temp_assign_node(node.body, suite)
+
+            # self.flatten(node.orelse, suite)
+
+            # if not is_atomic(node.orelse):
+            #     node.orelse = self.get_temp_assign_node(node.orelse, suite)
+
+            # node = self.get_temp_assign_node(node, suite)
 
         return node
                 
@@ -250,14 +283,14 @@ class FlattenAST():
         self.counter = self.counter + 1
         suite.append(ast.If(
             test = node.test,
-            body = ast.Assign(
+            body = [ast.Assign(
                 targets = [ast.Name(id = temp_id)],
                 value = node.body
-            ),
-            orelse = ast.Assign(
+            )],
+            orelse = [ast.Assign(
                 targets = [ast.Name(id = temp_id)],
                 value = node.orelse
-            )
+            )]
         ))
         return ast.Name(id = temp_id, ctx = Load())
 
@@ -301,8 +334,8 @@ if __name__ == "__main__":
 
     flat_tree = flatten(py_ast)
 
-    # print("====FLAT TREE=====")
-    # print(ast.dump(flat_tree, indent=4))
+    print("====FLAT TREE=====")
+    print(ast.dump(flat_tree, indent=4))
 
     print("===FLAT PROG====")
     print(un_parse(flat_tree))

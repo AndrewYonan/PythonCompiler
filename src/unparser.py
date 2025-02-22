@@ -20,22 +20,22 @@ class UnParser():
             return self.un_parse(node.body, indent_level)
 
         if isinstance(node, ast.BinOp):
-            return self.un_parse(node.left, indent_level) + " + " + self.un_parse(node.right, indent_level)
+            return self.un_parse(node.left, indent_level, no_indent) + " + " + self.un_parse(node.right, indent_level, no_indent=True)
         
         if isinstance(node, ast.UnaryOp):
             return self.un_parse(node.op, indent_level) + "(" + self.un_parse(node.operand, indent_level) + ")"
 
         if isinstance(node, ast.Expr):
-            return indent + self.un_parse(node.value, indent_level) + "\n"
+            return indent + self.un_parse(node.value, indent_level, no_indent=True) + "\n"
         
         if (isinstance(node, ast.Assign)):
-            return indent + node.targets[0].id + " = " + self.un_parse(node.value, indent_level) + "\n"
+            return indent + node.targets[0].id + " = " + self.un_parse(node.value, indent_level, no_indent=True) + "\n"
 
         if (isinstance(node, ast.Name)):
-            return node.id
+            return indent + node.id
 
         if isinstance(node, ast.Constant):
-            return str(node.value)
+            return indent + str(node.value)
         
         if isinstance(node, ast.USub):
             return "-"
@@ -62,7 +62,15 @@ class UnParser():
             return " != "
         
         if isinstance(node, ast.BoolOp):
-            return self.un_parse(node.values[0], indent_level) + self.un_parse(node.op, indent_level) + self.un_parse(node.values[1], indent_level)
+
+            un_parse_str = ""
+            
+            for i in range(len(node.values)):
+                un_parse_str += self.un_parse(node.values[i], indent_level)
+                if i < len(node.values) - 1:
+                     un_parse_str += self.un_parse(node.op, indent_level)
+            
+            return un_parse_str
         
         if (isinstance(node, ast.Compare)):
             return self.un_parse(node.left, indent_level) + self.un_parse(node.ops[0], indent_level) + self.un_parse(node.comparators, indent_level)
@@ -72,10 +80,11 @@ class UnParser():
         
         if (isinstance(node, ast.If)):
             
-            un_parse_str = indent + "if " + self.un_parse(node.test, indent_level, no_indent=True) + ":\n" + self.un_parse(node.body, indent_level + 1)
+            un_parse_str = indent + "if " + self.un_parse(node.test, indent_level) + ":\n" + self.un_parse(node.body, indent_level + 1) + "\n"
 
-            if node.orelse != None or len(node.orelse) > 0:
-                un_parse_str += indent + "else:\n" + self.un_parse(node.orelse, indent_level + 1)
+            if node.orelse != None:
+                if len(node.orelse) > 0:
+                    un_parse_str += indent + "else:\n" + self.un_parse(node.orelse, indent_level + 1) + "\n"
             
             return un_parse_str
 
