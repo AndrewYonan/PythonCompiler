@@ -87,8 +87,6 @@ class FlattenAST():
 
     def flatten(self, node, suite=None):
 
-        print(f"flattening {un_parse(node)}")
-
         if isinstance(node, ast.Module):
 
             body_suite = []
@@ -215,90 +213,43 @@ class FlattenAST():
                 while_suite.append(elem)
                 
             node.body = while_suite
+
         
         elif isinstance(node, ast.IfExp):
+
+            ifexp_resolved_value = f"temp_{self.counter}"
+            self.counter = self.counter + 1
+
+            node.test = self.flatten(node.test, suite)
+
+            flat_body_suite = []
+            flat_else_suite = []
+          
+            flat_body_suite.append(ast.Assign(targets = [ast.Name(id = ifexp_resolved_value, ctx = Store())],
+                                    value = self.flatten(node.body, flat_body_suite)))
             
-            self.flatten(node.test, suite)
-
-            if not is_atomic(node.test):
-                node.test = self.get_temp_assign_node(node.test, suite)
-
-            body_suite = []
-            node.body = self.flatten(node.body, body_suite)
-
-            if not is_atomic(node.body):
-                node.body = self.get_temp_assign_node(node.body, body_suite)
-
-            last_assign_body = body_suite[len(body_suite) - 1]
-
-            temp_id = f"temp_{self.counter}"
-            self.counter += 1
-
-            body_suite.append(ast.Assign(targets = [ast.Name(id = f"{temp_id}", ctx = Load())],
-                                         value = ast.Name(id = last_assign_body.targets[0].id, ctx = Store())))
-
-            else_suite = []
-            self.flatten(node.orelse, else_suite)
-
-            if not is_atomic(node.orelse):
-                node.body = self.get_temp_assign_node(node.orelse, else_suite)
-
-            last_assign_else = else_suite[len(else_suite) - 1]
-
-            else_suite.append(ast.Assign(targets = [ast.Name(id = f"{temp_id}", ctx = Load())],
-                                         value = ast.Name(id = last_assign_else.targets[0].id, ctx = Store())))
+    
+            flat_else_suite.append(ast.Assign(targets = [ast.Name(id = ifexp_resolved_value, ctx = Store())],
+                                    value = self.flatten(node.orelse, flat_else_suite)))
 
             suite.append(ast.If(
                 test = node.test,
-                body = body_suite,
-                orelse = else_suite
+                body = flat_body_suite,
+                orelse = flat_else_suite
             ))
 
-            node = ast.Name(id = temp_id, ctx = Load())
-
-            # if not is_atomic(node.body):
-            #     node.body = self.get_temp_assign_node(node.body, suite)
-
-            # self.flatten(node.orelse, suite)
-
-            # if not is_atomic(node.orelse):
-            #     node.orelse = self.get_temp_assign_node(node.orelse, suite)
-
-            # node = self.get_temp_assign_node(node, suite)
+            node = ast.Name(id = ifexp_resolved_value, ctx = Load())
 
         return node
-                
-
-    def get_temp_assign_node(self, node, suite):
-        if isinstance(node, ast.IfExp):
-            return self.get_temp_assign_node_if_exp(node, suite)
-        else:
-            return self.get_temp_assign_node_regular(node, suite)
 
     
-    def get_temp_assign_node_regular(self, node, suite):
+
+    def get_temp_assign_node(self, node, suite):
         temp_id = f"temp_{self.counter}"
         self.counter = self.counter + 1
         suite.append(ast.Assign(targets = [Name(id = temp_id, ctx = Store())], value = node))
         return ast.Name(id = temp_id, ctx = Load())
     
-
-    def get_temp_assign_node_if_exp(self, node, suite):
-
-        temp_id = f"temp_{self.counter}"
-        self.counter = self.counter + 1
-        suite.append(ast.If(
-            test = node.test,
-            body = [ast.Assign(
-                targets = [ast.Name(id = temp_id)],
-                value = node.body
-            )],
-            orelse = [ast.Assign(
-                targets = [ast.Name(id = temp_id)],
-                value = node.orelse
-            )]
-        ))
-        return ast.Name(id = temp_id, ctx = Load())
 
 
 
@@ -340,8 +291,139 @@ if __name__ == "__main__":
 
     flat_tree = flatten(py_ast)
 
-    print("====FLAT TREE=====")
-    print(ast.dump(flat_tree, indent=4))
+    # print("====FLAT TREE=====")
+    # print(ast.dump(flat_tree, indent=4))
 
     print("===FLAT PROG====")
     print(un_parse(flat_tree))
+
+
+
+
+
+
+# self.flatten(node.orelse, flat_else_suite)
+            # node.orelse = self.get_temp_assign_node(node.orelse, flat_else_suite)    
+            
+            # last_assign_in_flat_else = flat_else_suite[len(flat_else_suite) - 1]
+
+            # print(f"last_assign_in_flat_else = {last_assign_in_flat_else} ({un_parse(last_assign_in_flat_else)})")
+
+
+
+
+# self.flatten(node.body, flat_body_suite)
+  # node.body = self.get_temp_assign_node(node.body, flat_body_suite)
+
+            # last_assign_in_flat_body = flat_body_suite[len(flat_body_suite) - 1]
+
+            # print(f"last_assign_in_flat_body = {last_assign_in_flat_body} ({un_parse(last_assign_in_flat_body)})")
+
+
+
+
+
+
+
+
+
+    # def get_temp_assign_node(self, node, suite):
+    #     if isinstance(node, ast.IfExp):
+    #         return self.get_temp_assign_node_if_exp(node, suite)
+    #     else:
+    #         return self.get_temp_assign_node_regular(node, suite)
+
+
+
+
+
+    # def get_temp_assign_node_if_exp(self, node, suite):
+
+    #     temp_id = f"temp_{self.counter}"
+    #     self.counter = self.counter + 1
+    #     suite.append(ast.If(
+    #         test = node.test,
+    #         body = [ast.Assign(
+    #             targets = [ast.Name(id = temp_id)],
+    #             value = node.body
+    #         )],
+    #         orelse = [ast.Assign(
+    #             targets = [ast.Name(id = temp_id)],
+    #             value = node.orelse
+    #         )]
+    #     ))
+    #     return ast.Name(id = temp_id, ctx = Load())
+
+
+
+
+ # if not is_atomic(node.body):
+            #     node.body = self.get_temp_assign_node(node.body, suite)
+
+            # self.flatten(node.orelse, suite)
+
+            # if not is_atomic(node.orelse):
+            #     node.orelse = self.get_temp_assign_node(node.orelse, suite)
+
+            # node = self.get_temp_assign_node(node, suite)
+
+
+
+
+#  resolve_id = f"temp_{self.counter}"
+#             self.counter += 1
+
+#             last_assign_body = body_suite[len(body_suite) - 1]
+
+#             print(f"last assign = {un_parse(last_assign_body)}")
+
+#             body_suite.append(ast.Assign(targets = [ast.Name(id = f"{resolve_id}", ctx = Load())],
+#                                          value = ast.Name(id = last_assign_body.targets[0].id, ctx = Store())))
+
+#             else_suite = []
+#             self.flatten(node.orelse, else_suite)
+#             node.orelse = self.get_temp_assign_node(node.orelse, else_suite)
+
+#             last_assign_else = else_suite[len(else_suite) - 1]
+
+#             print(f"last assign = {un_parse(last_assign_else)}")
+
+#             # else_suite.append(ast.Assign(targets = [ast.Name(id = f"{resolve_id}", ctx = Load())],
+#             #                              value = ast.Name(id = last_assign_else.targets[0].id, ctx = Store())))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#  self.flatten(node.test, suite)
+#             if not is_atomic(node.test):
+#                 node.test = self.get_temp_assign_node(node.test, suite)
+
+#             body_suite = []
+#             else_suite = []
+
+#             node.body = self.flatten(node.body, body_suite)
+            
+#             if not is_atomic(node.body):
+#                 node.body = self.get_temp_assign_node(node.body, body_suite)
+
+#             node.orelse = self.flatten(node.orelse, else_suite)
+
+#             if not is_atomic(node.orelse):
+#                 node.orelse = self.get_temp_assign_node(node.orelse, else_suite)
+
+#             suite.append(ast.If(
+#                 test = node.test,
+#                 body = body_suite,
+#                 orelse = else_suite
+#             ))

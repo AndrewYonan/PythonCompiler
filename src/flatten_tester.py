@@ -23,7 +23,7 @@ def get_prog_output(file_name):
         
         stdout, stderr = process.communicate(input="1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n") 
 
-        return stdout.strip()
+        return stdout.strip(), stderr.strip()
 
     except FileNotFoundError:
         return None, f"File '{file_name}' not found."
@@ -44,8 +44,10 @@ def custom_parse(prog):
 
 def test_case_prog(prog, i, file_path):
     
-    tree = custom_parse(prog)
-    flat_tree = flatten_ast(tree)
+    # tree = custom_parse(prog)
+    tree = ast.parse(prog)
+
+    flat_tree = flatten(tree)
     prog_flat = un_parse(flat_tree)
 
     file_name = f"prog_file_{i}"
@@ -57,11 +59,19 @@ def test_case_prog(prog, i, file_path):
     with open(file_name_flat, "w") as file_flat:
         file_flat.write(prog_flat)
 
-    output = get_prog_output(file_name)
-    output_flat = get_prog_output(file_name_flat)
+    output, err_prog = get_prog_output(file_name)
+    output_flat, err_flat_prog = get_prog_output(file_name_flat)
 
     os.remove(file_name)
     os.remove(file_name_flat)
+
+    if err_prog != "":
+        print(f"Prog \"{os.path.basename(file_path)}\" had error in it")
+        return 0
+    
+    if err_flat_prog != "":
+        print(f"Prog \"{os.path.basename(file_path)}\" FLAT program had ERROR : {err_flat_prog}")
+        return 0
 
     if (output == output_flat):
         check = "\u2713"

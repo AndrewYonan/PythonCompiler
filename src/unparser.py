@@ -32,16 +32,16 @@ class UnParser():
             return indent + node.targets[0].id + " = " + self.un_parse(node.value, indent_level, no_indent=True) + "\n"
 
         if (isinstance(node, ast.Name)):
-            return indent + node.id
+            return node.id
 
         if isinstance(node, ast.Constant):
-            return indent + str(node.value)
+            return str(node.value)
         
         if isinstance(node, ast.USub):
             return "-"
 
         if (isinstance(node, ast.Call)):
-            return node.func.id + "(" + self.un_parse_fun_args(node.args, indent_level) + ")"
+            return node.func.id + "(" + self.un_parse_fun_args(node.args, indent_level, no_indent=True) + ")"
 
         # p0a additions
         #======================================
@@ -73,7 +73,7 @@ class UnParser():
             return un_parse_str
         
         if (isinstance(node, ast.Compare)):
-            return self.un_parse(node.left, indent_level) + self.un_parse(node.ops[0], indent_level) + self.un_parse(node.comparators, indent_level)
+            return self.un_parse(node.left, indent_level) + self.un_parse(node.ops[0], indent_level, no_indent=True) + self.un_parse(node.comparators, indent_level, no_indent=True)
         
         if (isinstance(node, ast.While)):
             return indent + "while " + self.un_parse(node.test, indent_level, no_indent=True) + ":\n" + self.un_parse(node.body, indent_level + 1)
@@ -103,11 +103,11 @@ class UnParser():
             return un_parse_str
 
 
-    def un_parse_fun_args(self, args, indent_level):
+    def un_parse_fun_args(self, args, indent_level, no_indent=True):
 
         un_parse_str = ""
 
         for arg in args:
-            un_parse_str += (self.un_parse(arg, indent_level) + ", ")
+            un_parse_str += (self.un_parse(arg, indent_level, no_indent) + ", ")
 
         return un_parse_str[:-2]
