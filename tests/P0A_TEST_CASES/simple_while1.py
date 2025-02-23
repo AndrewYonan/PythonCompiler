@@ -1,7 +1,8 @@
 x = 1
-y = 100
-while (int(x != y)):
-  x = x + 1
-  print(x and y)
-
+while int(x != 7):
+    y = 0
+    while int(y != x):
+        print(y)
+        y = y + 1
+    x = x + 1
 

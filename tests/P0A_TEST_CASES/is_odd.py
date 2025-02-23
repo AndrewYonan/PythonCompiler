@@ -1,5 +1,5 @@
 is_odd = 1
-x = eval(input())
+x = eval(input()) + 1
 idx = 1
 while int(idx != x):
     is_odd = int(not is_odd)

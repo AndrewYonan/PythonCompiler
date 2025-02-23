@@ -6,4 +6,3 @@ if int(x != 0):
 print(is_positive)
 
 
-

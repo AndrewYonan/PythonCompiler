@@ -178,8 +178,10 @@ class FlattenAST():
             node.body = if_suite
 
             if isinstance(node.orelse, list):
+
                 if len(node.orelse) == 0:
-                    return
+                    return node
+                
                 for child_node in node.orelse:
                     child_node = self.flatten(child_node, else_suite)
                     else_suite.append(child_node)
@@ -221,6 +223,8 @@ class FlattenAST():
             self.counter = self.counter + 1
 
             node.test = self.flatten(node.test, suite)
+            if not is_atomic(node.test):
+                node.test = self.get_temp_assign_node(node.test, suite)
 
             flat_body_suite = []
             flat_else_suite = []
@@ -291,8 +295,8 @@ if __name__ == "__main__":
 
     flat_tree = flatten(py_ast)
 
-    # print("====FLAT TREE=====")
-    # print(ast.dump(flat_tree, indent=4))
+    print("====FLAT TREE=====")
+    print(ast.dump(flat_tree, indent=4))
 
     print("===FLAT PROG====")
     print(un_parse(flat_tree))
@@ -318,9 +322,6 @@ if __name__ == "__main__":
             # last_assign_in_flat_body = flat_body_suite[len(flat_body_suite) - 1]
 
             # print(f"last_assign_in_flat_body = {last_assign_in_flat_body} ({un_parse(last_assign_in_flat_body)})")
-
-
-
 
 
 

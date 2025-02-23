@@ -11,7 +11,17 @@ from ASTParser import *
 from ASTDump import *
 from AST_to_pythonAST import CustomToPythonASTConverter
 
-def get_prog_output(file_name):
+
+def get_populated_input_buffer(n):
+    buf = "0\n"
+    for i in range(n):
+        buf += str(n - i - 1) + "\n"
+    for i in range(n):
+        buf += "0\n"
+    return buf
+
+
+def get_prog_output(file_name, input_buf):
     try:
         process = subprocess.Popen(
             ["python3", file_name],  
@@ -21,7 +31,7 @@ def get_prog_output(file_name):
             stderr=subprocess.PIPE,
         )
         
-        stdout, stderr = process.communicate(input="1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n") 
+        stdout, stderr = process.communicate(input=input_buf) 
 
         return stdout.strip(), stderr.strip()
 
@@ -42,9 +52,14 @@ def custom_parse(prog):
 
     return py_ast_tree
 
-def test_case_prog(prog, i, file_path):
+def test_case_prog(prog, i, file_path, input_buf):
+
+    # print(f"TESTING {os.path.basename(file_path)}")
+
+    FAIL_MARK = "\u274C"
+    CHECK_MARK = "\u2705"
     
-    # tree = custom_parse(prog)
+    # tree = custom_parse(prog)   // WANT TO DO THIS!!!!
     tree = ast.parse(prog)
 
     flat_tree = flatten(tree)
@@ -59,26 +74,25 @@ def test_case_prog(prog, i, file_path):
     with open(file_name_flat, "w") as file_flat:
         file_flat.write(prog_flat)
 
-    output, err_prog = get_prog_output(file_name)
-    output_flat, err_flat_prog = get_prog_output(file_name_flat)
+    output, err_prog = get_prog_output(file_name, input_buf)
+    output_flat, err_flat_prog = get_prog_output(file_name_flat, input_buf)
 
     os.remove(file_name)
     os.remove(file_name_flat)
 
     if err_prog != "":
-        print(f"Prog \"{os.path.basename(file_path)}\" had error in it")
+        print(f"{FAIL_MARK} Prog \"{os.path.basename(file_path)}\" had error in it : ERROR =  {err_prog}")
         return 0
     
     if err_flat_prog != "":
-        print(f"Prog \"{os.path.basename(file_path)}\" FLAT program had ERROR : {err_flat_prog}")
+        print(f"{FAIL_MARK} Prog \"{os.path.basename(file_path)}\" FLAT program had ERROR : {err_flat_prog}")
         return 0
 
     if (output == output_flat):
-        check = "\u2713"
-        print(f"{os.path.basename(file_path)} --> TEST CASE {i+1} Passed {check} ({output.replace("\n", " ")} = {output_flat.replace("\n", " ")})")
+        print(f"{CHECK_MARK} Passed {os.path.basename(file_path)} --> TEST CASE {i+1} ({output.replace("\n", " ")} = {output_flat.replace("\n", " ")})")
         return 1
     else:
-        print(f"{os.path.basename(file_path)} --> TEST CASE {i+1} FAILED : PROG_OUTPUT : {output.replace("\n", " ")} | FLATTENED_PROG_OUTPUT : {output_flat.replace("\n", " ")}")
+        print(f"{FAIL_MARK} {os.path.basename(file_path)} --> TEST CASE {i+1} FAILED : PROG_OUTPUT : {output.replace("\n", " ")} | FLATTENED_PROG_OUTPUT : {output_flat.replace("\n", " ")}")
         print(f"prog : {prog}")
         return 0
 
@@ -88,6 +102,9 @@ def test_all(test_dir_name):
 
     i = 0
     passed_sum = 0
+    ran_sum = 0
+    input_buf = get_populated_input_buffer(10)
+    # print(input_buf)
 
     for file_name in os.listdir(test_dir_name):
 
@@ -98,11 +115,12 @@ def test_all(test_dir_name):
             with open(file_path, "r") as test_case_file:
 
                 prog = test_case_file.read()
-                passed_sum += test_case_prog(prog, i, file_path)
+                passed_sum += test_case_prog(prog, i, file_path, input_buf)
+                ran_sum += 1
             
             i = i + 1
 
-    print(f"\n========= {passed_sum} / {i} TEST CASES PASSED ==========\n\n")
+    print(f"\n========= {passed_sum} / {ran_sum} TEST CASES PASSED ==========\n\n")
 
 
 if __name__ == "__main__":
