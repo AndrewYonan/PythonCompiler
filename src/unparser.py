@@ -84,7 +84,7 @@ class UnParser():
 
             if node.orelse != None:
                 if len(node.orelse) > 0:
-                    un_parse_str += indent + "else:\n" + self.un_parse(node.orelse, indent_level + 1) + "\n"
+                    un_parse_str += indent + "else:\n" + self.un_parse(node.orelse, indent_level + 1)
             
             return un_parse_str
 

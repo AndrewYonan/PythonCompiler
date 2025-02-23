@@ -5,4 +5,4 @@ z = 4
 a = 5
 b = 6
 c = 7
-r = q if (x if y else z) else (a if int(b==3) else c)
+print(eval(input()) if (x if y else z) else (a if int(b==eval(input())) else eval(input())))
