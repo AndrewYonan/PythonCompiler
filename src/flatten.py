@@ -79,6 +79,7 @@ def is_print(node):
         return node.func.id == "print"
 
 
+
 class FlattenAST():
 
     def __init__(self):
@@ -123,16 +124,10 @@ class FlattenAST():
 
             if isinstance(node.op, ast.Or):
 
-                node = self.desugar_bool_op_array_OR(node, suite)
+                node = self.flatten_or(node, suite)
 
-                for i in range(len(suite)):
-                    suite[i] = self.flatten(suite[i], suite)
-
-            elif isinstance(node.op, ast.And):
-                pass
-                # node = self.flatten_bool_op_AND(node, suite)
+            # elif isinstance(node.op, ast.And):
             
-
                 
         elif isinstance(node, ast.Compare):
 
@@ -214,7 +209,6 @@ class FlattenAST():
 
         
         elif isinstance(node, ast.IfExp):
-
             node = self.flatten_ifexp(node, suite)
             
 
@@ -258,41 +252,58 @@ class FlattenAST():
         return ast.Name(id = ifexp_resolved_value, ctx = Load())
 
     
+    def flatten_or(self, node, suite):
 
-    def desugar_bool_op_OR_helper(self, node, suite, bool_exp_resolve_id, i):
+        bool_exp_resolve_id = f"temp_{self.counter}"
+        self.counter = self.counter + 1
+        suite.append(self.flatten_or_helper(node, suite, bool_exp_resolve_id, 0))
+        return ast.Name(id = bool_exp_resolve_id, ctx = Store())
+        
+
+    def flatten_or_helper(self, node, suite, bool_exp_resolve_id, i):
 
         if i == len(node.values) - 1:
             return ast.Assign(targets = [ast.Name(id = bool_exp_resolve_id, ctx = Store())],
                                  value = node.values[i])
 
+        flattened_test_suite = []
+        flattende_body_suite = []
         next_suite = []
 
-        test_ = ast.UnaryOp(op = Not(), operand = node.values[i])
-        body_ = [self.desugar_bool_op_OR_helper(node, next_suite, bool_exp_resolve_id, i + 1)]
-        orelse_ = [ast.Assign(targets = [ast.Name(id = bool_exp_resolve_id, ctx = Store())], value = node.values[i])]
+        test_ = self.flatten(node.values[i], flattened_test_suite)
+        test_ = self.get_temp_assign_node(test_, flattened_test_suite)
+        bool_val_resolved = test_
+        test_ = self.get_temp_assign_node(self.unary_not(test_), flattened_test_suite)
 
-        return ast.If(
+        if not is_atomic(test_):
+            test_ = self.get_temp_assign_node(test_, flattened_test_suite)
+
+        body_ = self.flatten_or_helper(node, next_suite, bool_exp_resolve_id, i + 1)
+        body_ = self.flatten(body_, flattende_body_suite)
+
+        orelse_ = [ast.Assign(targets = [ast.Name(id = bool_exp_resolve_id, ctx = Store())], value = bool_val_resolved)]
+
+        return [flattened_test_suite,
+                ast.If(
                 test = test_,
-                body = body_,
-                orelse = orelse_)
+                body = [flattende_body_suite, body_],
+                orelse = orelse_)]
 
 
 
-    def desugar_bool_op_array_OR(self, node, suite):
-
-        bool_exp_resolve_id = f"temp_{self.counter}"
-        self.counter = self.counter + 1
-        suite.append(self.desugar_bool_op_OR_helper(node, suite, bool_exp_resolve_id, 0))
-        return ast.Name(id = bool_exp_resolve_id, ctx = Store())
-
-
-
+    def unary_not(self, node):
+        return Expr(
+                value = Call(
+                    func = Name(id = 'int', ctx = Load()),
+                    args = [
+                        UnaryOp(
+                            op = Not(),
+                            operand = node)],
+                    keywords=[]))
 
 
 def flatten(tree):
     return FlattenAST().flatten(tree)
-
-
 
 
 
@@ -316,18 +327,19 @@ if __name__ == "__main__":
 
     py_ast = ast.parse(prog)
 
-    print("====AST PROG=====")
-    print(ast.dump(py_ast, indent=4))
+    # print("====AST PROG=====")
+    # print(ast.dump(py_ast, indent=4))
 
     # print("====Unparsed result=====")
     # print(un_parse(py_ast))
 
     py_ast = rename_source_variables(py_ast)
 
+    # flat_tree = flatten(py_ast)
     flat_tree = flatten(py_ast)
 
-    print("====FLAT TREE=====")
-    print(ast.dump(flat_tree, indent=4))
+    # print("====FLAT TREE=====")
+    # print(ast.dump(flat_tree, indent=4))
 
     print("===FLAT PROG====")
     print(un_parse(flat_tree))

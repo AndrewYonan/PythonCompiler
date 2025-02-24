@@ -1,0 +1,1 @@
+print(1+-1+1+-1 or 0 or (0 or 0 or 0 or 0 or 0 or (1 if 0 else 66+-66)) or 4+-1+-1+-1+-1 or 1+2+3+4+eval(input()) or eval(input()) or eval(input()) or eval(input()) or eval(input()))
