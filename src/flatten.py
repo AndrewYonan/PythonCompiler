@@ -15,7 +15,7 @@ class RenameVariables(ast.NodeTransformer):
                     ctx = node.ctx
                 )
         return node
-
+ 
 
 def rename_source_variables(py_prog_ast):
     return RenameVariables().visit(py_prog_ast)
@@ -29,44 +29,6 @@ def is_atomic(node):
         if node.id != "eval" and node.id != "input":
             return True
     return False
-
-
-def is_simple_BinOp(node):
-    if isinstance(node, ast.BinOp):
-        return is_atomic(node.left) and is_atomic(node.right)
-    return False
-
-
-
-def is_simple_UnaryOp(node):
-    if isinstance(node, ast.UnaryOp):
-        return is_atomic(node.operand)
-    return False
-
-
-def is_simple_BoolOp(node):
-    if isinstance(node, ast.BoolOp):
-        return is_atomic(node.values[0]) and is_atomic(node.values[1])
-
-def is_simple_compare(node):
-    if isinstance(node, ast.Compare):
-        return is_atomic(node.left) and is_atomic(node.comparators[0])
-
-
-def is_simple_Expr(node):
-    t = is_atomic(node)
-    t = t or is_simple_BinOp(node)
-    t = t or is_simple_BoolOp(node)
-    t = t or is_simple_UnaryOp(node)
-    t = t or is_simple_compare(node)
-    return t
-
-
-def is_eval_input(node):
-    if isinstance(node, ast.Call):
-        if node.func.id == "eval":
-            if node.args[0].func.id == "input":
-                return True
 
 
 def is_int_cast(node):
@@ -122,11 +84,7 @@ class FlattenAST():
 
         elif isinstance(node, ast.BoolOp):
 
-            if isinstance(node.op, ast.Or):
-
-                node = self.flatten_or(node, suite)
-
-            # elif isinstance(node.op, ast.And):
+            node = self.flatten_bool(node, suite)
             
                 
         elif isinstance(node, ast.Compare):
@@ -252,15 +210,15 @@ class FlattenAST():
         return ast.Name(id = ifexp_resolved_value, ctx = Load())
 
     
-    def flatten_or(self, node, suite):
+    def flatten_bool(self, node, suite):
 
         bool_exp_resolve_id = f"temp_{self.counter}"
         self.counter = self.counter + 1
-        suite.append(self.flatten_or_helper(node, suite, bool_exp_resolve_id, 0))
+        suite.append(self.flatten_bool_helper(node, suite, bool_exp_resolve_id, 0))
         return ast.Name(id = bool_exp_resolve_id, ctx = Store())
         
-
-    def flatten_or_helper(self, node, suite, bool_exp_resolve_id, i):
+    
+    def flatten_bool_helper(self, node, suite, bool_exp_resolve_id, i):
 
         if i == len(node.values) - 1:
             return ast.Assign(targets = [ast.Name(id = bool_exp_resolve_id, ctx = Store())],
@@ -273,12 +231,14 @@ class FlattenAST():
         test_ = self.flatten(node.values[i], flattened_test_suite)
         test_ = self.get_temp_assign_node(test_, flattened_test_suite)
         bool_val_resolved = test_
-        test_ = self.get_temp_assign_node(self.unary_not(test_), flattened_test_suite)
+
+        if isinstance(node.op, ast.Or):
+            test_ = self.get_temp_assign_node(self.unary_not(test_), flattened_test_suite)
 
         if not is_atomic(test_):
             test_ = self.get_temp_assign_node(test_, flattened_test_suite)
 
-        body_ = self.flatten_or_helper(node, next_suite, bool_exp_resolve_id, i + 1)
+        body_ = self.flatten_bool_helper(node, next_suite, bool_exp_resolve_id, i + 1)
         body_ = self.flatten(body_, flattende_body_suite)
 
         orelse_ = [ast.Assign(targets = [ast.Name(id = bool_exp_resolve_id, ctx = Store())], value = bool_val_resolved)]
@@ -288,7 +248,6 @@ class FlattenAST():
                 test = test_,
                 body = [flattende_body_suite, body_],
                 orelse = orelse_)]
-
 
 
     def unary_not(self, node):
@@ -343,59 +302,3 @@ if __name__ == "__main__":
 
     print("===FLAT PROG====")
     print(un_parse(flat_tree))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# new_temp_assign = ast.Assign(targets = [ast.Name(id = temp_id, ctx = Store())],
-#                                      value = ast.BoolOp(op = op_, 
-#                                                         values = [arr[0], arr[1]]))
-        
-#         suite.append(new_temp_assign)
-        
-#         i = 2
-#         prev_id = temp_id
-
-#         while i < len(arr):
-
-#             temp_id = f"temp_{self.counter}"
-#             self.counter = self.counter + 1
-            
-#             new_temp_assign = ast.Assign(targets = [ast.Name(id = temp_id, ctx = Store())],
-#                                      value = ast.BoolOp(op = op_, 
-#                                                         values = [ast.Name(id = prev_id, ctx = Load()), arr[i]]))
-        
-#             suite.append(new_temp_assign)
-
-#             prev_id = temp_id
-#             i += 1
-        
-#         return [ast.Name(id = temp_id, ctx = Load())]
-
-
-
-
-    # temp_id = f"temp_{self.counter}"
-    #     self.counter = self.counter + 1
-
-    #     if len(arr == 2):
-
-    #         suite.append(ast.Assign(targets = [ast.Name(id = temp_id, ctx = Store())],
-    #                                     value = ast.BoolOp(op = op_, values = [arr[0], arr[1]])))
-            
-    #         return
-        
-    #     suite.append(ast.Assign(targets = [ast.Name(id = temp_id, ctx = Store())],
-    #                             value = ast.BoolOp(op = op_, values = [arr[len(arr) - 1], ])))
-
-    #     self.flatten_bool_op_array(arr[:-1], op_, suite)
