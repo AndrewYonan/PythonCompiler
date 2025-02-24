@@ -1,0 +1,1 @@
+print(1 if int(not eval(input())) else (eval(input()) + eval(input()) + eval(input()))) 

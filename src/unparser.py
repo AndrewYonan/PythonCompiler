@@ -2,47 +2,112 @@ import ast
 from ast import *
 
 
+def un_parse(py_ast):
+    return UnParser().un_parse(py_ast, 0)
+
+
+
 class UnParser():
 
-    def un_parse(self, node):
+    def __init__(self):
+        self.spaces_per_indent = 4
 
-        un_parse_str = ""
+    def un_parse(self, node, indent_level, no_indent=False):
+
+        indent = "" if no_indent else (" " * self.spaces_per_indent) * indent_level
 
         if isinstance(node, ast.Module):
-            for child_node in ast.iter_child_nodes(node):
-                un_parse_str += self.un_parse(child_node)
+            return self.un_parse(node.body, indent_level)
 
         if isinstance(node, ast.BinOp):
-            un_parse_str += self.un_parse(node.left) + " + " + self.un_parse(node.right)
+            return self.un_parse(node.left, indent_level, no_indent) + " + " + self.un_parse(node.right, indent_level, no_indent=True)
         
         if isinstance(node, ast.UnaryOp):
-            un_parse_str += "-(" + self.un_parse(node.operand) + ")"
+            return self.un_parse(node.op, indent_level) + "(" + self.un_parse(node.operand, indent_level) + ")"
 
         if isinstance(node, ast.Expr):
-            un_parse_str += (self.un_parse(node.value) + "\n")
+            return indent + self.un_parse(node.value, indent_level, no_indent=True) + "\n"
         
         if (isinstance(node, ast.Assign)):
-            un_parse_str += (node.targets[0].id + " = " + self.un_parse(node.value) + "\n")
+            return indent + node.targets[0].id + " = " + self.un_parse(node.value, indent_level, no_indent=True) + "\n"
 
         if (isinstance(node, ast.Name)):
-            un_parse_str += node.id
+            return node.id
 
         if isinstance(node, ast.Constant):
-            un_parse_str += str(node.value)
+            return str(node.value)
         
         if isinstance(node, ast.USub):
-            un_parse_str += "-"
+            return "-"
 
         if (isinstance(node, ast.Call)):
-            un_parse_str += node.func.id + "(" + self.un_parse_fun_args(node.args) + ")"
+            return node.func.id + "(" + self.un_parse_fun_args(node.args, indent_level, no_indent=True) + ")"
 
+        # p0a additions
+        #======================================
+
+        if isinstance(node, ast.Not):
+            return "not "
         
-        return un_parse_str
-    
+        if isinstance(node, ast.And):
+            return " and "
+        
+        if isinstance(node, ast.Or):
+            return " or "
+        
+        if isinstance(node, ast.Eq):
+            return " == "
+        
+        if isinstance(node, ast.NotEq):
+            return " != "
+        
+        if isinstance(node, ast.BoolOp):
 
-    def un_parse_fun_args(self, args):
+            un_parse_str = ""
+            
+            for i in range(len(node.values)):
+                un_parse_str += self.un_parse(node.values[i], indent_level)
+                if i < len(node.values) - 1:
+                     un_parse_str += self.un_parse(node.op, indent_level)
+            
+            return un_parse_str
+        
+        if (isinstance(node, ast.Compare)):
+            return self.un_parse(node.left, indent_level) + self.un_parse(node.ops[0], indent_level, no_indent=True) + self.un_parse(node.comparators, indent_level, no_indent=True)
+        
+        if (isinstance(node, ast.While)):
+            return indent + "while " + self.un_parse(node.test, indent_level, no_indent=True) + ":\n" + self.un_parse(node.body, indent_level + 1)
+        
+        if (isinstance(node, ast.If)):
+            
+            un_parse_str = indent + "if " + self.un_parse(node.test, indent_level) + ":\n" + self.un_parse(node.body, indent_level + 1) + "\n"
+
+            if node.orelse != None:
+                if len(node.orelse) > 0:
+                    un_parse_str += indent + "else:\n" + self.un_parse(node.orelse, indent_level + 1)
+            
+            return un_parse_str
+
+        if isinstance(node, ast.IfExp):
+
+            body = self.un_parse(node.body, indent_level, no_indent=True)
+            test = self.un_parse(node.test, indent_level, no_indent=True)
+            else_body = self.un_parse(node.orelse, indent_level, no_indent=True)
+            return body + " if " + test + " else " + else_body
+        
+        
+        if isinstance(node, list):
+            un_parse_str = ""
+            for elem in node:
+                un_parse_str += (self.un_parse(elem, indent_level))
+            return un_parse_str
+
+
+    def un_parse_fun_args(self, args, indent_level, no_indent=True):
+
         un_parse_str = ""
-        for arg in args:
-            un_parse_str += (self.un_parse(arg) + ", ")
-        return un_parse_str[:-2]
 
+        for arg in args:
+            un_parse_str += (self.un_parse(arg, indent_level, no_indent) + ", ")
+
+        return un_parse_str[:-2]
