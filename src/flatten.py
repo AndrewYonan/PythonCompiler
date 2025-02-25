@@ -86,7 +86,6 @@ class FlattenAST():
 
             node = self.flatten_bool(node, suite)
             
-                
         elif isinstance(node, ast.Compare):
 
             node.left = self.flatten(node.left, suite)
@@ -110,7 +109,11 @@ class FlattenAST():
             
             if is_int_cast(node):
 
-                node.args[0] = self.flatten(node.args[0], suite)
+                if isinstance(node.args[0], ast.UnaryOp):
+                    if isinstance(node.args[0].op, ast.Not):
+                        node = self.flatten_not(node, suite)
+                else:
+                    node.args[0] = self.flatten(node.args[0], suite)
 
             if is_print(node):
 
@@ -179,8 +182,7 @@ class FlattenAST():
         self.counter = self.counter + 1
         suite.append(ast.Assign(targets = [Name(id = temp_id, ctx = Store())], value = node))
         return ast.Name(id = temp_id, ctx = Load())
-
-
+    
 
     def flatten_ifexp(self, node, suite):
 
@@ -209,7 +211,23 @@ class FlattenAST():
 
         return ast.Name(id = ifexp_resolved_value, ctx = Load())
 
-    
+
+    def flatten_not(self, node, suite):
+
+        operand = node.args[0].operand
+
+        bool_exp_resolve_id = f"temp_{self.counter}"
+        self.counter = self.counter + 1
+        
+        suite.append(ast.If(
+            test = self.flatten(operand, suite),
+            body = ast.Assign(targets = [ast.Name(id = bool_exp_resolve_id, ctx = Store())], value = ast.Constant(0)),
+            orelse = [ast.Assign(targets = [ast.Name(id = bool_exp_resolve_id, ctx = Store())], value = ast.Constant(1))]
+        ))
+
+        return ast.Name(id = bool_exp_resolve_id, ctx = Load())
+
+
     def flatten_bool(self, node, suite):
 
         bool_exp_resolve_id = f"temp_{self.counter}"
@@ -265,7 +283,6 @@ def flatten(tree):
     return FlattenAST().flatten(tree)
 
 
-
 if __name__ == "__main__":
 
     if (len(sys.argv) < 2):
@@ -284,7 +301,7 @@ if __name__ == "__main__":
     print("========PROG========")
     print(prog)
 
-    py_ast = ast.parse(prog)
+    
 
     # print("====AST PROG=====")
     # print(ast.dump(py_ast, indent=4))
@@ -292,13 +309,13 @@ if __name__ == "__main__":
     # print("====Unparsed result=====")
     # print(un_parse(py_ast))
 
+    py_ast = ast.parse(prog)
     py_ast = rename_source_variables(py_ast)
+    flat_tree = flatten(py_ast)
+    print("===FLAT PROG====")
+    print(un_parse(flat_tree))
 
     # flat_tree = flatten(py_ast)
-    flat_tree = flatten(py_ast)
 
     # print("====FLAT TREE=====")
     # print(ast.dump(flat_tree, indent=4))
-
-    print("===FLAT PROG====")
-    print(un_parse(flat_tree))

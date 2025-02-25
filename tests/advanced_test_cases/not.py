@@ -1,0 +1,1 @@
+print(int(not int(not int(not int(not int(not (0 or 0 or 0 or 0 or (1 and 1 and 1 and 1 and (1 if 0 else (1 if 0 else (1 if 0 else 123)))))))))))
