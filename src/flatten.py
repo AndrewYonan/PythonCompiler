@@ -251,7 +251,8 @@ class FlattenAST():
         bool_val_resolved = test_
 
         if isinstance(node.op, ast.Or):
-            test_ = self.get_temp_assign_node(self.unary_not(test_), flattened_test_suite)
+            test_ = self.unary_not(test_)
+            test_ = self.flatten(test_, flattened_test_suite)
 
         if not is_atomic(test_):
             test_ = self.get_temp_assign_node(test_, flattened_test_suite)
