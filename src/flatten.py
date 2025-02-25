@@ -215,17 +215,19 @@ class FlattenAST():
     def flatten_not(self, node, suite):
 
         operand = node.args[0].operand
+        operand = self.flatten(operand, suite)
 
-        bool_exp_resolve_id = f"temp_{self.counter}"
-        self.counter = self.counter + 1
-        
-        suite.append(ast.If(
-            test = self.flatten(operand, suite),
-            body = ast.Assign(targets = [ast.Name(id = bool_exp_resolve_id, ctx = Store())], value = ast.Constant(0)),
-            orelse = [ast.Assign(targets = [ast.Name(id = bool_exp_resolve_id, ctx = Store())], value = ast.Constant(1))]
-        ))
+        if not is_atomic(operand):
+            operand = self.get_temp_assign_node(operand, suite)
 
-        return ast.Name(id = bool_exp_resolve_id, ctx = Load())
+        return ast.Call(
+                    func = Name(id = 'int', ctx = Load()),
+                    args = [
+                        ast.Compare(
+                            left = operand,
+                            ops = [Eq()],
+                            comparators = [ast.Constant(0)])],
+                    keywords=[])
 
 
     def flatten_bool(self, node, suite):
