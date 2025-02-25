@@ -80,7 +80,7 @@ class UnParser():
         
         if (isinstance(node, ast.If)):
             
-            un_parse_str = indent + "if " + self.un_parse(node.test, indent_level) + ":\n" + self.un_parse(node.body, indent_level + 1) + "\n"
+            un_parse_str = indent + "if " + self.un_parse(node.test, indent_level) + ":\n" + self.un_parse(node.body, indent_level + 1)
 
             if node.orelse != None:
                 if len(node.orelse) > 0:
