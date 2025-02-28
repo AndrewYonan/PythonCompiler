@@ -19,6 +19,7 @@ TOKEN_NEWLINE =  "NEWLINE"
 TOKEN_COMMENT = "#"
 TOKEN_WHITESPACE = "WHITESPACE"
 TOKEN_EOF = "EOF"
+
 # p0a additions:
 TOKEN_IF = "IF"
 TOKEN_WHILE = "WHILE"
@@ -49,19 +50,18 @@ token_spec = [(r'print', TOKEN_PRINT),
               (r'\(', TOKEN_LPAREN),
               (r'\)', TOKEN_RPAREN),
               (r':', TOKEN_COLON),
-              (r'\n(\s+)\S', TOKEN_INDENT),
-              (r'\n', TOKEN_NEWLINE),
+              (r'(\n\s*)(\n|\Z)', TOKEN_NEWLINE),
+              (r'\n(\s*)[^\n]', TOKEN_INDENT),
               (r'[a-zA-Z_][a-zA-Z0-9_]*', TOKEN_VAR),
               (r'#.*(\n|\Z)', TOKEN_COMMENT),
               (r'\s+', TOKEN_WHITESPACE)] 
 
 
 
-def assert_proper_indent(indent):
+def assert_proper_indent(indent, location):
     if (indent % 4 != 0):
-        print(f"Parse Err : unexpected indent size : {indent}")
+        print(f"Parse Err : unexpected indent size : {indent} at {location}")
         exit(1)
-
 
 
 class Lexer:
@@ -91,26 +91,35 @@ class Lexer:
 
                 if match:
 
-                    if tag != TOKEN_WHITESPACE and tag != TOKEN_COMMENT:
+                    if tag == TOKEN_NEWLINE:
+                        end = match.end(1)
+
+                    elif tag != TOKEN_WHITESPACE and tag != TOKEN_COMMENT:
 
                         if tag == TOKEN_INDENT:
 
                             cur_indent = len(match.group(1))
-                            assert_proper_indent(cur_indent)
+                            assert_proper_indent(cur_indent, match.group(0))
 
                             if (cur_indent > prev_indent):
                                 tokens.append((TOKEN_INDENT, None))
                                 prev_indent = cur_indent
                             
-                            if (cur_indent < prev_indent):
-                                tokens.append((TOKEN_DEDENT, None))
+                            elif (cur_indent < prev_indent):
+                                for _ in range((prev_indent - cur_indent) // 4):
+                                    tokens.append((TOKEN_DEDENT, None))
                                 prev_indent = cur_indent
-    
+                            
+                            prev_indent = cur_indent
+                            end = match.end(1)
                         
                         else:
                             tokens.append((tag, match.group(0)))
+                            end = match.end()
+                    else:
+                        end = match.end()
                     
-                    pos = match.end()
+                    pos = end
 
                     break
 
@@ -266,7 +275,6 @@ if __name__ == "__main__":
 
     print(f"=======P0 Prog=======")
     print(prog)
-
     lex = Lexer(prog)
 
     print("=====prog TOKENS=====")
@@ -277,7 +285,7 @@ if __name__ == "__main__":
         else:
             print(tokens[i], end="")
     print()
-    print(f"from astParse:\n {ast.dump(ast.parse(prog), indent=3)}")
+    # print(f"from astParse:\n {ast.dump(ast.parse(prog), indent=3)}")
 
     print("=====Parse results======")
 
