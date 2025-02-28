@@ -73,3 +73,46 @@ class Load:
 class Store:
     def __repr__(self):
         return "Store()"
+    
+class If:
+    def __init__(self, test, body, orelse):
+        self.test = test
+        self.body = body
+        self.orelse = orelse
+    def __repr__(self):
+        return f"If(test={self.test}, body={self.body}, orelse={self.orelse})"
+
+class While:
+    def __init__(self, test, body):
+        self.test = test
+        self.body = body
+    def __repr__(self):
+        return f"While(test={self.test}, body={self.body})"
+
+class Eq:
+    def __repr__(self):
+        return f"Eq()"
+
+class NotEq:
+    def __repr__(self):
+        return f"NotEq()"
+
+class BoolOp:
+    def __init__(self, left, op, right):
+        self.left = left
+        self.op = op
+        self.right = right
+    def __repr__(self):
+        return f"BoolOp(left={self.left}, op={self.op}, right={self.right})"
+
+class And:
+    def __repr__(self):
+        return f"And()"
+    
+class Or:
+    def __repr__(self):
+        return f"Or()"
+
+class Not:
+    def __repr__(self):
+        return f"Not()"

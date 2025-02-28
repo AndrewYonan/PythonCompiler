@@ -33,6 +33,10 @@ TOKEN_COLON = "COLON"
 TOKEN_INDENT = "INDENT"
 TOKEN_DEDENT = "DEDENT"
 
+BINOP_TOKENS = [(TOKEN_PLUS, Add()),
+                (TOKEN_AND, And()),
+                (TOKEN_OR, Or())]
+
 token_spec = [(r'print', TOKEN_PRINT),
               (r'eval\(\s*input\(\)\s*\)', TOKEN_EVAL_INPUT),
               (r'if', TOKEN_IF),
@@ -57,11 +61,30 @@ token_spec = [(r'print', TOKEN_PRINT),
               (r'\s+', TOKEN_WHITESPACE)] 
 
 
+def print_tokens(tokens):
+    tokens = lex.tokens
+    for i in range(len(tokens)):
+        if (i+1) % 4 == 0:
+            print(tokens[i])
+        else:
+            print(tokens[i], end="")
+    print()
+
 
 def assert_proper_indent(indent, location):
     if (indent % 4 != 0):
         print(f"Parse Err : unexpected indent size : {indent} at {location}")
         exit(1)
+
+
+
+def eval_input_node():
+    return Call(func = Name(id = "eval", ctx = Load()), 
+                args = [
+                    Call(func = Name(id = "input", ctx = Load()),
+                        args = [],
+                        keywords = [])], 
+                keywords = [])
 
 
 class Lexer:
@@ -158,6 +181,7 @@ class Parser:
         return self.current_token[0] == TOKEN_EOF
     
     def consume(self, token_type):
+        print(f"consuming token {token_type}")
         if self.current_token[0] == token_type:
             self.current_token = self.lexer.get_next_token()
         else:
@@ -192,24 +216,21 @@ class Parser:
         
         if token[0] == TOKEN_EVAL_INPUT:
             self.consume(TOKEN_EVAL_INPUT)
-            return Call(func = Name(id = "eval", ctx = Load()), 
-                                    args = [
-                                        Call(func = Name(id = "input", ctx = Load()),
-                                            args = [],
-                                            keywords = [])], 
-                                    keywords = [])
+            return eval_input_node()
     
     def term(self):
         return self.factor()
     
     def expr(self):
         node = self.term()
-        while self.current_token[0] == TOKEN_PLUS:
-            token = self.current_token
-            self.consume(TOKEN_PLUS)
-            node = BinOp(left = node,
-                        op = Add(),
-                        right = self.term())
+        for TOKEN in BINOP_TOKENS:
+            if self.current_token[0] == TOKEN[0]:
+                while self.current_token[0] == TOKEN[0]:
+                    self.consume(TOKEN[0])
+                    node = BinOp(left = node,
+                                op = TOKEN[1],
+                                right = self.term())
+                
         return node
     
     def simple_statement(self):
@@ -230,20 +251,20 @@ class Parser:
                         args=[self.expr()],
                         keywords=[])
             self.consume(TOKEN_RPAREN)
-            return Expr(value=node)
+            return Expr(value = node)
         
         else:
             return Expr(value = self.expr())
     
     def get_next_statement(self):
-        self.strip_newlines()
+        # self.strip_newlines()
         if self.at_prog_end():
             return None
         return self.simple_statement()
 
     def parse(self):
 
-        self.strip_newlines()
+        # self.strip_newlines()
 
         while not self.at_prog_end():
             statement = self.get_next_statement()
@@ -278,19 +299,13 @@ if __name__ == "__main__":
     lex = Lexer(prog)
 
     print("=====prog TOKENS=====")
-    tokens = lex.tokens
-    for i in range(len(tokens)):
-        if (i+1) % 4 == 0:
-            print(tokens[i])
-        else:
-            print(tokens[i], end="")
-    print()
+    print_tokens(lex.tokens)
     # print(f"from astParse:\n {ast.dump(ast.parse(prog), indent=3)}")
 
     print("=====Parse results======")
 
-    # parser = Parser(lex)
-    # tree = parser.parse()
+    parser = Parser(lex)
+    tree = parser.parse()
     
-    # dumper = ASTDump()
-    # print(dumper.dump(tree))
+    dumper = ASTDump()
+    print(dumper.dump(tree))
