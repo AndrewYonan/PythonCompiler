@@ -58,6 +58,9 @@ class UnParser():
         if isinstance(node, ast.Eq):
             return " == "
         
+        if isinstance(node, ast.Is):
+            return " is "
+        
         if isinstance(node, ast.NotEq):
             return " != "
         

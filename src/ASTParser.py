@@ -4,7 +4,10 @@ import re
 import ast
 from ast import *
 from ASTClasses import *
+from AST_to_pythonAST import *
 from ASTDump import *
+from unparser import un_parse
+
 
 TOKEN_INT = "INT"
 TOKEN_PLUS = "PLUS"
@@ -219,6 +222,9 @@ class Parser:
             return eval_input_node()
     
     def term(self):
+        if self.current_token[0] == TOKEN_AND:
+            self.consume(TOKEN_AND)
+
         return self.factor()
     
     def expr(self):
@@ -309,3 +315,8 @@ if __name__ == "__main__":
     
     dumper = ASTDump()
     print(dumper.dump(tree))
+
+    tree = python3_ast(tree)
+
+    print("=====Unparsed result=======")
+    print(un_parse(tree))

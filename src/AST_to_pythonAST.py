@@ -5,10 +5,11 @@ from ASTParser import *
 from ASTDump import *
 
 
+def python3_ast(custom_ast):
+    return CustomToPythonASTConverter().convert(custom_ast)
+
+
 class CustomToPythonASTConverter():
-    
-    def __init__(self):
-        self.module_body = []
 
     def convert(self, node):
 

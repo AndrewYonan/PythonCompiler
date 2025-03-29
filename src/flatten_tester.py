@@ -4,6 +4,8 @@ import subprocess
 from ast import *
 from flatten import *
 from unparser import *
+from explicate import *
+from explicate_test_defs import *
 
 from ASTClasses import *
 from ASTParser import *
@@ -52,7 +54,7 @@ def custom_parse(prog):
 
     return py_ast_tree
 
-def test_case_prog(prog, i, file_path, input_buf):
+def test_case_prog(prog, i, file_path, input_buf, exp_abbrev=0):
 
     # print(f"TESTING {os.path.basename(file_path)}")
 
@@ -61,9 +63,20 @@ def test_case_prog(prog, i, file_path, input_buf):
     
     # tree = custom_parse(prog)   // WANT TO DO THIS!!!!
     tree = ast.parse(prog)
+    tree = rename_source_variables(tree)
 
     flat_tree = flatten(tree)
-    prog_flat = un_parse(flat_tree)
+
+    # print("==========FLAT PROG===========")
+    # print(un_parse(flat_tree))
+
+    exp_tree = explicate(flat_tree, exp_abbrev)
+
+    prog_flat = un_parse(exp_tree)
+
+    # if (exp_abbrev):
+    #     print("=========FLAT EXPLICATED ABBREVIATED PROG========")
+    #     print(un_parse(exp_tree))
 
     file_name = f"prog_file_{i}"
     file_name_flat = f"prog_file_{i}_FLAT"
@@ -72,7 +85,19 @@ def test_case_prog(prog, i, file_path, input_buf):
         file.write(prog) 
     
     with open(file_name_flat, "w") as file_flat:
+        file_flat.write(explicate_test_defs)
+        if (exp_abbrev):
+            file_flat.write("#-------------------\n")
+            file_flat.write(explicate_abbreviated_test_defs)
+        file_flat.write("#-------------------\n")
         file_flat.write(prog_flat)
+
+    
+    with open(file_name_flat, "r") as file_flat:
+        debug_prog = file_flat.read()
+        print("#######============Compiler Front End Production==========######")
+        print(debug_prog)
+
 
     output, err_prog = get_prog_output(file_name, input_buf)
     output_flat, err_flat_prog = get_prog_output(file_name_flat, input_buf)
@@ -98,7 +123,7 @@ def test_case_prog(prog, i, file_path, input_buf):
 
 
 
-def test_all(test_dir_name):
+def test_all(test_dir_name, exp_abbrev=0):
 
     i = 0
     passed_sum = 0
@@ -115,12 +140,24 @@ def test_all(test_dir_name):
             with open(file_path, "r") as test_case_file:
 
                 prog = test_case_file.read()
-                passed_sum += test_case_prog(prog, i, file_path, input_buf)
+                res = test_case_prog(prog, i, file_path, input_buf, exp_abbrev)
+                if (res == 0):
+                    print(f"\n========= {passed_sum} / {42} TEST CASES PASSED ==========\n\n")
+                    exit(0)
+                passed_sum += res
                 ran_sum += 1
             
             i = i + 1
 
     print(f"\n========= {passed_sum} / {ran_sum} TEST CASES PASSED ==========\n\n")
+
+
+def test_1(file_path, exp_abbrev=0):
+    input_buf = get_populated_input_buffer(10)
+    with open(file_path, "r") as test_case_file:
+        prog = test_case_file.read()
+        res = test_case_prog(prog, 0, file_path, input_buf, exp_abbrev)
+        print(f"\n========= {res} / {1} TEST CASES PASSED ==========\n\n")
 
 
 if __name__ == "__main__":
@@ -129,10 +166,19 @@ if __name__ == "__main__":
         print("Usage : python3 flatten_tester.py <directory containing python test programs>")
         exit(1)
 
-    test_dir_name = sys.argv[1]
+    if len(sys.argv) == 3:
+        exp_abbrev = (1 if sys.argv[2] == "1" else 0)
+    else:
+        exp_abbrev = 0
 
-    if not os.path.exists(test_dir_name):
-        print(f"directory '{test_dir_name}' could not be opened")
+    file_path = sys.argv[1]
+
+    if os.path.isfile(file_path):
+        test_1(file_path, exp_abbrev)
+        exit(0)    
+
+    if not os.path.exists(file_path):
+        print(f"directory '{file_path}' could not be opened")
         sys.exit(1)
 
-    test_all(test_dir_name)
+    test_all(file_path, exp_abbrev)
