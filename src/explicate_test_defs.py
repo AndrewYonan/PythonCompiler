@@ -25,6 +25,12 @@ def is_int(obj):
 def is_bool(obj):
     return (obj.tag == 1)
 
+def is_true(obj):
+    if is_int(obj):
+        return project_int(obj) == 1
+    elif is_bool(obj):
+        return project_bool(obj) == 1
+
 def print_any(obj):
     if isinstance(obj, pyobj):
         print(obj.val)
@@ -120,9 +126,14 @@ def box_not(obj):
         else:
             return inject_bool(0)
     elif is_bool(obj):
-        if project_bool(obj) == False:
+        if project_bool(obj) == 1:
             return inject_bool(1)
         else:
             return inject_bool(0)
+def box_unary_sub(obj):
+    if is_int(obj):
+        return inject_int(-project_int(obj))
+    elif is_bool(obj):
+        return inject_int(-project_bool(obj))
 """
 
