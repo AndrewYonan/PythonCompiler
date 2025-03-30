@@ -28,6 +28,8 @@ def to_op_str(node):
         return "!="
     elif isinstance(node, ast.Is):
         return "is"
+    elif isinstance(node, ast.Not):
+        return "not"
     else:
         print(f"ERR : to_op_str({node})")
         exit(1)
@@ -66,23 +68,7 @@ def assign_eval_input_explicate_code(target):
 def call_print_explicate_code(arg):
     return f"""print_any({arg})"""
 
-def assign_atomic_explicate_code(target, right):
-
-    exp_code = f""""""
-    if is_explicit_INT(right):
-        r_val = to_int_literal(right)
-        exp_code += f"""{target} = inject_int({r_val})\n"""
-    elif is_explicit_BOOL(right):
-        r_val = to_int_literal(right)
-        exp_code += f"""{target} = inject_bool({r_val})\n"""
-    else:
-        exp_code += f"""{target} = inject_bool({right})\n"""
-
-    return exp_code
-
-
-def compare_explicate_code(target, left, op, right, tmp1, tmp2):
-
+def get_temp_explicate_vars_for_binary_op(left, right, tmp1, tmp2):
     exp_code = f""""""
     if is_explicit_int_or_bool(left):
         l_val = to_int_literal(left)
@@ -94,6 +80,35 @@ def compare_explicate_code(target, left, op, right, tmp1, tmp2):
         exp_code += f"""{tmp2} = inject_int({r_val})\n"""
     else:
         exp_code += f"""{tmp2} = {right}\n"""
+
+    return exp_code
+
+def get_temp_explicate_vars_for_unary_op(right, tmp1):
+    exp_code = f""""""
+    if is_explicit_int_or_bool(right):
+        r_val = to_int_literal(right)
+        exp_code += f"""{tmp1} = inject_int({r_val})\n"""
+    else:
+        exp_code += f"""{tmp1} = {right}\n"""
+    return exp_code
+
+
+def assign_atomic_explicate_code(target, right):
+    exp_code = f""""""
+    if is_explicit_INT(right):
+        r_val = to_int_literal(right)
+        exp_code += f"""{target} = inject_int({r_val})\n"""
+    elif is_explicit_BOOL(right):
+        r_val = to_int_literal(right)
+        exp_code += f"""{target} = inject_bool({r_val})\n"""
+    else:
+        exp_code += f"""{target} = {right}\n"""
+    return exp_code
+
+
+def compare_explicate_code(target, left, op, right, tmp1, tmp2):
+
+    exp_code = get_temp_explicate_vars_for_binary_op(left, right, tmp1, tmp2)
 
     if op == "is":
         exp_code += f"""
@@ -115,47 +130,66 @@ elif is_bool({tmp1}):
             {target} = inject_bool(0)
 """
     
-    else:
+    elif op == "==":
         exp_code += f"""
 if is_int({tmp1}):
     if is_int({tmp2}):
-        if project_int({tmp1}) {op} project_int({tmp2}):
+        if project_int({tmp1}) == project_int({tmp2}):
             {target} = inject_bool(1)
         else:
             {target} = inject_bool(0)
     elif is_bool({tmp2}):
-        if project_int({tmp1}) {op} project_int({tmp2}):
+        if project_int({tmp1}) == project_int({tmp2}):
             {target} = inject_bool(1)
         else:
             {target} = inject_bool(0)
 elif is_bool({tmp1}):
     if is_int({tmp2}):
-        if project_int({tmp1}) {op} project_int({tmp2}):
+        if project_int({tmp1}) == project_int({tmp2}):
             {target} = inject_bool(1)
         else:
             {target} = inject_bool(0)
     elif is_bool({tmp2}):
-        if project_int({tmp1}) {op} project_int({tmp2}):
+        if project_int({tmp1}) == project_int({tmp2}):
             {target} = inject_bool(1)
         else:
             {target} = inject_bool(0)"""
+    
+    elif op == "!=":
+        exp_code += f"""
+if is_int({tmp1}):
+    if is_int({tmp2}):
+        if project_int({tmp1}) != project_int({tmp2}):
+            {target} = inject_bool(1)
+        else:
+            {target} = inject_bool(0)
+    elif is_bool({tmp2}):
+        if project_int({tmp1}) != project_int({tmp2}):
+            {target} = inject_bool(1)
+        else:
+            {target} = inject_bool(0)
+elif is_bool({tmp1}):
+    if is_int({tmp2}):
+        if project_int({tmp1}) != project_int({tmp2}):
+            {target} = inject_bool(1)
+        else:
+            {target} = inject_bool(0)
+    elif is_bool({tmp2}):
+        if project_int({tmp1}) != project_int({tmp2}):
+            {target} = inject_bool(1)
+        else:
+            {target} = inject_bool(0)"""
+    
+    else:
+        print(f"Unknown operator {op} in compare_explicate_code()")
+        exit(1)
 
     return exp_code
 
 
 def plus_explicate_code(target, left, right, tmp1, tmp2):
 
-    exp_code = f""""""
-    if is_explicit_int_or_bool(left):
-        l_val = to_int_literal(left)
-        exp_code += f"""{tmp1} = inject_int({l_val})\n"""
-    else:
-        exp_code += f"""{tmp1} = {left}\n"""
-    if is_explicit_int_or_bool(right):
-        r_val = to_int_literal(right)
-        exp_code += f"""{tmp2} = inject_int({r_val})\n"""
-    else:
-        exp_code += f"""{tmp2} = {right}\n"""
+    exp_code = get_temp_explicate_vars_for_binary_op(left, right, tmp1, tmp2)
     
     exp_code += f"""
 if is_int({tmp1}):
@@ -173,24 +207,66 @@ elif is_bool({tmp1}):
     # print(exp_code)
     return exp_code
 
+def unary_explicate_code(target, op, right, tmp1):
 
-#EXPLICATE TEST ABBREVIATIONS
+    exp_code = get_temp_explicate_vars_for_unary_op(right, tmp1)
+
+    exp_code += f"""
+if is_int({tmp1}):
+    if project_int({tmp1}) == 0:
+        {target} = inject_bool(1)
+    else:
+        {target} = inject_bool(0)
+elif is_bool({tmp1}):
+    if project_bool({tmp1}) == 0:
+        {target} = inject_bool(1)
+    else:
+        {target} = inject_bool(0)"""
+
+    return exp_code
+
+def if_explicate_code(test, tmp1):
+    exp_code = get_temp_explicate_var_for(test, tmp1)
+
+    
+
+#EXPLICATE TEST ABBREVIATIONS (for more stream-lined testing)
 #====================================================================================
 
-def compare_explicate_code_TEST_ABBREVIATED(target, left, op, right):
+def compare_explicate_code_TEST_ABBREVIATED(target, left, op, right, tmp1, tmp2):
+    
+    exp_code = get_temp_explicate_vars_for_binary_op(left, right, tmp1, tmp2)
+
     if op == "==":
-        return f"""{target} = box_equal({left}, {right})"""
+        exp_code += f"""{target} = box_equal({tmp1}, {tmp2})"""
     elif op == "!=":
-        return f"""{target} = box_nequal({left}, {right})"""
+        exp_code += f"""{target} = box_nequal({tmp1}, {tmp2})"""
     elif op == "is":
-        return f"""{target} = box_is({left}, {right})"""
+        exp_code += f"""{target} = box_is({tmp1}, {tmp2})"""
     else:
         print(f"Unrecognized operator {op} in compare_explicate_code_TEST_ABBREVIATED()")
         exit(1)
+    
+    return exp_code
 
 
-def plus_explicate_code_TEST_ABBREVIATED(target, left, right):
-    return f"""{target} = box_add({left}, {right})"""
+def plus_explicate_code_TEST_ABBREVIATED(target, left, right, tmp1, tmp2):
+
+    exp_code = get_temp_explicate_vars_for_binary_op(left, right, tmp1, tmp2)
+    exp_code += f"""{target} = box_add({tmp1}, {tmp2})"""
+    return exp_code
+
+
+def unary_explicate_code_TEST_ABBREVIATED(target, op, right, tmp1):
+
+    exp_code = get_temp_explicate_vars_for_unary_op(right, tmp1)
+
+    if op == "not":
+        exp_code += f"""{target} = box_not({tmp1})"""
+    else:
+        print(f"unrecognized operator {op} in plus_explicate_TEST_ABBREV()")
+        exit(1)
+    return exp_code
 
 #====================================================================================
 
@@ -221,9 +297,15 @@ class ExplicateAST():
                 arg = to_atomic_str(node.args[0])
                 return self.print_explicate_node(arg)
 
+        # elif isinstance (node, ast.If):
+        #     return self.if_explicate_node(node)
+
         elif isinstance(node, ast.Assign):
 
             target = node.targets[0].id
+
+            if isinstance(node.value, ast.Expr):
+                node.value = node.value.value
 
             if isinstance(node.value, ast.BinOp):
                 if isinstance(node.value.op, ast.Add):
@@ -239,6 +321,12 @@ class ExplicateAST():
                 right = to_atomic_str(node.value.comparators[0])
 
                 return self.assign_compare_explicate_node(target, left, op, right)
+            
+            elif isinstance(node.value, ast.UnaryOp):
+
+                right = to_atomic_str(node.value.operand)
+                op = to_op_str(node.value.op)
+                return self.assign_unary_explicate_node(target, op, right)
             
             elif is_eval_input(node.value):
                 return self.assign_eval_input_explicate_node(target)
@@ -257,17 +345,14 @@ class ExplicateAST():
 
     def print_explicate_node(self, arg):
         exp_tree = ast.parse(call_print_explicate_code(arg))
-        # exp_tree = flatten(exp_tree, "E_")
         return exp_tree.body
 
     def assign_eval_input_explicate_node(self, target):
         exp_tree = ast.parse(assign_eval_input_explicate_code(target))
-        # exp_tree = flatten(exp_tree, "E_")
         return exp_tree.body
 
     def assign_atomic_explicate_node(self, target, right):
         exp_tree = ast.parse(assign_atomic_explicate_code(target, right))
-        # exp_tree = flatten(exp_tree, "E_")
         return exp_tree.body
 
     def assign_compare_explicate_node(self, target, left, op, right):
@@ -276,10 +361,11 @@ class ExplicateAST():
         tmp2 = f"e_temp_{self.counter + 1}"
 
         if self.abbreviate:
-            exp_tree = ast.parse(compare_explicate_code_TEST_ABBREVIATED(target, left, op, right))
+            exp_tree = ast.parse(compare_explicate_code_TEST_ABBREVIATED(target, left, op, right, tmp1, tmp2))
         else:
             exp_tree = ast.parse(compare_explicate_code(target, left, op, right, tmp1, tmp2))
             exp_tree = flatten(exp_tree, "EXP__")
+
         self.counter += 2
 
         return exp_tree.body
@@ -290,8 +376,7 @@ class ExplicateAST():
         tmp2 = f"e_temp_{self.counter + 1}"
 
         if self.abbreviate:
-
-            exp_tree = ast.parse(plus_explicate_code_TEST_ABBREVIATED(target, left, right))
+            exp_tree = ast.parse(plus_explicate_code_TEST_ABBREVIATED(target, left, right, tmp1, tmp2))
         else:
             exp_tree = ast.parse(plus_explicate_code(target, left, right, tmp1, tmp2))
             exp_tree = flatten(exp_tree, "EXP__")
@@ -300,6 +385,28 @@ class ExplicateAST():
 
         return exp_tree.body
 
+    def assign_unary_explicate_node(self, target, op, right):
+
+        tmp1 = f"e_temp_{self.counter}"
+
+        if self.abbreviate:
+            exp_tree = ast.parse(unary_explicate_code_TEST_ABBREVIATED(target, op, right, tmp1))
+        else:
+            exp_tree = ast.parse(unary_explicate_code(target, op, right, tmp1))
+            exp_tree = flatten(exp_tree, "EXP__")
+
+        self.counter += 1
+        
+        return exp_tree
+
+    def if_explicate_node(self, node):
+
+        tmp1 = f"e_temp_{self.counter}"
+
+        exp_tree = ast.parse(if_explicate_code(test, tmp1))
+        exp_tree = flatten(exp_tree, "EXP__")
+
+        self.counter += 1
 
 
 def explicate(flat_tree, abbrev=0):

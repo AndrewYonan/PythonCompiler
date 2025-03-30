@@ -245,14 +245,19 @@ class FlattenAST():
         if not is_atomic(operand):
             operand = self.get_temp_assign_node(operand, suite)
 
-        return ast.Call(
-                    func = Name(id = 'int', ctx = Load()),
-                    args = [
-                        ast.Compare(
-                            left = operand,
-                            ops = [Eq()],
-                            comparators = [ast.Constant(0)])],
-                    keywords=[])
+        return ast.Compare(
+            left = operand,
+            ops = [Eq()],
+            comparators = [ast.Constant(0)])
+
+        # return ast.Call(
+        #             func = Name(id = 'int', ctx = Load()),
+        #             args = [
+        #                 ast.Compare(
+        #                     left = operand,
+        #                     ops = [Eq()],
+        #                     comparators = [ast.Constant(0)])],
+        #             keywords=[])
 
 
     def flatten_bool(self, node, suite):

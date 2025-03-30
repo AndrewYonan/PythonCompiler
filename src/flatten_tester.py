@@ -54,7 +54,7 @@ def custom_parse(prog):
 
     return py_ast_tree
 
-def test_case_prog(prog, i, file_path, input_buf, exp_abbrev=0):
+def test_case_prog(prog, i, file_path, input_buf, exp_abbrev=0, show_flatten=0):
 
     # print(f"TESTING {os.path.basename(file_path)}")
 
@@ -67,11 +67,24 @@ def test_case_prog(prog, i, file_path, input_buf, exp_abbrev=0):
 
     flat_tree = flatten(tree)
 
-    # print("==========FLAT PROG===========")
-    # print(un_parse(flat_tree))
+
+    # print(ast.dump(flat_tree, indent=3))
+    # exit(0)
+
+    if show_flatten:
+
+        print("============PROG============")
+        print(prog)
+
+        print("==========FLAT PROG===========")
+        print(un_parse(flat_tree))
 
     exp_tree = explicate(flat_tree, exp_abbrev)
 
+
+    # print(ast.dump(exp_tree, indent=3))
+    # exit(0)
+    
     prog_flat = un_parse(exp_tree)
 
     # if (exp_abbrev):
@@ -152,11 +165,11 @@ def test_all(test_dir_name, exp_abbrev=0):
     print(f"\n========= {passed_sum} / {ran_sum} TEST CASES PASSED ==========\n\n")
 
 
-def test_1(file_path, exp_abbrev=0):
+def test_1(file_path, exp_abbrev=0, show_flatten=0):
     input_buf = get_populated_input_buffer(10)
     with open(file_path, "r") as test_case_file:
         prog = test_case_file.read()
-        res = test_case_prog(prog, 0, file_path, input_buf, exp_abbrev)
+        res = test_case_prog(prog, 0, file_path, input_buf, exp_abbrev, show_flatten)
         print(f"\n========= {res} / {1} TEST CASES PASSED ==========\n\n")
 
 
@@ -174,7 +187,8 @@ if __name__ == "__main__":
     file_path = sys.argv[1]
 
     if os.path.isfile(file_path):
-        test_1(file_path, exp_abbrev)
+        show_flatten = 1
+        test_1(file_path, exp_abbrev, show_flatten)
         exit(0)    
 
     if not os.path.exists(file_path):
