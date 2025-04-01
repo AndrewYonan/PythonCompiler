@@ -126,16 +126,8 @@ class FlattenAST():
                 node.operand = self.get_temp_assign_node(node.operand, suite)
                 
         elif isinstance(node, ast.Call):
-            
-            if is_int_cast(node):
 
-                if isinstance(node.args[0], ast.UnaryOp):
-                    if isinstance(node.args[0].op, ast.Not):
-                        node = self.flatten_not(node, suite)
-                else:
-                    node.args[0] = self.flatten(node.args[0], suite)
-
-            elif is_print(node):
+            if is_print(node):
 
                 node.args[0] = self.flatten(node.args[0], suite)
 
@@ -204,7 +196,7 @@ class FlattenAST():
     def get_temp_assign_node(self, node, suite):
 
         temp_id = f"{self.temp_name_prefix_code}temp_{self.counter}"
-        self.counter = self.counter + 1
+        self.counter += 1
         suite.append(ast.Assign(targets = [Name(id = temp_id, ctx = Store())], value = node))
         return ast.Name(id = temp_id, ctx = Load())
     
@@ -212,7 +204,7 @@ class FlattenAST():
     def flatten_ifexp(self, node, suite):
 
         ifexp_resolved_value = f"{self.temp_name_prefix_code}temp_{self.counter}"
-        self.counter = self.counter + 1
+        self.counter += 1
 
         node.test = self.flatten(node.test, suite)
         if not is_atomic(node.test):
@@ -263,7 +255,7 @@ class FlattenAST():
     def flatten_bool(self, node, suite):
 
         bool_exp_resolve_id = f"{self.temp_name_prefix_code}temp_{self.counter}"
-        self.counter = self.counter + 1
+        self.counter += 1
         suite.append(self.flatten_bool_helper(node, suite, bool_exp_resolve_id, 0))
         return ast.Name(id = bool_exp_resolve_id, ctx = Store())
         
@@ -302,14 +294,7 @@ class FlattenAST():
 
 
     def unary_not(self, node):
-        return Expr(
-                value = Call(
-                    func = Name(id = 'int', ctx = Load()),
-                    args = [
-                        UnaryOp(
-                            op = Not(),
-                            operand = node)],
-                    keywords=[]))
+        return UnaryOp(op = Not(),operand = node)
 
 
 def flatten(tree, temp_name_prefix_code=""):

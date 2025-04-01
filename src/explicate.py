@@ -95,8 +95,6 @@ def compare_explicate_code(target, left, op, right, tmp1, tmp2):
     exp_code = get_temp_explicate_var_for(left, tmp1)
     exp_code += get_temp_explicate_var_for(right, tmp2)
 
-    get_temp_explicate_var_for
-
     if op == "is":
         exp_code += f"""
 if is_int({tmp1}):
@@ -197,7 +195,7 @@ elif is_bool({tmp1}):
 def unary_explicate_code(target, op, right, tmp1):
 
     exp_code = get_temp_explicate_var_for(right, tmp1)
-    
+
     if op == "not":
         exp_code += f"""
 if is_int({tmp1}):
@@ -221,6 +219,15 @@ elif is_bool({tmp1}):
 
     return exp_code
 
+
+def int_cast_explicate_code(target, arg, tmp1):
+    exp_code = get_temp_explicate_var_for(arg, tmp1)
+    exp_code += f"""
+if is_int({tmp1}):
+    {target} = inject_int(project_int({tmp1}))
+elif is_bool({tmp1}):
+    {target} = inject_int(project_bool({tmp1}))"""
+    return exp_code
 
 
 #EXPLICATE TEST ABBREVIATIONS (for more stream-lined testing)
@@ -263,6 +270,13 @@ def unary_explicate_code_TEST_ABBREVIATED(target, op, right, tmp1):
     else:
         print(f"unrecognized operator {op} in unary_explicate_TEST_ABBREV()")
         exit(1)
+    return exp_code
+
+def int_cast_explicate_code_TEST_ABBERVIATED(target, arg, tmp1):
+
+    exp_code = get_temp_explicate_var_for(arg, tmp1)
+    exp_code += f"""{target} = box_int({tmp1})"""
+
     return exp_code
 
 #====================================================================================
@@ -331,6 +345,10 @@ class ExplicateAST():
             elif is_eval_input(node.value):
                 return self.assign_eval_input_explicate_node(target)
 
+            elif is_int_cast(node.value):
+                arg = to_atomic_str(node.value.args[0])
+                return self.assign_int_cast_explicate_node(target, arg)
+
             elif is_atomic(node.value):
                 right = to_atomic_str(node.value)
                 return self.assign_atomic_explicate_node(target, right)
@@ -393,6 +411,20 @@ class ExplicateAST():
         self.counter += 1
         
         return exp_tree
+
+    def assign_int_cast_explicate_node(self, target, arg):
+
+        tmp1 = f"e_temp_{self.counter}"
+
+        if self.abbreviate:
+            exp_tree = ast.parse(int_cast_explicate_code_TEST_ABBERVIATED(target, arg, tmp1))
+        else:
+            exp_tree = ast.parse(int_cast_explicate_code(target, arg, tmp1))
+            exp_tree = flatten(exp_tree, "EXP__")
+
+        self.counter += 1
+        
+        return exp_tree.body
 
     def if_explicate_node(self, node):
 

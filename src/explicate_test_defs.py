@@ -27,21 +27,28 @@ def is_bool(obj):
 
 def is_true(obj):
     if is_int(obj):
-        return project_int(obj) == 1
+        if int(project_int(obj) == 0):
+            return 0
+        else:
+            return 1
     elif is_bool(obj):
-        return project_bool(obj) == 1
+        if int(project_bool(obj) == 0):
+            return 0
+        else:
+            return 1
 
 def print_any(obj):
     if isinstance(obj, pyobj):
         print(obj.val)
     else:
         print(obj)
+
 def eval_input_pyobj():
     x = eval(input())
     if isinstance(x, int):
-        return pyobj(x)
+        return pyobj(x, 0)
     if isinstance(x, bool):
-        return pyobj(x)
+        return pyobj(x, 1)
 """
 
 explicate_abbreviated_test_defs = """
@@ -126,7 +133,7 @@ def box_not(obj):
         else:
             return inject_bool(0)
     elif is_bool(obj):
-        if project_bool(obj) == 1:
+        if project_bool(obj) == 0:
             return inject_bool(1)
         else:
             return inject_bool(0)
@@ -135,5 +142,10 @@ def box_unary_sub(obj):
         return inject_int(-project_int(obj))
     elif is_bool(obj):
         return inject_int(-project_bool(obj))
+def box_int(obj):
+    if is_int(obj):
+        return inject_int(project_int(obj))
+    elif is_bool(obj):
+        return inject_int(project_bool(obj))
 """
 

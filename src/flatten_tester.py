@@ -7,11 +7,11 @@ from unparser import *
 from explicate import *
 from explicate_test_defs import *
 
-from ASTClasses import *
-from ASTParser import *
-from ASTParser import *
-from ASTDump import *
-from AST_to_pythonAST import CustomToPythonASTConverter
+# from ASTClasses import *
+# from ASTParser import *
+# from ASTParser import *
+# from ASTDump import *
+# from AST_to_pythonAST import CustomToPythonASTConverter
 
 
 def get_populated_input_buffer(n):
@@ -84,7 +84,7 @@ def test_case_prog(prog, i, file_path, input_buf, exp_abbrev=0, show_flatten=0):
 
     # print(ast.dump(exp_tree, indent=3))
     # exit(0)
-    
+
     prog_flat = un_parse(exp_tree)
 
     # if (exp_abbrev):
@@ -106,10 +106,10 @@ def test_case_prog(prog, i, file_path, input_buf, exp_abbrev=0, show_flatten=0):
         file_flat.write(prog_flat)
 
     
-    with open(file_name_flat, "r") as file_flat:
-        debug_prog = file_flat.read()
-        print("#######============Compiler Front End Production==========######")
-        print(debug_prog)
+    # with open(file_name_flat, "r") as file_flat:
+    #     debug_prog = file_flat.read()
+    #     print("#######============Compiler Front End Production==========######")
+    #     print(debug_prog)
 
 
     output, err_prog = get_prog_output(file_name, input_buf)
