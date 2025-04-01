@@ -105,11 +105,14 @@ def test_case_prog(prog, i, file_path, input_buf, exp_abbrev=0, show_flatten=0):
         file_flat.write("#-------------------\n")
         file_flat.write(prog_flat)
 
-    
-    # with open(file_name_flat, "r") as file_flat:
-    #     debug_prog = file_flat.read()
-    #     print("#######============Compiler Front End Production==========######")
-    #     print(debug_prog)
+    if show_flatten:
+        with open(file_name_flat, "r") as file_flat:
+            debug_prog = file_flat.read()
+            print("#######============Compiler Front End Production==========######")
+            print(debug_prog)
+        
+        # print("======++EXP TREE====")
+        # print(ast.dump(exp_tree, indent=2))
 
 
     output, err_prog = get_prog_output(file_name, input_buf)

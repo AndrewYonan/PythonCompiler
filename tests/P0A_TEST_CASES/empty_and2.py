@@ -1,4 +1,1 @@
-print(1 and int(1 == 3) and 4)
-
-
-
+print(1 and int(2==3) and 4)

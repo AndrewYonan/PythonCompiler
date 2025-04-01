@@ -61,7 +61,7 @@ def is_eval_input(node):
 
 class FlattenAST():
 
-    def __init__(self, prefix_code):
+    def __init__(self, prefix_code="temp_"):
 
         self.counter = 0 
         self.temp_name_prefix_code = prefix_code
@@ -73,6 +73,7 @@ class FlattenAST():
             body_suite = []
 
             for child_node in node.body:
+
                 flat_child = self.flatten(child_node, body_suite)
                 body_suite.append(flat_child)
             
@@ -80,9 +81,6 @@ class FlattenAST():
                 body = body_suite,
                 type_ignores = []
             )
-
-        elif isinstance(node, list):
-            node = [self.flatten(elem, suite) for elem in node]
 
         elif isinstance(node, ast.Assign):
             node.value = self.flatten(node.value, suite)
@@ -144,7 +142,9 @@ class FlattenAST():
         elif isinstance(node, ast.If):
 
             node.test = self.flatten(node.test, suite)
-            node.test = self.get_temp_assign_node(node.test, suite)
+
+            if not is_atomic(node.test):
+                node.test = self.get_temp_assign_node(node.test, suite)
 
             if_suite = []           
             else_suite = []
@@ -195,20 +195,19 @@ class FlattenAST():
 
     def get_temp_assign_node(self, node, suite):
 
-        temp_id = f"{self.temp_name_prefix_code}temp_{self.counter}"
-        self.counter += 1
+        temp_id = f"{self.temp_name_prefix_code}{self.counter}"
+        self.counter = self.counter + 1
         suite.append(ast.Assign(targets = [Name(id = temp_id, ctx = Store())], value = node))
         return ast.Name(id = temp_id, ctx = Load())
     
 
     def flatten_ifexp(self, node, suite):
 
-        ifexp_resolved_value = f"{self.temp_name_prefix_code}temp_{self.counter}"
-        self.counter += 1
+        ifexp_resolved_value = f"{self.temp_name_prefix_code}{self.counter}"
+        self.counter = self.counter + 1
 
         node.test = self.flatten(node.test, suite)
-        if not is_atomic(node.test):
-            node.test = self.get_temp_assign_node(node.test, suite)
+        node.test = self.get_temp_assign_node(node.test, suite)
 
         flat_body_suite = []
         flat_else_suite = []
@@ -237,25 +236,20 @@ class FlattenAST():
         if not is_atomic(operand):
             operand = self.get_temp_assign_node(operand, suite)
 
-        return ast.Compare(
-            left = operand,
-            ops = [Eq()],
-            comparators = [ast.Constant(0)])
-
-        # return ast.Call(
-        #             func = Name(id = 'int', ctx = Load()),
-        #             args = [
-        #                 ast.Compare(
-        #                     left = operand,
-        #                     ops = [Eq()],
-        #                     comparators = [ast.Constant(0)])],
-        #             keywords=[])
+        return ast.Call(
+                    func = Name(id = 'int', ctx = Load()),
+                    args = [
+                        ast.Compare(
+                            left = operand,
+                            ops = [Eq()],
+                            comparators = [ast.Constant(0)])],
+                    keywords=[])
 
 
     def flatten_bool(self, node, suite):
 
-        bool_exp_resolve_id = f"{self.temp_name_prefix_code}temp_{self.counter}"
-        self.counter += 1
+        bool_exp_resolve_id = f"{self.temp_name_prefix_code}{self.counter}"
+        self.counter = self.counter + 1
         suite.append(self.flatten_bool_helper(node, suite, bool_exp_resolve_id, 0))
         return ast.Name(id = bool_exp_resolve_id, ctx = Store())
         
@@ -294,10 +288,17 @@ class FlattenAST():
 
 
     def unary_not(self, node):
-        return UnaryOp(op = Not(),operand = node)
+        return Expr(
+                value = Call(
+                    func = Name(id = 'int', ctx = Load()),
+                    args = [
+                        UnaryOp(
+                            op = Not(),
+                            operand = node)],
+                    keywords=[]))
 
 
-def flatten(tree, temp_name_prefix_code=""):
+def flatten(tree, temp_name_prefix_code="temp_"):
     return FlattenAST(temp_name_prefix_code).flatten(tree)
 
 

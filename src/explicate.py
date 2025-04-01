@@ -70,6 +70,9 @@ def assign_eval_input_explicate_code(target):
 def call_print_explicate_code(arg):
     return f"""print_any({arg})"""
 
+def call_eval_input_explicate_code():
+    return f"""eval_input_pyobj()"""
+
 def get_temp_explicate_var_for(elem, tmp1):
     if is_explicit_int_or_bool(elem):
         val = to_int_literal(elem)
@@ -286,7 +289,6 @@ class ExplicateAST():
 
     def __init__(self, abbreviate=0):
         self.counter = 0
-        self.temp_var_prefix = "t_"
         self.abbreviate = abbreviate
     
     def explicate(self, node):
@@ -303,6 +305,12 @@ class ExplicateAST():
         elif isinstance(node, ast.Expr):
             return self.explicate(node.value)
 
+        elif isinstance(node, ast.BinOp):
+            return []
+        
+        elif isinstance(node, ast.UnaryOp):
+            return []
+
         elif isinstance(node, ast.If):
             return self.if_explicate_node(node)
 
@@ -310,9 +318,14 @@ class ExplicateAST():
             return self.while_explicate_node(node)
 
         elif isinstance(node, ast.Call):
+
             if is_print(node):
                 arg = to_atomic_str(node.args[0])
                 return self.print_explicate_node(arg)
+
+            if is_eval_input(node):
+                return self.eval_input_explicate_node()
+
 
         elif isinstance(node, ast.Assign):
 
@@ -355,6 +368,9 @@ class ExplicateAST():
 
         return node
 
+    def eval_input_explicate_node(self):
+        exp_tree = ast.parse(call_eval_input_explicate_code())
+        return exp_tree.body 
 
     def print_explicate_node(self, arg):
         exp_tree = ast.parse(call_print_explicate_code(arg))

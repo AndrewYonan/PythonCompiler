@@ -1,0 +1,2 @@
+print((not not []) + 1)
+

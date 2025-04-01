@@ -1,7 +1,5 @@
-if int(eval(input()) == 23):
-    print(42)
+x = 9 + True
+if x == 10:
+	print(1)
 else:
-    print(0)
-
-
-
+	print(0)
