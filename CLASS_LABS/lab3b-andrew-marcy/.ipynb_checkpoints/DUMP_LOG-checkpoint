@@ -1,0 +1,538 @@
+
+
+===================PYTHON3 PROG===================
+tmp1 = 101
+tmp2 = 102
+tmp3 = 103
+tmp4 = 104
+tmp5 = 105
+tmp6 = 106
+x = 0
+thing = 0
+little_var = 17
+while int(x != 5):
+    y = 1
+    A = 2
+    B = 3
+    C = 5
+    while int(y != 5):
+        y = y + 1
+        Q = 10
+        F = 99
+        thing = Q + F + C
+        G = 66
+        R = 20 + A
+        z = 0
+        while int(z != 4):
+            if int(z == 3) or int(z == 1) or int(thing + R + z + Q + F + G == -2556):
+                inner = 0
+                stop = 0
+                while int(inner != 4) and int(stop == 0):
+                    inner = inner + 1
+                    if int(inner == 2):
+                        stop = 1
+                        if int(stop == 1):
+                            if int(inner == 2):
+                                other_loop = 0
+                                while (other_loop != 16):
+                                    other_loop = other_loop + 1
+                                if int(stop == 1):
+                                    buried_live_variable = 33333
+                thing = thing + inner
+            thing = thing + F + B + z
+            z = z + 1
+        thing = thing + Q + F + C + little_var
+    x = x + 1
+print(thing + buried_live_variable + other_loop)
+
+==================================================
+=====================FLAT PROG=====================
+s_tmp1 = 101
+s_tmp2 = 102
+s_tmp3 = 103
+s_tmp4 = 104
+s_tmp5 = 105
+s_tmp6 = 106
+s_x = 0
+s_thing = 0
+s_little_var = 17
+temp_0 = int(s_x != 5)
+while temp_0:
+    s_y = 1
+    s_A = 2
+    s_B = 3
+    s_C = 5
+    temp_1 = int(s_y != 5)
+    while temp_1:
+        s_y = s_y + 1
+        s_Q = 10
+        s_F = 99
+        temp_2 = s_Q + s_F
+        s_thing = temp_2 + s_C
+        s_G = 66
+        s_R = 20 + s_A
+        s_z = 0
+        temp_3 = int(s_z != 4)
+        while temp_3:
+            temp_5 = int(s_z == 3)
+            temp_6 = int(temp_5 == 0)
+
+            if temp_6:
+                temp_7 = int(s_z == 1)
+                temp_8 = int(temp_7 == 0)
+
+                if temp_8:
+                    temp_9 = s_thing + s_R
+                    temp_10 = temp_9 + s_z
+                    temp_11 = temp_10 + s_Q
+                    temp_12 = temp_11 + s_F
+                    temp_13 = temp_12 + s_G
+                    temp_14 = -(2556)
+                    temp_4 = int(temp_13 == temp_14)
+                else:
+                    temp_4 = temp_7
+            else:
+                temp_4 = temp_5
+            if temp_4:
+                s_inner = 0
+                s_stop = 0
+                temp_16 = int(s_inner != 4)
+                if temp_16:
+                    temp_15 = int(s_stop == 0)
+                else:
+                    temp_15 = temp_16
+                while temp_15:
+                    s_inner = s_inner + 1
+                    temp_17 = int(s_inner == 2)
+                    if temp_17:
+                        s_stop = 1
+                        temp_18 = int(s_stop == 1)
+                        if temp_18:
+                            temp_19 = int(s_inner == 2)
+                            if temp_19:
+                                s_other_loop = 0
+                                temp_20 = s_other_loop != 16
+                                while temp_20:
+                                    s_other_loop = s_other_loop + 1
+                                    temp_20 = s_other_loop != 16
+                                temp_21 = int(s_stop == 1)
+                                if temp_21:
+                                    s_buried_live_variable = 33333
+                    temp_16 = int(s_inner != 4)
+                    if temp_16:
+                        temp_15 = int(s_stop == 0)
+                    else:
+                        temp_15 = temp_16
+                s_thing = s_thing + s_inner
+            temp_22 = s_thing + s_F
+            temp_23 = temp_22 + s_B
+            s_thing = temp_23 + s_z
+            s_z = s_z + 1
+            temp_3 = int(s_z != 4)
+        temp_24 = s_thing + s_Q
+        temp_25 = temp_24 + s_F
+        temp_26 = temp_25 + s_C
+        s_thing = temp_26 + s_little_var
+        temp_1 = int(s_y != 5)
+    s_x = s_x + 1
+    temp_0 = int(s_x != 5)
+temp_27 = s_thing + s_buried_live_variable
+temp_28 = temp_27 + s_other_loop
+print(temp_28)
+==================================================
+**************************************************************************
+******************* NEW COMPILER PIPLINE ITERATION (0) ***********************
+**************************************************************************
+========================IR========================
+movl 101, s_tmp1
+movl 102, s_tmp2
+movl 103, s_tmp3
+movl 104, s_tmp4
+movl 105, s_tmp5
+movl 106, s_tmp6
+movl 0, s_x
+movl 0, s_thing
+movl 17, s_little_var
+cmpl 5, s_x
+setne %al
+movzbl %al, temp_0
+while0:
+    cmpl 0, temp_0
+    je end0
+    movl 1, s_y
+    movl 2, s_A
+    movl 3, s_B
+    movl 5, s_C
+    cmpl 5, s_y
+    setne %al
+    movzbl %al, temp_1
+    while1:
+        cmpl 0, temp_1
+        je end1
+        movl s_y, s_y
+        addl 1, s_y
+        movl 10, s_Q
+        movl 99, s_F
+        movl s_Q, temp_2
+        addl s_F, temp_2
+        movl temp_2, s_thing
+        addl s_C, s_thing
+        movl 66, s_G
+        movl 20, s_R
+        addl s_A, s_R
+        movl 0, s_z
+        cmpl 4, s_z
+        setne %al
+        movzbl %al, temp_3
+        while2:
+            cmpl 0, temp_3
+            je end2
+            cmpl 3, s_z
+            sete %al
+            movzbl %al, temp_5
+            cmpl 0, temp_5
+            sete %al
+            movzbl %al, temp_6
+            cmpl 0, temp_6
+            je else3
+            then3:
+                cmpl 1, s_z
+                sete %al
+                movzbl %al, temp_7
+                cmpl 0, temp_7
+                sete %al
+                movzbl %al, temp_8
+                cmpl 0, temp_8
+                je else4
+                then4:
+                    movl s_thing, temp_9
+                    addl s_R, temp_9
+                    movl temp_9, temp_10
+                    addl s_z, temp_10
+                    movl temp_10, temp_11
+                    addl s_Q, temp_11
+                    movl temp_11, temp_12
+                    addl s_F, temp_12
+                    movl temp_12, temp_13
+                    addl s_G, temp_13
+                    movl 2556, temp_14
+                    negl temp_14
+                    cmpl temp_13, temp_14
+                    sete %al
+                    movzbl %al, temp_4
+                    jmp end4
+                else4:
+                    movl temp_7, temp_4
+                end4:
+                jmp end3
+            else3:
+                movl temp_5, temp_4
+            end3:
+            cmpl 0, temp_4
+            je else5
+            then5:
+                movl 0, s_inner
+                movl 0, s_stop
+                cmpl 4, s_inner
+                setne %al
+                movzbl %al, temp_16
+                cmpl 0, temp_16
+                je else6
+                then6:
+                    cmpl 0, s_stop
+                    sete %al
+                    movzbl %al, temp_15
+                    jmp end6
+                else6:
+                    movl temp_16, temp_15
+                end6:
+                while7:
+                    cmpl 0, temp_15
+                    je end7
+                    movl s_inner, s_inner
+                    addl 1, s_inner
+                    cmpl 2, s_inner
+                    sete %al
+                    movzbl %al, temp_17
+                    cmpl 0, temp_17
+                    je else8
+                    then8:
+                        movl 1, s_stop
+                        cmpl 1, s_stop
+                        sete %al
+                        movzbl %al, temp_18
+                        cmpl 0, temp_18
+                        je else9
+                        then9:
+                            cmpl 2, s_inner
+                            sete %al
+                            movzbl %al, temp_19
+                            cmpl 0, temp_19
+                            je else10
+                            then10:
+                                movl 0, s_other_loop
+                                while11:
+                                    cmpl 0, temp_20
+                                    je end11
+                                    movl s_other_loop, s_other_loop
+                                    addl 1, s_other_loop
+                                    jmp while11
+                                end11:
+                                cmpl 1, s_stop
+                                sete %al
+                                movzbl %al, temp_21
+                                cmpl 0, temp_21
+                                je else12
+                                then12:
+                                    movl 33333, s_buried_live_variable
+                                    jmp end12
+                                else12:
+                                end12:
+                                jmp end10
+                            else10:
+                            end10:
+                            jmp end9
+                        else9:
+                        end9:
+                        jmp end8
+                    else8:
+                    end8:
+                    cmpl 4, s_inner
+                    setne %al
+                    movzbl %al, temp_16
+                    cmpl 0, temp_16
+                    je else13
+                    then13:
+                        cmpl 0, s_stop
+                        sete %al
+                        movzbl %al, temp_15
+                        jmp end13
+                    else13:
+                        movl temp_16, temp_15
+                    end13:
+                    jmp while7
+                end7:
+                movl s_thing, s_thing
+                addl s_inner, s_thing
+                jmp end5
+            else5:
+            end5:
+            movl s_thing, temp_22
+            addl s_F, temp_22
+            movl temp_22, temp_23
+            addl s_B, temp_23
+            movl temp_23, s_thing
+            addl s_z, s_thing
+            movl s_z, s_z
+            addl 1, s_z
+            cmpl 4, s_z
+            setne %al
+            movzbl %al, temp_3
+            jmp while2
+        end2:
+        movl s_thing, temp_24
+        addl s_Q, temp_24
+        movl temp_24, temp_25
+        addl s_F, temp_25
+        movl temp_25, temp_26
+        addl s_C, temp_26
+        movl temp_26, s_thing
+        addl s_little_var, s_thing
+        cmpl 5, s_y
+        setne %al
+        movzbl %al, temp_1
+        jmp while1
+    end1:
+    movl s_x, s_x
+    addl 1, s_x
+    cmpl 5, s_x
+    setne %al
+    movzbl %al, temp_0
+    jmp while0
+end0:
+movl s_thing, temp_27
+addl s_buried_live_variable, temp_27
+movl temp_27, temp_28
+addl s_other_loop, temp_28
+print temp_28
+
+==================================================
+=====================Prog Vars=====================
+['s_tmp1', 's_tmp2', 's_tmp3', 's_tmp4', 's_tmp5', 's_tmp6', 's_x', 's_thing', 's_little_var', 'temp_0', 's_y', 's_A', 's_B', 's_C', 'temp_1', 's_Q', 's_F', 'temp_2', 's_G', 's_R', 's_z', 'temp_3', 'temp_5', 'temp_6', 'temp_7', 'temp_8', 'temp_9', 'temp_10', 'temp_11', 'temp_12', 'temp_13', 'temp_14', 'temp_4', 's_inner', 's_stop', 'temp_16', 'temp_15', 'temp_17', 'temp_18', 'temp_19', 's_other_loop', 'temp_21', 's_buried_live_variable', 'temp_22', 'temp_23', 'temp_24', 'temp_25', 'temp_26', 'temp_27', 'temp_28']
+==================================================
+GRAPH ITERATION 0, changed_liveness = 119
+GRAPH ITERATION 1, changed_liveness = 0
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+UInterferenceGraph Error : node 'temp_20' not found in nodes
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+==================HOMES ASSIGNED==================
+s_tmp1 : eax
+s_tmp2 : eax
+s_tmp3 : eax
+s_tmp4 : eax
+s_tmp5 : eax
+s_tmp6 : eax
+s_x : ecx
+s_thing : edx
+s_little_var : ebx
+temp_0 : eax
+s_y : edi
+s_A : esi
+s_B : -4(%ebp)
+s_C : -8(%ebp)
+temp_1 : eax
+s_Q : -12(%ebp)
+s_F : -16(%ebp)
+temp_2 : eax
+s_G : -20(%ebp)
+s_R : -24(%ebp)
+s_z : -28(%ebp)
+temp_3 : eax
+temp_5 : -32(%ebp)
+temp_6 : eax
+temp_7 : -44(%ebp)
+temp_8 : eax
+temp_9 : eax
+temp_10 : eax
+temp_11 : eax
+temp_12 : eax
+temp_13 : eax
+temp_14 : -56(%ebp)
+temp_4 : eax
+s_inner : -48(%ebp)
+s_stop : -52(%ebp)
+temp_16 : eax
+temp_15 : eax
+temp_17 : eax
+temp_18 : eax
+temp_19 : eax
+s_other_loop : -36(%ebp)
+temp_21 : eax
+s_buried_live_variable : -40(%ebp)
+temp_22 : eax
+temp_23 : eax
+temp_24 : eax
+temp_25 : eax
+temp_26 : eax
+temp_27 : eax
+temp_28 : eax
+==================================================

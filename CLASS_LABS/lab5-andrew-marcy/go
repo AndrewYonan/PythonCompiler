@@ -1,0 +1,9 @@
+#!/bin/bash
+
+gcc -m32 -g tests/mytests/test1.s runtime/libpyyruntime.a -lm -o tests/mytests/test1
+echo "-------GOT---------"
+cat tests/mytests/test1.in | tests/mytests/test1
+echo ""
+echo "------Expected--------"
+cat tests/mytests/test1.in | python3 tests/mytests/test1.py
+

@@ -1,0 +1,1827 @@
+
+
+===================PYTHON3 PROG===================
+tmp1 = 101
+tmp2 = 102
+tmp3 = 103
+tmp4 = 104
+tmp5 = 105
+tmp6 = 106
+x = 0
+thing = 0
+little_var = 17
+buried_live_variable = 0
+while int(x != 5):
+    y = 1
+    A = 2
+    B = 3
+    C = 5
+    while int(y != 5):
+        y = y + 1
+        Q = 10
+        F = 99
+        thing = Q + F + C
+        G = 66
+        R = 20 + A
+        z = 0
+        while int(z != 4):
+            if int(z == 3) or int(z == 1) or int(thing + R + z + Q + F + G == -2556):
+                inner = 0
+                stop = 0
+                while int(inner != 4) and int(stop == 0):
+                    inner = inner + 1
+                    if int(inner == 2):
+                        stop = 1
+                        if int(stop == 1):
+                            if int(inner == 2):
+                                other_loop = 0
+                                while int(other_loop != 16):
+                                    other_loop = other_loop + 1
+                                if int(stop == 1):
+                                    buried_live_variable = 3331 + tmp1 + tmp2 + tmp3 + tmp4 + tmp5 + tmp6 + other_loop
+                thing = thing + inner
+            thing = thing + F + B + z
+            z = z + 1
+        thing = thing + Q + F + C + little_var
+    x = x + 1
+print(thing + buried_live_variable)
+
+==================================================
+=====================FLAT PROG=====================
+s_tmp1 = 101
+s_tmp2 = 102
+s_tmp3 = 103
+s_tmp4 = 104
+s_tmp5 = 105
+s_tmp6 = 106
+s_x = 0
+s_thing = 0
+s_little_var = 17
+s_buried_live_variable = 0
+temp_0 = int(s_x != 5)
+while temp_0:
+    s_y = 1
+    s_A = 2
+    s_B = 3
+    s_C = 5
+    temp_1 = int(s_y != 5)
+    while temp_1:
+        s_y = s_y + 1
+        s_Q = 10
+        s_F = 99
+        temp_2 = s_Q + s_F
+        s_thing = temp_2 + s_C
+        s_G = 66
+        s_R = 20 + s_A
+        s_z = 0
+        temp_3 = int(s_z != 4)
+        while temp_3:
+            temp_5 = int(s_z == 3)
+            temp_6 = int(temp_5 == 0)
+
+            if temp_6:
+                temp_7 = int(s_z == 1)
+                temp_8 = int(temp_7 == 0)
+
+                if temp_8:
+                    temp_9 = s_thing + s_R
+                    temp_10 = temp_9 + s_z
+                    temp_11 = temp_10 + s_Q
+                    temp_12 = temp_11 + s_F
+                    temp_13 = temp_12 + s_G
+                    temp_14 = -(2556)
+                    temp_4 = int(temp_13 == temp_14)
+                else:
+                    temp_4 = temp_7
+            else:
+                temp_4 = temp_5
+            if temp_4:
+                s_inner = 0
+                s_stop = 0
+                temp_16 = int(s_inner != 4)
+                if temp_16:
+                    temp_15 = int(s_stop == 0)
+                else:
+                    temp_15 = temp_16
+                while temp_15:
+                    s_inner = s_inner + 1
+                    temp_17 = int(s_inner == 2)
+                    if temp_17:
+                        s_stop = 1
+                        temp_18 = int(s_stop == 1)
+                        if temp_18:
+                            temp_19 = int(s_inner == 2)
+                            if temp_19:
+                                s_other_loop = 0
+                                temp_20 = int(s_other_loop != 16)
+                                while temp_20:
+                                    s_other_loop = s_other_loop + 1
+                                    temp_20 = int(s_other_loop != 16)
+                                temp_21 = int(s_stop == 1)
+                                if temp_21:
+                                    temp_22 = 3331 + s_tmp1
+                                    temp_23 = temp_22 + s_tmp2
+                                    temp_24 = temp_23 + s_tmp3
+                                    temp_25 = temp_24 + s_tmp4
+                                    temp_26 = temp_25 + s_tmp5
+                                    temp_27 = temp_26 + s_tmp6
+                                    s_buried_live_variable = temp_27 + s_other_loop
+                    temp_16 = int(s_inner != 4)
+                    if temp_16:
+                        temp_15 = int(s_stop == 0)
+                    else:
+                        temp_15 = temp_16
+                s_thing = s_thing + s_inner
+            temp_28 = s_thing + s_F
+            temp_29 = temp_28 + s_B
+            s_thing = temp_29 + s_z
+            s_z = s_z + 1
+            temp_3 = int(s_z != 4)
+        temp_30 = s_thing + s_Q
+        temp_31 = temp_30 + s_F
+        temp_32 = temp_31 + s_C
+        s_thing = temp_32 + s_little_var
+        temp_1 = int(s_y != 5)
+    s_x = s_x + 1
+    temp_0 = int(s_x != 5)
+temp_33 = s_thing + s_buried_live_variable
+print(temp_33)
+==================================================
+**************************************************************************
+******************* NEW COMPILER PIPLINE ITERATION (0) ***********************
+**************************************************************************
+========================IR========================
+movl 101, s_tmp1
+movl 102, s_tmp2
+movl 103, s_tmp3
+movl 104, s_tmp4
+movl 105, s_tmp5
+movl 106, s_tmp6
+movl 0, s_x
+movl 0, s_thing
+movl 17, s_little_var
+movl 0, s_buried_live_variable
+cmpl 5, s_x
+setne %al
+movzbl %al, temp_0
+while0:
+    cmpl 0, temp_0
+    je end0
+    movl 1, s_y
+    movl 2, s_A
+    movl 3, s_B
+    movl 5, s_C
+    cmpl 5, s_y
+    setne %al
+    movzbl %al, temp_1
+    while1:
+        cmpl 0, temp_1
+        je end1
+        movl s_y, s_y
+        addl 1, s_y
+        movl 10, s_Q
+        movl 99, s_F
+        movl s_Q, temp_2
+        addl s_F, temp_2
+        movl temp_2, s_thing
+        addl s_C, s_thing
+        movl 66, s_G
+        movl 20, s_R
+        addl s_A, s_R
+        movl 0, s_z
+        cmpl 4, s_z
+        setne %al
+        movzbl %al, temp_3
+        while2:
+            cmpl 0, temp_3
+            je end2
+            cmpl 3, s_z
+            sete %al
+            movzbl %al, temp_5
+            cmpl 0, temp_5
+            sete %al
+            movzbl %al, temp_6
+            cmpl 0, temp_6
+            je else3
+            then3:
+                cmpl 1, s_z
+                sete %al
+                movzbl %al, temp_7
+                cmpl 0, temp_7
+                sete %al
+                movzbl %al, temp_8
+                cmpl 0, temp_8
+                je else4
+                then4:
+                    movl s_thing, temp_9
+                    addl s_R, temp_9
+                    movl temp_9, temp_10
+                    addl s_z, temp_10
+                    movl temp_10, temp_11
+                    addl s_Q, temp_11
+                    movl temp_11, temp_12
+                    addl s_F, temp_12
+                    movl temp_12, temp_13
+                    addl s_G, temp_13
+                    movl 2556, temp_14
+                    negl temp_14
+                    cmpl temp_13, temp_14
+                    sete %al
+                    movzbl %al, temp_4
+                    jmp end4
+                else4:
+                    movl temp_7, temp_4
+                end4:
+                jmp end3
+            else3:
+                movl temp_5, temp_4
+            end3:
+            cmpl 0, temp_4
+            je else5
+            then5:
+                movl 0, s_inner
+                movl 0, s_stop
+                cmpl 4, s_inner
+                setne %al
+                movzbl %al, temp_16
+                cmpl 0, temp_16
+                je else6
+                then6:
+                    cmpl 0, s_stop
+                    sete %al
+                    movzbl %al, temp_15
+                    jmp end6
+                else6:
+                    movl temp_16, temp_15
+                end6:
+                while7:
+                    cmpl 0, temp_15
+                    je end7
+                    movl s_inner, s_inner
+                    addl 1, s_inner
+                    cmpl 2, s_inner
+                    sete %al
+                    movzbl %al, temp_17
+                    cmpl 0, temp_17
+                    je else8
+                    then8:
+                        movl 1, s_stop
+                        cmpl 1, s_stop
+                        sete %al
+                        movzbl %al, temp_18
+                        cmpl 0, temp_18
+                        je else9
+                        then9:
+                            cmpl 2, s_inner
+                            sete %al
+                            movzbl %al, temp_19
+                            cmpl 0, temp_19
+                            je else10
+                            then10:
+                                movl 0, s_other_loop
+                                cmpl 16, s_other_loop
+                                setne %al
+                                movzbl %al, temp_20
+                                while11:
+                                    cmpl 0, temp_20
+                                    je end11
+                                    movl s_other_loop, s_other_loop
+                                    addl 1, s_other_loop
+                                    cmpl 16, s_other_loop
+                                    setne %al
+                                    movzbl %al, temp_20
+                                    jmp while11
+                                end11:
+                                cmpl 1, s_stop
+                                sete %al
+                                movzbl %al, temp_21
+                                cmpl 0, temp_21
+                                je else12
+                                then12:
+                                    movl 3331, temp_22
+                                    addl s_tmp1, temp_22
+                                    movl temp_22, temp_23
+                                    addl s_tmp2, temp_23
+                                    movl temp_23, temp_24
+                                    addl s_tmp3, temp_24
+                                    movl temp_24, temp_25
+                                    addl s_tmp4, temp_25
+                                    movl temp_25, temp_26
+                                    addl s_tmp5, temp_26
+                                    movl temp_26, temp_27
+                                    addl s_tmp6, temp_27
+                                    movl temp_27, s_buried_live_variable
+                                    addl s_other_loop, s_buried_live_variable
+                                    jmp end12
+                                else12:
+                                end12:
+                                jmp end10
+                            else10:
+                            end10:
+                            jmp end9
+                        else9:
+                        end9:
+                        jmp end8
+                    else8:
+                    end8:
+                    cmpl 4, s_inner
+                    setne %al
+                    movzbl %al, temp_16
+                    cmpl 0, temp_16
+                    je else13
+                    then13:
+                        cmpl 0, s_stop
+                        sete %al
+                        movzbl %al, temp_15
+                        jmp end13
+                    else13:
+                        movl temp_16, temp_15
+                    end13:
+                    jmp while7
+                end7:
+                movl s_thing, s_thing
+                addl s_inner, s_thing
+                jmp end5
+            else5:
+            end5:
+            movl s_thing, temp_28
+            addl s_F, temp_28
+            movl temp_28, temp_29
+            addl s_B, temp_29
+            movl temp_29, s_thing
+            addl s_z, s_thing
+            movl s_z, s_z
+            addl 1, s_z
+            cmpl 4, s_z
+            setne %al
+            movzbl %al, temp_3
+            jmp while2
+        end2:
+        movl s_thing, temp_30
+        addl s_Q, temp_30
+        movl temp_30, temp_31
+        addl s_F, temp_31
+        movl temp_31, temp_32
+        addl s_C, temp_32
+        movl temp_32, s_thing
+        addl s_little_var, s_thing
+        cmpl 5, s_y
+        setne %al
+        movzbl %al, temp_1
+        jmp while1
+    end1:
+    movl s_x, s_x
+    addl 1, s_x
+    cmpl 5, s_x
+    setne %al
+    movzbl %al, temp_0
+    jmp while0
+end0:
+movl s_thing, temp_33
+addl s_buried_live_variable, temp_33
+print temp_33
+
+==================================================
+=====================Prog Vars=====================
+['s_tmp1', 's_tmp2', 's_tmp3', 's_tmp4', 's_tmp5', 's_tmp6', 's_x', 's_thing', 's_little_var', 's_buried_live_variable', 'temp_0', 's_y', 's_A', 's_B', 's_C', 'temp_1', 's_Q', 's_F', 'temp_2', 's_G', 's_R', 's_z', 'temp_3', 'temp_5', 'temp_6', 'temp_7', 'temp_8', 'temp_9', 'temp_10', 'temp_11', 'temp_12', 'temp_13', 'temp_14', 'temp_4', 's_inner', 's_stop', 'temp_16', 'temp_15', 'temp_17', 'temp_18', 'temp_19', 's_other_loop', 'temp_20', 'temp_21', 'temp_22', 'temp_23', 'temp_24', 'temp_25', 'temp_26', 'temp_27', 'temp_28', 'temp_29', 'temp_30', 'temp_31', 'temp_32', 'temp_33']
+==================================================
+===============AFTER dead-store elim===============
+====BLOCK_1====
+movl 101, s_tmp1--------------LBefore = [1mset()[0m
+movl 102, s_tmp2--------------LBefore = [1m{'s_tmp1'}[0m
+movl 103, s_tmp3--------------LBefore = [1m{'s_tmp1', 's_tmp2'}[0m
+movl 104, s_tmp4--------------LBefore = [1m{'s_tmp3', 's_tmp2', 's_tmp1'}[0m
+movl 105, s_tmp5--------------LBefore = [1m{'s_tmp2', 's_tmp3', 's_tmp1', 's_tmp4'}[0m
+movl 106, s_tmp6--------------LBefore = [1m{'s_tmp5', 's_tmp2', 's_tmp3', 's_tmp1', 's_tmp4'}[0m
+movl 0, s_x-------------------LBefore = [1m{'s_tmp5', 's_tmp2', 's_tmp6', 's_tmp3', 's_tmp1', 's_tmp4'}[0m
+movl 0, s_thing---------------LBefore = [1m{'s_tmp5', 's_tmp2', 's_tmp1', 's_x', 's_tmp3', 's_tmp6', 's_tmp4'}[0m
+movl 17, s_little_var---------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_tmp1', 's_x', 's_tmp3', 's_tmp6', 's_tmp4'}[0m
+movl 0, s_buried_live_variableLBefore = [1m{'s_little_var', 's_tmp5', 's_thing', 's_tmp2', 's_tmp1', 's_x', 's_tmp3', 's_tmp6', 's_tmp4'}[0m
+cmpl 5, s_x-------------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_little_var', 's_x'}[0m
+setne %al---------------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_little_var', 's_x'}[0m
+movzbl %al, temp_0------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_little_var', 's_x'}[0m
+
+====BLOCK_2====
+while0:-----------------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp6', 's_tmp1', 's_little_var', 's_x', 'temp_0'}[0m
+    cmpl 0, temp_0------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp6', 's_tmp1', 's_little_var', 's_x', 'temp_0'}[0m
+    je end0-------------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_tmp4', 's_little_var', 's_x'}[0m
+
+====BLOCK_3====
+    movl 1, s_y---------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_little_var', 's_x'}[0m
+    movl 2, s_A---------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_y', 's_little_var', 's_x'}[0m
+    movl 3, s_B---------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_y', 's_little_var', 's_x', 's_A'}[0m
+    movl 5, s_C---------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_x', 's_B', 's_A'}[0m
+    cmpl 5, s_y---------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+    setne %al-----------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+    movzbl %al, temp_1--------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+
+====BLOCK_4====
+    while1:-------------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 'temp_1', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+        cmpl 0, temp_1--------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 'temp_1', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+        je end1---------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+
+====BLOCK_5====
+        movl s_y, s_y---------LBefore = [1m{'s_tmp5', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+        addl 1, s_y-----------LBefore = [1m{'s_tmp5', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+        movl 10, s_Q----------LBefore = [1m{'s_tmp5', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+        movl 99, s_F----------LBefore = [1m{'s_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+        movl s_Q, temp_2------LBefore = [1m{'s_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_F', 's_x', 's_B', 's_A'}[0m
+        addl s_F, temp_2------LBefore = [1m{'s_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_F', 's_x', 's_B', 'temp_2', 's_A'}[0m
+        movl temp_2, s_thing--LBefore = [1m{'s_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_F', 's_x', 's_B', 'temp_2', 's_A'}[0m
+        addl s_C, s_thing-----LBefore = [1m{'s_tmp5', 's_Q', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_F', 's_x', 's_B', 's_A'}[0m
+        movl 66, s_G----------LBefore = [1m{'s_tmp5', 's_Q', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_F', 's_x', 's_B', 's_A'}[0m
+        movl 20, s_R----------LBefore = [1m{'s_tmp5', 's_Q', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_G', 's_F', 's_x', 's_B', 's_A'}[0m
+        addl s_A, s_R---------LBefore = [1m{'s_tmp5', 's_Q', 's_thing', 's_tmp2', 's_buried_live_variable', 's_R', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_G', 's_F', 's_x', 's_B', 's_A'}[0m
+        movl 0, s_z-----------LBefore = [1m{'s_tmp5', 's_Q', 's_thing', 's_tmp2', 's_buried_live_variable', 's_R', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_G', 's_F', 's_x', 's_B', 's_A'}[0m
+        cmpl 4, s_z-----------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+        setne %al-------------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+        movzbl %al, temp_3----LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+
+====BLOCK_6====
+        while2:---------------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 'temp_3', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            cmpl 0, temp_3----LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 'temp_3', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            je end2-----------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+
+====BLOCK_7====
+            cmpl 3, s_z-------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            sete %al----------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            movzbl %al, temp_5LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            cmpl 0, temp_5----LBefore = [1m{'s_thing', 's_R', 's_tmp4', 'temp_5', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            sete %al----------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_z', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_5', 's_A'}[0m
+            movzbl %al, temp_6LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_z', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_5', 's_A'}[0m
+            cmpl 0, temp_6----LBefore = [1m{'temp_6', 's_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_z', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_5', 's_A'}[0m
+            je else3----------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_z', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_5', 's_A'}[0m
+
+====BLOCK_8====
+            then3:------------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                cmpl 1, s_z---LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                sete %al------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                movzbl %al, temp_7LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                cmpl 0, temp_7LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_7', 's_z', 's_A'}[0m
+                sete %al------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_7', 's_z', 's_A'}[0m
+                movzbl %al, temp_8LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_7', 's_z', 's_A'}[0m
+                cmpl 0, temp_8LBefore = [1m{'s_thing', 's_R', 's_tmp4', 'temp_8', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_7', 's_z', 's_A'}[0m
+                je else4------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_7', 's_z', 's_A'}[0m
+
+====BLOCK_9====
+                then4:--------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    movl s_thing, temp_9LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    addl s_R, temp_9LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 'temp_9', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    movl temp_9, temp_10LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 'temp_9', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    addl s_z, temp_10LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 'temp_10', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    movl temp_10, temp_11LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 'temp_10', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    addl s_Q, temp_11LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 'temp_11', 's_y', 's_tmp6', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    movl temp_11, temp_12LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 'temp_11', 's_y', 's_tmp6', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    addl s_F, temp_12LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 'temp_12', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    movl temp_12, temp_13LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 'temp_12', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    addl s_G, temp_13LBefore = [1m{'s_thing', 'temp_13', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    movl 2556, temp_14LBefore = [1m{'s_thing', 'temp_13', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    negl temp_14LBefore = [1m{'s_thing', 'temp_13', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 'temp_14', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    cmpl temp_13, temp_14LBefore = [1m{'s_thing', 'temp_13', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 'temp_14', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    sete %al--LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    movzbl %al, temp_4LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    jmp end4--LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 'temp_4', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+
+====BLOCK_10====
+                else4:--------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_7', 's_z', 's_A'}[0m
+                    movl temp_7, temp_4LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_7', 's_z', 's_A'}[0m
+
+====BLOCK_11====
+                end4:---------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 'temp_4', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                jmp end3------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 'temp_4', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+
+====BLOCK_12====
+            else3:------------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 'temp_5', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                movl temp_5, temp_4LBefore = [1m{'s_thing', 's_R', 's_tmp4', 'temp_5', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+
+====BLOCK_13====
+            end3:-------------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 'temp_4', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            cmpl 0, temp_4----LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 'temp_4', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            je else5----------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+
+====BLOCK_14====
+            then5:------------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                movl 0, s_innerLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                movl 0, s_stopLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_z', 's_A'}[0m
+                cmpl 4, s_innerLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                setne %al-----LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                movzbl %al, temp_16LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                cmpl 0, temp_16LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 'temp_16', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                je else6------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 'temp_16', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_15====
+                then6:--------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    cmpl 0, s_stopLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    sete %al--LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    movzbl %al, temp_15LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    jmp end6--LBefore = [1m{'s_thing', 'temp_15', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_16====
+                else6:--------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 'temp_16', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    movl temp_16, temp_15LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 'temp_16', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_17====
+                end6:---------LBefore = [1m{'s_thing', 'temp_15', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_18====
+                while7:-------LBefore = [1m{'s_thing', 'temp_15', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    cmpl 0, temp_15LBefore = [1m{'s_thing', 'temp_15', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    je end7---LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_19====
+                    movl s_inner, s_innerLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    addl 1, s_innerLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    cmpl 2, s_innerLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    sete %al--LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    movzbl %al, temp_17LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    cmpl 0, temp_17LBefore = [1m{'s_thing', 's_R', 'temp_17', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    je else8--LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_20====
+                    then8:----LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_z', 's_A'}[0m
+                        movl 1, s_stopLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_z', 's_A'}[0m
+                        cmpl 1, s_stopLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                        sete %alLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                        movzbl %al, temp_18LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                        cmpl 0, temp_18LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 'temp_18', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                        je else9LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_21====
+                        then9:LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                            cmpl 2, s_innerLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                            sete %alLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                            movzbl %al, temp_19LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                            cmpl 0, temp_19LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 'temp_19', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                            je else10LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_22====
+                            then10:LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                movl 0, s_other_loopLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                cmpl 16, s_other_loopLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                setne %alLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                movzbl %al, temp_20LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_23====
+                                while11:LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 'temp_20', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    cmpl 0, temp_20LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 'temp_20', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    je end11LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_24====
+                                    movl s_other_loop, s_other_loopLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    addl 1, s_other_loopLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    cmpl 16, s_other_loopLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    setne %alLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    movzbl %al, temp_20LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    jmp while11LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 'temp_20', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_25====
+                                end11:LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                cmpl 1, s_stopLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                sete %alLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                movzbl %al, temp_21LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                cmpl 0, temp_21LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 'temp_21', 's_stop', 's_z', 's_A'}[0m
+                                je else12LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_26====
+                                then12:LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    movl 3331, temp_22LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    addl s_tmp1, temp_22LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 'temp_22', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    movl temp_22, temp_23LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 'temp_22', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    addl s_tmp2, temp_23LBefore = [1m{'temp_23', 's_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    movl temp_23, temp_24LBefore = [1m{'temp_23', 's_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    addl s_tmp3, temp_24LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 'temp_24', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    movl temp_24, temp_25LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 'temp_24', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    addl s_tmp4, temp_25LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 'temp_25', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    movl temp_25, temp_26LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 'temp_25', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    addl s_tmp5, temp_26LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 'temp_26', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    movl temp_26, temp_27LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 'temp_26', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    addl s_tmp6, temp_27LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 'temp_27', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    movl temp_27, s_buried_live_variableLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 'temp_27', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    addl s_other_loop, s_buried_live_variableLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    jmp end12LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_27====
+                                else12:LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_28====
+                                end12:LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                jmp end10LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_29====
+                            else10:LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_30====
+                            end10:LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                            jmp end9LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_31====
+                        else9:LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_32====
+                        end9:-LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                        jmp end8LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_33====
+                    else8:----LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_34====
+                    end8:-----LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    cmpl 4, s_innerLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    setne %al-LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    movzbl %al, temp_16LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    cmpl 0, temp_16LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 'temp_16', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    je else13-LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 'temp_16', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_35====
+                    then13:---LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                        cmpl 0, s_stopLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                        sete %alLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                        movzbl %al, temp_15LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                        jmp end13LBefore = [1m{'s_thing', 'temp_15', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_36====
+                    else13:---LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 'temp_16', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                        movl temp_16, temp_15LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 'temp_16', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_37====
+                    end13:----LBefore = [1m{'s_thing', 'temp_15', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    jmp while7LBefore = [1m{'s_thing', 'temp_15', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_38====
+                end7:---------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_z', 's_A'}[0m
+                movl s_thing, s_thingLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_z', 's_A'}[0m
+                addl s_inner, s_thingLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_z', 's_A'}[0m
+                jmp end5------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+
+====BLOCK_39====
+            else5:------------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+
+====BLOCK_40====
+            end5:-------------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            movl s_thing, temp_28LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            addl s_F, temp_28-LBefore = [1m{'temp_28', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            movl temp_28, temp_29LBefore = [1m{'temp_28', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            addl s_B, temp_29-LBefore = [1m{'s_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 'temp_29', 's_G', 's_F', 's_z', 's_A'}[0m
+            movl temp_29, s_thingLBefore = [1m{'s_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 'temp_29', 's_G', 's_F', 's_z', 's_A'}[0m
+            addl s_z, s_thing-LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            movl s_z, s_z-----LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            addl 1, s_z-------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            cmpl 4, s_z-------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            setne %al---------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            movzbl %al, temp_3LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            jmp while2--------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 'temp_3', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+
+====BLOCK_41====
+        end2:-----------------LBefore = [1m{'s_tmp5', 's_Q', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_F', 's_x', 's_B', 's_A'}[0m
+        movl s_thing, temp_30-LBefore = [1m{'s_tmp5', 's_Q', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_F', 's_x', 's_B', 's_A'}[0m
+        addl s_Q, temp_30-----LBefore = [1m{'s_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_F', 's_x', 's_B', 'temp_30', 's_A'}[0m
+        movl temp_30, temp_31-LBefore = [1m{'s_tmp5', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_F', 's_x', 's_B', 'temp_30', 's_A'}[0m
+        addl s_F, temp_31-----LBefore = [1m{'s_tmp5', 'temp_31', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_F', 's_x', 's_B', 's_A'}[0m
+        movl temp_31, temp_32-LBefore = [1m{'s_tmp5', 'temp_31', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+        addl s_C, temp_32-----LBefore = [1m{'s_tmp5', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 'temp_32', 's_A'}[0m
+        movl temp_32, s_thing-LBefore = [1m{'s_tmp5', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 'temp_32', 's_A'}[0m
+        addl s_little_var, s_thingLBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+        cmpl 5, s_y-----------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+        setne %al-------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+        movzbl %al, temp_1----LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+        jmp while1------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 'temp_1', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+
+====BLOCK_42====
+    end1:---------------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_little_var', 's_x'}[0m
+    movl s_x, s_x-------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_little_var', 's_x'}[0m
+    addl 1, s_x---------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_little_var', 's_x'}[0m
+    cmpl 5, s_x---------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_little_var', 's_x'}[0m
+    setne %al-----------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_little_var', 's_x'}[0m
+    movzbl %al, temp_0--------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_little_var', 's_x'}[0m
+    jmp while0----------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp4', 's_tmp6', 's_little_var', 's_x', 'temp_0'}[0m
+
+====BLOCK_43====
+end0:-------------------------LBefore = [1m{'s_buried_live_variable', 's_thing'}[0m
+movl s_thing, temp_33---------LBefore = [1m{'s_buried_live_variable', 's_thing'}[0m
+addl s_buried_live_variable, temp_33LBefore = [1m{'s_buried_live_variable', 'temp_33'}[0m
+print temp_33-----------------LBefore = [1m{'temp_33'}[0m
+
+
+==================================================
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+==================HOMES ASSIGNED==================
+s_tmp1 : ecx
+s_tmp2 : edx
+s_tmp3 : ebx
+s_tmp4 : edi
+s_tmp5 : esi
+s_tmp6 : -4(%ebp)
+s_x : -8(%ebp)
+s_thing : -12(%ebp)
+s_little_var : -16(%ebp)
+s_buried_live_variable : -20(%ebp)
+temp_0 : eax
+s_y : -24(%ebp)
+s_A : -28(%ebp)
+s_B : -32(%ebp)
+s_C : -36(%ebp)
+temp_1 : eax
+s_Q : -40(%ebp)
+s_F : -44(%ebp)
+temp_2 : eax
+s_G : -48(%ebp)
+s_R : -52(%ebp)
+s_z : -56(%ebp)
+temp_3 : eax
+temp_5 : -60(%ebp)
+temp_6 : eax
+temp_7 : -64(%ebp)
+temp_8 : eax
+temp_9 : eax
+temp_10 : eax
+temp_11 : eax
+temp_12 : eax
+temp_13 : eax
+temp_14 : -80(%ebp)
+temp_4 : eax
+s_inner : -68(%ebp)
+s_stop : -72(%ebp)
+temp_16 : eax
+temp_15 : eax
+temp_17 : eax
+temp_18 : eax
+temp_19 : eax
+s_other_loop : -76(%ebp)
+temp_20 : eax
+temp_21 : eax
+temp_22 : eax
+temp_23 : eax
+temp_24 : eax
+temp_25 : eax
+temp_26 : eax
+temp_27 : eax
+temp_28 : eax
+temp_29 : eax
+temp_30 : eax
+temp_31 : eax
+temp_32 : eax
+temp_33 : eax
+==================================================
+============BAD STACK REF INSTRUCTIONS============
+movl s_y s_y [movl -24(%ebp), -24(%ebp)]
+addl s_C s_thing [addl -36(%ebp), -12(%ebp)]
+addl s_A s_R [addl -28(%ebp), -52(%ebp)]
+movl s_inner s_inner [movl -68(%ebp), -68(%ebp)]
+movl s_other_loop s_other_loop [movl -76(%ebp), -76(%ebp)]
+addl s_other_loop s_buried_live_variable [addl -76(%ebp), -20(%ebp)]
+movl s_thing s_thing [movl -12(%ebp), -12(%ebp)]
+addl s_inner s_thing [addl -68(%ebp), -12(%ebp)]
+addl s_z s_thing [addl -56(%ebp), -12(%ebp)]
+movl s_z s_z [movl -56(%ebp), -56(%ebp)]
+addl s_little_var s_thing [addl -16(%ebp), -12(%ebp)]
+movl s_x s_x [movl -8(%ebp), -8(%ebp)]
+movzbl   [movzbl al, -60(%ebp)]
+movzbl   [movzbl al, -64(%ebp)]
+==================================================
+Replacing instruction         movl s_y, s_y with spill code
+Replacing instruction         addl s_C, s_thing with spill code
+Replacing instruction         addl s_A, s_R with spill code
+Replacing instruction                     movl s_inner, s_inner with spill code
+Replacing instruction                                     movl s_other_loop, s_other_loop with spill code
+Replacing instruction                                     addl s_other_loop, s_buried_live_variable with spill code
+Replacing instruction                 movl s_thing, s_thing with spill code
+Replacing instruction                 addl s_inner, s_thing with spill code
+Replacing instruction             addl s_z, s_thing with spill code
+Replacing instruction             movl s_z, s_z with spill code
+Replacing instruction         addl s_little_var, s_thing with spill code
+Replacing instruction     movl s_x, s_x with spill code
+Replacing instruction                     addl s_R, temp_9 with spill code
+Replacing instruction                     movl 2556, temp_14 with spill code
+=================UN-spillable vars=================
+{'temp5_UNSPILL', 'temp6_UNSPILL', 'temp8_UNSPILL', 'temp4_UNSPILL', 'temp10_UNSPILL', 'temp12_UNSPILL', 'temp3_UNSPILL', 'temp9_UNSPILL', 'temp2_UNSPILL', 'temp0_UNSPILL', 'temp13_UNSPILL', 'temp1_UNSPILL', 'temp7_UNSPILL', 'temp11_UNSPILL'}
+==================================================
+**************************************************************************
+******************* NEW COMPILER PIPLINE ITERATION (1) ***********************
+**************************************************************************
+========================IR========================
+movl 101, s_tmp1
+movl 102, s_tmp2
+movl 103, s_tmp3
+movl 104, s_tmp4
+movl 105, s_tmp5
+movl 106, s_tmp6
+movl 0, s_x
+movl 0, s_thing
+movl 17, s_little_var
+movl 0, s_buried_live_variable
+cmpl 5, s_x
+setne %al
+movzbl %al, temp_0
+while0:
+    cmpl 0, temp_0
+    je end0
+    movl 1, s_y
+    movl 2, s_A
+    movl 3, s_B
+    movl 5, s_C
+    cmpl 5, s_y
+    setne %al
+    movzbl %al, temp_1
+    while1:
+        cmpl 0, temp_1
+        je end1
+[1mmovl s_y, temp0_UNSPILL[0m <--- SPILL
+[1mmovl temp0_UNSPILL, s_y[0m <--- SPILL
+        addl 1, s_y
+        movl 10, s_Q
+        movl 99, s_F
+        movl s_Q, temp_2
+        addl s_F, temp_2
+        movl temp_2, s_thing
+[1mmovl s_C, temp1_UNSPILL[0m <--- SPILL
+[1mmovl s_thing, temp2_UNSPILL[0m <--- SPILL
+[1maddl temp1_UNSPILL, temp2_UNSPILL[0m
+[1mmovl temp2_UNSPILL, s_thing[0m <--- SPILL
+        movl 66, s_G
+        movl 20, s_R
+[1mmovl s_A, temp2_UNSPILL[0m <--- SPILL
+[1mmovl s_R, temp3_UNSPILL[0m <--- SPILL
+[1maddl temp2_UNSPILL, temp3_UNSPILL[0m
+[1mmovl temp3_UNSPILL, s_R[0m <--- SPILL
+        movl 0, s_z
+        cmpl 4, s_z
+        setne %al
+        movzbl %al, temp_3
+        while2:
+            cmpl 0, temp_3
+            je end2
+            cmpl 3, s_z
+            sete %al
+            movzbl %al, temp_5
+            cmpl 0, temp_5
+            sete %al
+            movzbl %al, temp_6
+            cmpl 0, temp_6
+            je else3
+            then3:
+                cmpl 1, s_z
+                sete %al
+                movzbl %al, temp_7
+                cmpl 0, temp_7
+                sete %al
+                movzbl %al, temp_8
+                cmpl 0, temp_8
+                je else4
+                then4:
+                    movl s_thing, temp_9
+[1mmovl s_R, temp12_UNSPILL[0m <--- SPILL
+[1mmovl temp_9, temp13_UNSPILL[0m <--- SPILL
+[1maddl temp12_UNSPILL, temp13_UNSPILL[0m
+[1mmovl temp13_UNSPILL, temp_9[0m <--- SPILL
+                    movl temp_9, temp_10
+                    addl s_z, temp_10
+                    movl temp_10, temp_11
+                    addl s_Q, temp_11
+                    movl temp_11, temp_12
+                    addl s_F, temp_12
+                    movl temp_12, temp_13
+                    addl s_G, temp_13
+[1mmovl 2556, temp13_UNSPILL[0m <--- SPILL
+[1mmovl temp13_UNSPILL, temp_14[0m <--- SPILL
+                    negl temp_14
+                    cmpl temp_13, temp_14
+                    sete %al
+                    movzbl %al, temp_4
+                    jmp end4
+                else4:
+                    movl temp_7, temp_4
+                end4:
+                jmp end3
+            else3:
+                movl temp_5, temp_4
+            end3:
+            cmpl 0, temp_4
+            je else5
+            then5:
+                movl 0, s_inner
+                movl 0, s_stop
+                cmpl 4, s_inner
+                setne %al
+                movzbl %al, temp_16
+                cmpl 0, temp_16
+                je else6
+                then6:
+                    cmpl 0, s_stop
+                    sete %al
+                    movzbl %al, temp_15
+                    jmp end6
+                else6:
+                    movl temp_16, temp_15
+                end6:
+                while7:
+                    cmpl 0, temp_15
+                    je end7
+[1mmovl s_inner, temp3_UNSPILL[0m <--- SPILL
+[1mmovl temp3_UNSPILL, s_inner[0m <--- SPILL
+                    addl 1, s_inner
+                    cmpl 2, s_inner
+                    sete %al
+                    movzbl %al, temp_17
+                    cmpl 0, temp_17
+                    je else8
+                    then8:
+                        movl 1, s_stop
+                        cmpl 1, s_stop
+                        sete %al
+                        movzbl %al, temp_18
+                        cmpl 0, temp_18
+                        je else9
+                        then9:
+                            cmpl 2, s_inner
+                            sete %al
+                            movzbl %al, temp_19
+                            cmpl 0, temp_19
+                            je else10
+                            then10:
+                                movl 0, s_other_loop
+                                cmpl 16, s_other_loop
+                                setne %al
+                                movzbl %al, temp_20
+                                while11:
+                                    cmpl 0, temp_20
+                                    je end11
+[1mmovl s_other_loop, temp4_UNSPILL[0m <--- SPILL
+[1mmovl temp4_UNSPILL, s_other_loop[0m <--- SPILL
+                                    addl 1, s_other_loop
+                                    cmpl 16, s_other_loop
+                                    setne %al
+                                    movzbl %al, temp_20
+                                    jmp while11
+                                end11:
+                                cmpl 1, s_stop
+                                sete %al
+                                movzbl %al, temp_21
+                                cmpl 0, temp_21
+                                je else12
+                                then12:
+                                    movl 3331, temp_22
+                                    addl s_tmp1, temp_22
+                                    movl temp_22, temp_23
+                                    addl s_tmp2, temp_23
+                                    movl temp_23, temp_24
+                                    addl s_tmp3, temp_24
+                                    movl temp_24, temp_25
+                                    addl s_tmp4, temp_25
+                                    movl temp_25, temp_26
+                                    addl s_tmp5, temp_26
+                                    movl temp_26, temp_27
+                                    addl s_tmp6, temp_27
+                                    movl temp_27, s_buried_live_variable
+[1mmovl s_other_loop, temp5_UNSPILL[0m <--- SPILL
+[1mmovl s_buried_live_variable, temp6_UNSPILL[0m <--- SPILL
+[1maddl temp5_UNSPILL, temp6_UNSPILL[0m
+[1mmovl temp6_UNSPILL, s_buried_live_variable[0m <--- SPILL
+                                    jmp end12
+                                else12:
+                                end12:
+                                jmp end10
+                            else10:
+                            end10:
+                            jmp end9
+                        else9:
+                        end9:
+                        jmp end8
+                    else8:
+                    end8:
+                    cmpl 4, s_inner
+                    setne %al
+                    movzbl %al, temp_16
+                    cmpl 0, temp_16
+                    je else13
+                    then13:
+                        cmpl 0, s_stop
+                        sete %al
+                        movzbl %al, temp_15
+                        jmp end13
+                    else13:
+                        movl temp_16, temp_15
+                    end13:
+                    jmp while7
+                end7:
+[1mmovl s_thing, temp6_UNSPILL[0m <--- SPILL
+[1mmovl temp6_UNSPILL, s_thing[0m <--- SPILL
+[1mmovl s_inner, temp7_UNSPILL[0m <--- SPILL
+[1mmovl s_thing, temp8_UNSPILL[0m <--- SPILL
+[1maddl temp7_UNSPILL, temp8_UNSPILL[0m
+[1mmovl temp8_UNSPILL, s_thing[0m <--- SPILL
+                jmp end5
+            else5:
+            end5:
+            movl s_thing, temp_28
+            addl s_F, temp_28
+            movl temp_28, temp_29
+            addl s_B, temp_29
+            movl temp_29, s_thing
+[1mmovl s_z, temp8_UNSPILL[0m <--- SPILL
+[1mmovl s_thing, temp9_UNSPILL[0m <--- SPILL
+[1maddl temp8_UNSPILL, temp9_UNSPILL[0m
+[1mmovl temp9_UNSPILL, s_thing[0m <--- SPILL
+[1mmovl s_z, temp9_UNSPILL[0m <--- SPILL
+[1mmovl temp9_UNSPILL, s_z[0m <--- SPILL
+            addl 1, s_z
+            cmpl 4, s_z
+            setne %al
+            movzbl %al, temp_3
+            jmp while2
+        end2:
+        movl s_thing, temp_30
+        addl s_Q, temp_30
+        movl temp_30, temp_31
+        addl s_F, temp_31
+        movl temp_31, temp_32
+        addl s_C, temp_32
+        movl temp_32, s_thing
+[1mmovl s_little_var, temp10_UNSPILL[0m <--- SPILL
+[1mmovl s_thing, temp11_UNSPILL[0m <--- SPILL
+[1maddl temp10_UNSPILL, temp11_UNSPILL[0m
+[1mmovl temp11_UNSPILL, s_thing[0m <--- SPILL
+        cmpl 5, s_y
+        setne %al
+        movzbl %al, temp_1
+        jmp while1
+    end1:
+[1mmovl s_x, temp11_UNSPILL[0m <--- SPILL
+[1mmovl temp11_UNSPILL, s_x[0m <--- SPILL
+    addl 1, s_x
+    cmpl 5, s_x
+    setne %al
+    movzbl %al, temp_0
+    jmp while0
+end0:
+movl s_thing, temp_33
+addl s_buried_live_variable, temp_33
+print temp_33
+
+==================================================
+=====================Prog Vars=====================
+['s_tmp1', 's_tmp2', 's_tmp3', 's_tmp4', 's_tmp5', 's_tmp6', 's_x', 's_thing', 's_little_var', 's_buried_live_variable', 'temp_0', 's_y', 's_A', 's_B', 's_C', 'temp_1', 'temp0_UNSPILL', 's_Q', 's_F', 'temp_2', 'temp1_UNSPILL', 'temp2_UNSPILL', 's_G', 's_R', 'temp3_UNSPILL', 's_z', 'temp_3', 'temp_5', 'temp_6', 'temp_7', 'temp_8', 'temp_9', 'temp12_UNSPILL', 'temp13_UNSPILL', 'temp_10', 'temp_11', 'temp_12', 'temp_13', 'temp_14', 'temp_4', 's_inner', 's_stop', 'temp_16', 'temp_15', 'temp_17', 'temp_18', 'temp_19', 's_other_loop', 'temp_20', 'temp4_UNSPILL', 'temp_21', 'temp_22', 'temp_23', 'temp_24', 'temp_25', 'temp_26', 'temp_27', 'temp5_UNSPILL', 'temp6_UNSPILL', 'temp7_UNSPILL', 'temp8_UNSPILL', 'temp_28', 'temp_29', 'temp9_UNSPILL', 'temp_30', 'temp_31', 'temp_32', 'temp10_UNSPILL', 'temp11_UNSPILL', 'temp_33']
+==================================================
+===============AFTER dead-store elim===============
+====BLOCK_1====
+movl 101, s_tmp1--------------LBefore = [1mset()[0m
+movl 102, s_tmp2--------------LBefore = [1m{'s_tmp1'}[0m
+movl 103, s_tmp3--------------LBefore = [1m{'s_tmp1', 's_tmp2'}[0m
+movl 104, s_tmp4--------------LBefore = [1m{'s_tmp3', 's_tmp2', 's_tmp1'}[0m
+movl 105, s_tmp5--------------LBefore = [1m{'s_tmp2', 's_tmp3', 's_tmp1', 's_tmp4'}[0m
+movl 106, s_tmp6--------------LBefore = [1m{'s_tmp5', 's_tmp2', 's_tmp3', 's_tmp1', 's_tmp4'}[0m
+movl 0, s_x-------------------LBefore = [1m{'s_tmp5', 's_tmp2', 's_tmp6', 's_tmp3', 's_tmp1', 's_tmp4'}[0m
+movl 0, s_thing---------------LBefore = [1m{'s_tmp5', 's_tmp2', 's_tmp1', 's_x', 's_tmp3', 's_tmp6', 's_tmp4'}[0m
+movl 17, s_little_var---------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_tmp1', 's_x', 's_tmp3', 's_tmp6', 's_tmp4'}[0m
+movl 0, s_buried_live_variableLBefore = [1m{'s_little_var', 's_tmp5', 's_thing', 's_tmp2', 's_tmp1', 's_x', 's_tmp3', 's_tmp6', 's_tmp4'}[0m
+cmpl 5, s_x-------------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_little_var', 's_x'}[0m
+setne %al---------------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_little_var', 's_x'}[0m
+movzbl %al, temp_0------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_little_var', 's_x'}[0m
+
+====BLOCK_2====
+while0:-----------------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp6', 's_tmp1', 's_little_var', 's_x', 'temp_0'}[0m
+    cmpl 0, temp_0------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp6', 's_tmp1', 's_little_var', 's_x', 'temp_0'}[0m
+    je end0-------------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_tmp4', 's_little_var', 's_x'}[0m
+
+====BLOCK_3====
+    movl 1, s_y---------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_little_var', 's_x'}[0m
+    movl 2, s_A---------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_y', 's_little_var', 's_x'}[0m
+    movl 3, s_B---------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_y', 's_little_var', 's_x', 's_A'}[0m
+    movl 5, s_C---------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_x', 's_B', 's_A'}[0m
+    cmpl 5, s_y---------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+    setne %al-----------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+    movzbl %al, temp_1--------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+
+====BLOCK_4====
+    while1:-------------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 'temp_1', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+        cmpl 0, temp_1--------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 'temp_1', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+        je end1---------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+
+====BLOCK_5====
+[1mmovl s_y, temp0_UNSPILL[0m <--- SPILLLBefore = [1m{'s_tmp5', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+[1mmovl temp0_UNSPILL, s_y[0m <--- SPILLLBefore = [1m{'s_tmp5', 's_tmp2', 's_buried_live_variable', 'temp0_UNSPILL', 's_tmp3', 's_tmp4', 's_tmp1', 's_tmp6', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+        addl 1, s_y-----------LBefore = [1m{'s_tmp5', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+        movl 10, s_Q----------LBefore = [1m{'s_tmp5', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+        movl 99, s_F----------LBefore = [1m{'s_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+        movl s_Q, temp_2------LBefore = [1m{'s_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_F', 's_x', 's_B', 's_A'}[0m
+        addl s_F, temp_2------LBefore = [1m{'s_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_F', 's_x', 's_B', 'temp_2', 's_A'}[0m
+        movl temp_2, s_thing--LBefore = [1m{'s_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_F', 's_x', 's_B', 'temp_2', 's_A'}[0m
+[1mmovl s_C, temp1_UNSPILL[0m <--- SPILLLBefore = [1m{'s_tmp5', 's_Q', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_F', 's_x', 's_B', 's_A'}[0m
+[1mmovl s_thing, temp2_UNSPILL[0m <--- SPILLLBefore = [1m{'s_tmp5', 's_Q', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_F', 's_x', 's_B', 'temp1_UNSPILL', 's_A'}[0m
+[1maddl temp1_UNSPILL, temp2_UNSPILL[0mLBefore = [1m{'s_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 'temp2_UNSPILL', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_F', 's_x', 's_B', 'temp1_UNSPILL', 's_A'}[0m
+[1mmovl temp2_UNSPILL, s_thing[0m <--- SPILLLBefore = [1m{'s_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 'temp2_UNSPILL', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_F', 's_x', 's_B', 's_A'}[0m
+        movl 66, s_G----------LBefore = [1m{'s_tmp5', 's_Q', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_F', 's_x', 's_B', 's_A'}[0m
+        movl 20, s_R----------LBefore = [1m{'s_tmp5', 's_Q', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_G', 's_F', 's_x', 's_B', 's_A'}[0m
+[1mmovl s_A, temp2_UNSPILL[0m <--- SPILLLBefore = [1m{'s_tmp5', 's_Q', 's_thing', 's_tmp2', 's_buried_live_variable', 's_R', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_G', 's_F', 's_x', 's_B', 's_A'}[0m
+[1mmovl s_R, temp3_UNSPILL[0m <--- SPILLLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 'temp2_UNSPILL', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_A'}[0m
+[1maddl temp2_UNSPILL, temp3_UNSPILL[0mLBefore = [1m{'s_thing', 's_tmp4', 'temp3_UNSPILL', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 'temp2_UNSPILL', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_A'}[0m
+[1mmovl temp3_UNSPILL, s_R[0m <--- SPILLLBefore = [1m{'s_tmp5', 's_Q', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_G', 's_F', 'temp3_UNSPILL', 's_x', 's_B', 's_A'}[0m
+        movl 0, s_z-----------LBefore = [1m{'s_tmp5', 's_Q', 's_thing', 's_tmp2', 's_buried_live_variable', 's_R', 's_tmp3', 's_tmp4', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_G', 's_F', 's_x', 's_B', 's_A'}[0m
+        cmpl 4, s_z-----------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+        setne %al-------------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+        movzbl %al, temp_3----LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+
+====BLOCK_6====
+        while2:---------------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 'temp_3', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            cmpl 0, temp_3----LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 'temp_3', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            je end2-----------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+
+====BLOCK_7====
+            cmpl 3, s_z-------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            sete %al----------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            movzbl %al, temp_5LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            cmpl 0, temp_5----LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_z', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_5', 's_A'}[0m
+            sete %al----------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_z', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_5', 's_A'}[0m
+            movzbl %al, temp_6LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_z', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_5', 's_A'}[0m
+            cmpl 0, temp_6----LBefore = [1m{'temp_6', 's_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_z', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_5', 's_A'}[0m
+            je else3----------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_z', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_5', 's_A'}[0m
+
+====BLOCK_8====
+            then3:------------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                cmpl 1, s_z---LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                sete %al------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                movzbl %al, temp_7LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                cmpl 0, temp_7LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_7', 's_z', 's_A'}[0m
+                sete %al------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_7', 's_z', 's_A'}[0m
+                movzbl %al, temp_8LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_7', 's_z', 's_A'}[0m
+                cmpl 0, temp_8LBefore = [1m{'s_thing', 's_R', 's_tmp4', 'temp_8', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_7', 's_z', 's_A'}[0m
+                je else4------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_7', 's_z', 's_A'}[0m
+
+====BLOCK_9====
+                then4:--------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    movl s_thing, temp_9LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+[1mmovl s_R, temp12_UNSPILL[0m <--- SPILLLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 'temp_9', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+[1mmovl temp_9, temp13_UNSPILL[0m <--- SPILLLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 'temp_9', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 'temp12_UNSPILL', 's_G', 's_F', 's_z', 's_A'}[0m
+[1maddl temp12_UNSPILL, temp13_UNSPILL[0mLBefore = [1m{'s_thing', 's_R', 'temp13_UNSPILL', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 'temp12_UNSPILL', 's_G', 's_F', 's_z', 's_A'}[0m
+[1mmovl temp13_UNSPILL, temp_9[0m <--- SPILLLBefore = [1m{'s_thing', 's_R', 'temp13_UNSPILL', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    movl temp_9, temp_10LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 'temp_9', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    addl s_z, temp_10LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 'temp_10', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    movl temp_10, temp_11LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 'temp_10', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    addl s_Q, temp_11LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 'temp_11', 's_y', 's_tmp6', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    movl temp_11, temp_12LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 'temp_11', 's_y', 's_tmp6', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    addl s_F, temp_12LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 'temp_12', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    movl temp_12, temp_13LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 'temp_12', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    addl s_G, temp_13LBefore = [1m{'s_thing', 'temp_13', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+[1mmovl 2556, temp13_UNSPILL[0m <--- SPILLLBefore = [1m{'s_thing', 'temp_13', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+[1mmovl temp13_UNSPILL, temp_14[0m <--- SPILLLBefore = [1m{'s_thing', 'temp_13', 's_R', 'temp13_UNSPILL', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    negl temp_14LBefore = [1m{'s_thing', 'temp_13', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 'temp_14', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    cmpl temp_13, temp_14LBefore = [1m{'s_thing', 'temp_13', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 'temp_14', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    sete %al--LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    movzbl %al, temp_4LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                    jmp end4--LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 'temp_4', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+
+====BLOCK_10====
+                else4:--------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_7', 's_z', 's_A'}[0m
+                    movl temp_7, temp_4LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 'temp_7', 's_z', 's_A'}[0m
+
+====BLOCK_11====
+                end4:---------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 'temp_4', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                jmp end3------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 'temp_4', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+
+====BLOCK_12====
+            else3:------------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 'temp_5', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                movl temp_5, temp_4LBefore = [1m{'s_thing', 's_R', 's_tmp4', 'temp_5', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+
+====BLOCK_13====
+            end3:-------------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 'temp_4', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            cmpl 0, temp_4----LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 'temp_4', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            je else5----------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+
+====BLOCK_14====
+            then5:------------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                movl 0, s_innerLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                movl 0, s_stopLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_z', 's_A'}[0m
+                cmpl 4, s_innerLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                setne %al-----LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                movzbl %al, temp_16LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                cmpl 0, temp_16LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 'temp_16', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                je else6------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 'temp_16', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_15====
+                then6:--------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    cmpl 0, s_stopLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    sete %al--LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    movzbl %al, temp_15LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    jmp end6--LBefore = [1m{'s_thing', 'temp_15', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_16====
+                else6:--------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 'temp_16', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    movl temp_16, temp_15LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 'temp_16', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_17====
+                end6:---------LBefore = [1m{'s_thing', 'temp_15', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_18====
+                while7:-------LBefore = [1m{'s_thing', 'temp_15', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    cmpl 0, temp_15LBefore = [1m{'s_thing', 'temp_15', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    je end7---LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_19====
+[1mmovl s_inner, temp3_UNSPILL[0m <--- SPILLLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+[1mmovl temp3_UNSPILL, s_inner[0m <--- SPILLLBefore = [1m{'s_thing', 's_R', 's_tmp4', 'temp3_UNSPILL', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    addl 1, s_innerLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    cmpl 2, s_innerLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    sete %al--LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    movzbl %al, temp_17LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    cmpl 0, temp_17LBefore = [1m{'s_thing', 's_R', 'temp_17', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    je else8--LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_20====
+                    then8:----LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_z', 's_A'}[0m
+                        movl 1, s_stopLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_z', 's_A'}[0m
+                        cmpl 1, s_stopLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                        sete %alLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                        movzbl %al, temp_18LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                        cmpl 0, temp_18LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 'temp_18', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                        je else9LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_21====
+                        then9:LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                            cmpl 2, s_innerLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                            sete %alLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                            movzbl %al, temp_19LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                            cmpl 0, temp_19LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 'temp_19', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                            je else10LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_22====
+                            then10:LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                movl 0, s_other_loopLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                cmpl 16, s_other_loopLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                setne %alLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                movzbl %al, temp_20LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_23====
+                                while11:LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 'temp_20', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    cmpl 0, temp_20LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 'temp_20', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    je end11LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_24====
+[1mmovl s_other_loop, temp4_UNSPILL[0m <--- SPILLLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+[1mmovl temp4_UNSPILL, s_other_loop[0m <--- SPILLLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 'temp4_UNSPILL', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    addl 1, s_other_loopLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    cmpl 16, s_other_loopLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    setne %alLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    movzbl %al, temp_20LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    jmp while11LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 'temp_20', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_25====
+                                end11:LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                cmpl 1, s_stopLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                sete %alLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                movzbl %al, temp_21LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                cmpl 0, temp_21LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 'temp_21', 's_stop', 's_z', 's_A'}[0m
+                                je else12LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_26====
+                                then12:LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    movl 3331, temp_22LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    addl s_tmp1, temp_22LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 'temp_22', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    movl temp_22, temp_23LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 'temp_22', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    addl s_tmp2, temp_23LBefore = [1m{'temp_23', 's_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    movl temp_23, temp_24LBefore = [1m{'temp_23', 's_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    addl s_tmp3, temp_24LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 'temp_24', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    movl temp_24, temp_25LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 'temp_24', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    addl s_tmp4, temp_25LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 'temp_25', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    movl temp_25, temp_26LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 'temp_25', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    addl s_tmp5, temp_26LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 'temp_26', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    movl temp_26, temp_27LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 'temp_26', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    addl s_tmp6, temp_27LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 'temp_27', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    movl temp_27, s_buried_live_variableLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 'temp_27', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+[1mmovl s_other_loop, temp5_UNSPILL[0m <--- SPILLLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_other_loop', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+[1mmovl s_buried_live_variable, temp6_UNSPILL[0m <--- SPILLLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 'temp5_UNSPILL', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+[1maddl temp5_UNSPILL, temp6_UNSPILL[0mLBefore = [1m{'temp6_UNSPILL', 's_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 'temp5_UNSPILL', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+[1mmovl temp6_UNSPILL, s_buried_live_variable[0m <--- SPILLLBefore = [1m{'temp6_UNSPILL', 's_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                    jmp end12LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_27====
+                                else12:LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_28====
+                                end12:LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                                jmp end10LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_29====
+                            else10:LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_30====
+                            end10:LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                            jmp end9LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_31====
+                        else9:LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_32====
+                        end9:-LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                        jmp end8LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_33====
+                    else8:----LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_34====
+                    end8:-----LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    cmpl 4, s_innerLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    setne %al-LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    movzbl %al, temp_16LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    cmpl 0, temp_16LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 'temp_16', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    je else13-LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 'temp_16', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_35====
+                    then13:---LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                        cmpl 0, s_stopLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                        sete %alLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                        movzbl %al, temp_15LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                        jmp end13LBefore = [1m{'s_thing', 'temp_15', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_36====
+                    else13:---LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 'temp_16', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                        movl temp_16, temp_15LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 'temp_16', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_37====
+                    end13:----LBefore = [1m{'s_thing', 'temp_15', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+                    jmp while7LBefore = [1m{'s_thing', 'temp_15', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_stop', 's_z', 's_A'}[0m
+
+====BLOCK_38====
+                end7:---------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_z', 's_A'}[0m
+[1mmovl s_thing, temp6_UNSPILL[0m <--- SPILLLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_z', 's_A'}[0m
+[1mmovl temp6_UNSPILL, s_thing[0m <--- SPILLLBefore = [1m{'temp6_UNSPILL', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_z', 's_A'}[0m
+[1mmovl s_inner, temp7_UNSPILL[0m <--- SPILLLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_inner', 's_G', 's_F', 's_z', 's_A'}[0m
+[1mmovl s_thing, temp8_UNSPILL[0m <--- SPILLLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 'temp7_UNSPILL', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+[1maddl temp7_UNSPILL, temp8_UNSPILL[0mLBefore = [1m{'temp8_UNSPILL', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 'temp7_UNSPILL', 's_tmp1', 's_y', 's_tmp6', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+[1mmovl temp8_UNSPILL, s_thing[0m <--- SPILLLBefore = [1m{'temp8_UNSPILL', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+                jmp end5------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+
+====BLOCK_39====
+            else5:------------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+
+====BLOCK_40====
+            end5:-------------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            movl s_thing, temp_28LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            addl s_F, temp_28-LBefore = [1m{'temp_28', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            movl temp_28, temp_29LBefore = [1m{'temp_28', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            addl s_B, temp_29-LBefore = [1m{'s_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 'temp_29', 's_G', 's_F', 's_z', 's_A'}[0m
+            movl temp_29, s_thingLBefore = [1m{'s_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 'temp_29', 's_G', 's_F', 's_z', 's_A'}[0m
+[1mmovl s_z, temp8_UNSPILL[0m <--- SPILLLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+[1mmovl s_thing, temp9_UNSPILL[0m <--- SPILLLBefore = [1m{'temp8_UNSPILL', 's_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+[1maddl temp8_UNSPILL, temp9_UNSPILL[0mLBefore = [1m{'temp8_UNSPILL', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 'temp9_UNSPILL', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+[1mmovl temp9_UNSPILL, s_thing[0m <--- SPILLLBefore = [1m{'s_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 'temp9_UNSPILL', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+[1mmovl s_z, temp9_UNSPILL[0m <--- SPILLLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+[1mmovl temp9_UNSPILL, s_z[0m <--- SPILLLBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 'temp9_UNSPILL', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_A'}[0m
+            addl 1, s_z-------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            cmpl 4, s_z-------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            setne %al---------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            movzbl %al, temp_3LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+            jmp while2--------LBefore = [1m{'s_thing', 's_R', 's_tmp4', 's_x', 's_B', 's_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_y', 'temp_3', 's_little_var', 's_C', 's_G', 's_F', 's_z', 's_A'}[0m
+
+====BLOCK_41====
+        end2:-----------------LBefore = [1m{'s_tmp5', 's_Q', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp4', 's_y', 's_tmp6', 's_little_var', 's_C', 's_F', 's_x', 's_B', 's_A'}[0m
+        movl s_thing, temp_30-LBefore = [1m{'s_tmp5', 's_Q', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp4', 's_y', 's_tmp6', 's_little_var', 's_C', 's_F', 's_x', 's_B', 's_A'}[0m
+        addl s_Q, temp_30-----LBefore = [1m{'s_tmp5', 's_Q', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp4', 's_y', 's_tmp6', 's_little_var', 's_C', 's_F', 's_x', 's_B', 'temp_30', 's_A'}[0m
+        movl temp_30, temp_31-LBefore = [1m{'s_tmp5', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp4', 's_y', 's_tmp6', 's_little_var', 's_C', 's_F', 's_x', 's_B', 'temp_30', 's_A'}[0m
+        addl s_F, temp_31-----LBefore = [1m{'s_tmp5', 'temp_31', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp4', 's_y', 's_tmp6', 's_little_var', 's_C', 's_F', 's_x', 's_B', 's_A'}[0m
+        movl temp_31, temp_32-LBefore = [1m{'s_tmp5', 'temp_31', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp4', 's_y', 's_tmp6', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+        addl s_C, temp_32-----LBefore = [1m{'s_tmp5', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp4', 's_y', 's_tmp6', 's_little_var', 's_C', 's_x', 's_B', 'temp_32', 's_A'}[0m
+        movl temp_32, s_thing-LBefore = [1m{'s_tmp5', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 'temp_32', 's_A'}[0m
+[1mmovl s_little_var, temp10_UNSPILL[0m <--- SPILLLBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+[1mmovl s_thing, temp11_UNSPILL[0m <--- SPILLLBefore = [1m{'temp10_UNSPILL', 's_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+[1maddl temp10_UNSPILL, temp11_UNSPILL[0mLBefore = [1m{'temp10_UNSPILL', 's_tmp5', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 'temp11_UNSPILL', 's_A'}[0m
+[1mmovl temp11_UNSPILL, s_thing[0m <--- SPILLLBefore = [1m{'s_tmp5', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 'temp11_UNSPILL', 's_A'}[0m
+        cmpl 5, s_y-----------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+        setne %al-------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+        movzbl %al, temp_1----LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+        jmp while1------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp6', 's_tmp1', 's_y', 'temp_1', 's_tmp4', 's_little_var', 's_C', 's_x', 's_B', 's_A'}[0m
+
+====BLOCK_42====
+    end1:---------------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_little_var', 's_x'}[0m
+[1mmovl s_x, temp11_UNSPILL[0m <--- SPILLLBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_little_var', 's_x'}[0m
+[1mmovl temp11_UNSPILL, s_x[0m <--- SPILLLBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_little_var', 'temp11_UNSPILL'}[0m
+    addl 1, s_x---------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_little_var', 's_x'}[0m
+    cmpl 5, s_x---------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_little_var', 's_x'}[0m
+    setne %al-----------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_little_var', 's_x'}[0m
+    movzbl %al, temp_0--------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp6', 's_tmp4', 's_little_var', 's_x'}[0m
+    jmp while0----------------LBefore = [1m{'s_tmp5', 's_thing', 's_tmp2', 's_buried_live_variable', 's_tmp3', 's_tmp1', 's_tmp4', 's_tmp6', 's_little_var', 's_x', 'temp_0'}[0m
+
+====BLOCK_43====
+end0:-------------------------LBefore = [1m{'s_buried_live_variable', 's_thing'}[0m
+movl s_thing, temp_33---------LBefore = [1m{'s_buried_live_variable', 's_thing'}[0m
+addl s_buried_live_variable, temp_33LBefore = [1m{'s_buried_live_variable', 'temp_33'}[0m
+print temp_33-----------------LBefore = [1m{'temp_33'}[0m
+
+
+==================================================
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+==================HOMES ASSIGNED==================
+s_tmp1 : edx
+s_tmp2 : ebx
+s_tmp3 : edi
+s_tmp4 : esi
+s_tmp5 : -4(%ebp)
+s_tmp6 : -8(%ebp)
+s_x : -12(%ebp)
+s_thing : -16(%ebp)
+s_little_var : -20(%ebp)
+s_buried_live_variable : -24(%ebp)
+temp_0 : eax
+s_y : -28(%ebp)
+s_A : -32(%ebp)
+s_B : -36(%ebp)
+s_C : -40(%ebp)
+temp_1 : eax
+temp0_UNSPILL : eax
+s_Q : -44(%ebp)
+s_F : -48(%ebp)
+temp_2 : eax
+temp1_UNSPILL : eax
+temp2_UNSPILL : ecx
+s_G : -52(%ebp)
+s_R : -56(%ebp)
+temp3_UNSPILL : eax
+s_z : -60(%ebp)
+temp_3 : eax
+temp_5 : ecx
+temp_6 : eax
+temp_7 : ecx
+temp_8 : eax
+temp_9 : eax
+temp12_UNSPILL : ecx
+temp13_UNSPILL : eax
+temp_10 : eax
+temp_11 : eax
+temp_12 : eax
+temp_13 : ecx
+temp_14 : eax
+temp_4 : eax
+s_inner : -64(%ebp)
+s_stop : -68(%ebp)
+temp_16 : eax
+temp_15 : eax
+temp_17 : eax
+temp_18 : eax
+temp_19 : eax
+s_other_loop : ecx
+temp_20 : eax
+temp4_UNSPILL : eax
+temp_21 : eax
+temp_22 : eax
+temp_23 : eax
+temp_24 : eax
+temp_25 : eax
+temp_26 : eax
+temp_27 : eax
+temp5_UNSPILL : ecx
+temp6_UNSPILL : eax
+temp7_UNSPILL : eax
+temp8_UNSPILL : ecx
+temp_28 : eax
+temp_29 : eax
+temp9_UNSPILL : eax
+temp_30 : eax
+temp_31 : eax
+temp_32 : eax
+temp10_UNSPILL : ecx
+temp11_UNSPILL : eax
+temp_33 : eax
+==================================================
+============BAD STACK REF INSTRUCTIONS============
+==================================================
+
+*****EXITING, No bad stack instructions (2-address stack refs, movzbl stack refs)
+
+===================GENERATED X86===================
+.globl main
+main:
+    pushl %ebp ## save caller's base pointer
+    movl %esp, %ebp ## set our base pointer
+    pushl %ebx ## save callee saved registers
+    pushl %esi
+    pushl %edi
+
+    movl $101, %edx
+    movl $102, %ebx
+    movl $103, %edi
+    movl $104, %esi
+    movl $105, -4(%ebp)
+    movl $106, -8(%ebp)
+    movl $0, -12(%ebp)
+    movl $0, -16(%ebp)
+    movl $17, -20(%ebp)
+    movl $0, -24(%ebp)
+    cmpl $5, -12(%ebp)
+    setne %al
+    movzbl %al, %eax
+    
+    while0:
+    cmpl $0, %eax
+    je end0
+    movl $1, -28(%ebp)
+    movl $2, -32(%ebp)
+    movl $3, -36(%ebp)
+    movl $5, -40(%ebp)
+    cmpl $5, -28(%ebp)
+    setne %al
+    movzbl %al, %eax
+    
+    while1:
+    cmpl $0, %eax
+    je end1
+    movl -28(%ebp), %eax
+    movl %eax, -28(%ebp)
+    addl $1, -28(%ebp)
+    movl $10, -44(%ebp)
+    movl $99, -48(%ebp)
+    movl -44(%ebp), %eax
+    addl -48(%ebp), %eax
+    movl %eax, -16(%ebp)
+    movl -40(%ebp), %eax
+    movl -16(%ebp), %ecx
+    addl %eax, %ecx
+    movl %ecx, -16(%ebp)
+    movl $66, -52(%ebp)
+    movl $20, -56(%ebp)
+    movl -32(%ebp), %ecx
+    movl -56(%ebp), %eax
+    addl %ecx, %eax
+    movl %eax, -56(%ebp)
+    movl $0, -60(%ebp)
+    cmpl $4, -60(%ebp)
+    setne %al
+    movzbl %al, %eax
+    
+    while2:
+    cmpl $0, %eax
+    je end2
+    cmpl $3, -60(%ebp)
+    sete %al
+    movzbl %al, %ecx
+    cmpl $0, %ecx
+    sete %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else3
+    
+    then3:
+    cmpl $1, -60(%ebp)
+    sete %al
+    movzbl %al, %ecx
+    cmpl $0, %ecx
+    sete %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else4
+    
+    then4:
+    movl -16(%ebp), %eax
+    movl -56(%ebp), %ecx
+    addl %ecx, %eax
+    addl -60(%ebp), %eax
+    addl -44(%ebp), %eax
+    addl -48(%ebp), %eax
+    movl %eax, %ecx
+    addl -52(%ebp), %ecx
+    movl $2556, %eax
+    negl %eax
+    cmpl %ecx, %eax
+    sete %al
+    movzbl %al, %eax
+    jmp end4
+    
+    else4:
+    movl %ecx, %eax
+    
+    end4:
+    jmp end3
+    
+    else3:
+    movl %ecx, %eax
+    
+    end3:
+    cmpl $0, %eax
+    je else5
+    
+    then5:
+    movl $0, -64(%ebp)
+    movl $0, -68(%ebp)
+    cmpl $4, -64(%ebp)
+    setne %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else6
+    
+    then6:
+    cmpl $0, -68(%ebp)
+    sete %al
+    movzbl %al, %eax
+    jmp end6
+    
+    else6:
+    
+    end6:
+    
+    while7:
+    cmpl $0, %eax
+    je end7
+    movl -64(%ebp), %eax
+    movl %eax, -64(%ebp)
+    addl $1, -64(%ebp)
+    cmpl $2, -64(%ebp)
+    sete %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else8
+    
+    then8:
+    movl $1, -68(%ebp)
+    cmpl $1, -68(%ebp)
+    sete %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else9
+    
+    then9:
+    cmpl $2, -64(%ebp)
+    sete %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else10
+    
+    then10:
+    movl $0, %ecx
+    cmpl $16, %ecx
+    setne %al
+    movzbl %al, %eax
+    
+    while11:
+    cmpl $0, %eax
+    je end11
+    movl %ecx, %eax
+    movl %eax, %ecx
+    addl $1, %ecx
+    cmpl $16, %ecx
+    setne %al
+    movzbl %al, %eax
+    jmp while11
+    
+    end11:
+    cmpl $1, -68(%ebp)
+    sete %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else12
+    
+    then12:
+    movl $3331, %eax
+    addl %edx, %eax
+    addl %ebx, %eax
+    addl %edi, %eax
+    addl %esi, %eax
+    addl -4(%ebp), %eax
+    addl -8(%ebp), %eax
+    movl %eax, -24(%ebp)
+    movl -24(%ebp), %eax
+    addl %ecx, %eax
+    movl %eax, -24(%ebp)
+    jmp end12
+    
+    else12:
+    
+    end12:
+    jmp end10
+    
+    else10:
+    
+    end10:
+    jmp end9
+    
+    else9:
+    
+    end9:
+    jmp end8
+    
+    else8:
+    
+    end8:
+    cmpl $4, -64(%ebp)
+    setne %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else13
+    
+    then13:
+    cmpl $0, -68(%ebp)
+    sete %al
+    movzbl %al, %eax
+    jmp end13
+    
+    else13:
+    
+    end13:
+    jmp while7
+    
+    end7:
+    movl -16(%ebp), %eax
+    movl %eax, -16(%ebp)
+    movl -64(%ebp), %eax
+    movl -16(%ebp), %ecx
+    addl %eax, %ecx
+    movl %ecx, -16(%ebp)
+    jmp end5
+    
+    else5:
+    
+    end5:
+    movl -16(%ebp), %eax
+    addl -48(%ebp), %eax
+    addl -36(%ebp), %eax
+    movl %eax, -16(%ebp)
+    movl -60(%ebp), %ecx
+    movl -16(%ebp), %eax
+    addl %ecx, %eax
+    movl %eax, -16(%ebp)
+    movl -60(%ebp), %eax
+    movl %eax, -60(%ebp)
+    addl $1, -60(%ebp)
+    cmpl $4, -60(%ebp)
+    setne %al
+    movzbl %al, %eax
+    jmp while2
+    
+    end2:
+    movl -16(%ebp), %eax
+    addl -44(%ebp), %eax
+    addl -48(%ebp), %eax
+    addl -40(%ebp), %eax
+    movl %eax, -16(%ebp)
+    movl -20(%ebp), %ecx
+    movl -16(%ebp), %eax
+    addl %ecx, %eax
+    movl %eax, -16(%ebp)
+    cmpl $5, -28(%ebp)
+    setne %al
+    movzbl %al, %eax
+    jmp while1
+    
+    end1:
+    movl -12(%ebp), %eax
+    movl %eax, -12(%ebp)
+    addl $1, -12(%ebp)
+    cmpl $5, -12(%ebp)
+    setne %al
+    movzbl %al, %eax
+    jmp while0
+    
+    end0:
+    movl -16(%ebp), %eax
+    addl -24(%ebp), %eax
+    pushl %eax
+    call print_int_nl
+    addl $4, %esp
+
+    popl %edi ## restore callee saved registers
+    popl %esi
+    popl %ebx
+    movl $0, %eax ## set return value
+    movl %ebp, %esp ## restore esp
+    popl %ebp ## restore ebp (alt. “leave”)
+    ret ## jump execution to call site
+    ==================================================
+ON optimizaitons : ['trivial-move']
+[+] removed 0 dead-store operations
+[+] LVN-optimization removed 0 redundant computations
+[+] Constant folding removed 0 computations
+[+] Removed 18 trivial move instructions (a -> a)
+[+] Removed 0 trivial swap-move instructions (a -> b, b -> a)
+x86 code length (lines) : 295
+FINISHED IN 1 iterations

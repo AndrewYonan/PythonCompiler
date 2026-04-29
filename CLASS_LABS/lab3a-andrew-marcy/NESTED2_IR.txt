@@ -1,0 +1,138 @@
+movl 1, s_x
+movl 2, s_y
+movl 0, s_z
+movl 1, s_loop_condition
+cmpl 5, s_x
+setne %al
+movzbl %al, temp_0
+while0:
+    cmpl 0, temp_0
+    je end0
+    cmpl 1, s_x
+    sete %al
+    movzbl %al, temp_2
+    cmpl 0, temp_2
+    sete %al
+    movzbl %al, temp_3
+    cmpl 0, temp_3
+    je else1
+    then1:
+        cmpl 4, s_x
+        sete %al
+        movzbl %al, temp_1
+        jmp end1
+    else1:
+        movl temp_2, temp_1
+    end1:
+    cmpl 0, temp_1
+    je else2
+    then2:
+        cmpl 2, s_y
+        sete %al
+        movzbl %al, temp_4
+        cmpl 0, temp_4
+        je else3
+        then3:
+            movl s_z, s_z
+            addl 1, s_z
+            jmp end3
+        else3:
+            cmpl 1, s_y
+            sete %al
+            movzbl %al, temp_5
+            cmpl 0, temp_5
+            je else4
+            then4:
+                movl s_z, s_z
+                addl 2, s_z
+                jmp end4
+            else4:
+                movl s_z, s_z
+                addl 3, s_z
+            end4:
+        end3:
+        jmp end2
+    else2:
+        cmpl 2, s_x
+        sete %al
+        movzbl %al, temp_7
+        cmpl 0, temp_7
+        sete %al
+        movzbl %al, temp_8
+        cmpl 0, temp_8
+        je else5
+        then5:
+            cmpl 5, s_x
+            sete %al
+            movzbl %al, temp_6
+            jmp end5
+        else5:
+            movl temp_7, temp_6
+        end5:
+        cmpl 0, temp_6
+        je else6
+        then6:
+            cmpl 2, s_y
+            sete %al
+            movzbl %al, temp_9
+            cmpl 0, temp_9
+            je else7
+            then7:
+                movl s_z, s_z
+                addl 2, s_z
+                jmp end7
+            else7:
+                cmpl 1, s_y
+                sete %al
+                movzbl %al, temp_10
+                cmpl 0, temp_10
+                je else8
+                then8:
+                    movl s_z, s_z
+                    addl 3, s_z
+                    jmp end8
+                else8:
+                    movl s_z, s_z
+                    addl 1, s_z
+                end8:
+            end7:
+            jmp end6
+        else6:
+            cmpl 2, s_y
+            sete %al
+            movzbl %al, temp_11
+            cmpl 0, temp_11
+            je else9
+            then9:
+                movl s_z, s_z
+                addl 3, s_z
+                jmp end9
+            else9:
+                cmpl 1, s_y
+                sete %al
+                movzbl %al, temp_12
+                cmpl 0, temp_12
+                je else10
+                then10:
+                    movl s_z, s_z
+                    addl 1, s_z
+                    jmp end10
+                else10:
+                    movl s_z, s_z
+                    addl 2, s_z
+                end10:
+            end9:
+        end6:
+    end2:
+    movl s_x, s_x
+    addl 1, s_x
+    movl 1, temp_13
+    negl temp_13
+    movl s_y, s_y
+    addl temp_13, s_y
+    cmpl 5, s_x
+    setne %al
+    movzbl %al, temp_0
+    jmp while0
+end0:
+print s_z

@@ -1,0 +1,1705 @@
+
+
+===================PYTHON3 PROG===================
+x = 0
+z = 1
+while x != 10:
+    z = z + x
+    x = x + 1
+print(z)
+
+
+# x = 5
+# y = 10
+# z = 0
+
+# while int(x != 0):
+#     x = x + -1
+#     y_copy = y
+#     inner_loop_done = 0
+    
+#     while int(y_copy != 0) and int(not inner_loop_done):
+#         y_copy = y_copy + -1
+#         if int(y_copy == 4):
+#             z = z + 1
+#             if int(x == 3):
+#                 z = z + 1
+#                 y = y + -1
+#                 x = x + 1
+#                 inner_loop_done = 1
+#             else:
+#                 if int(x == 2):
+#                     z = z + 2
+#                 else:
+#                     z = z + 3
+#                 y = y + -1
+#                 x = x + 1
+#                 inner_loop_done = 1
+
+#     if int(not inner_loop_done):
+#         y = y_copy
+        
+# print(z)
+==================================================
+=====================FLAT PROG=====================
+s_x = 0
+s_z = 1
+temp_0 = s_x != 10
+while temp_0:
+    s_z = s_z + s_x
+    temp_0 = s_x != 10
+print(s_z)
+==================================================
+==============FLAT (explicated) PROG==============
+s_x = inject_int(0)
+s_z = inject_int(1)
+e_temp_0 = s_x
+e_temp_1 = inject_int(10)
+E_0 = is_int(e_temp_0)
+if E_0:
+    E_1 = is_int(e_temp_1)
+    if E_1:
+        E_2 = project_int(e_temp_0)
+        E_3 = project_int(e_temp_1)
+        E_4 = E_2 != E_3
+        if E_4:
+            temp_0 = inject_bool(1)
+        else:
+            temp_0 = inject_bool(0)
+    else:
+        E_5 = is_bool(e_temp_1)
+        if E_5:
+            E_6 = project_int(e_temp_0)
+            E_7 = project_int(e_temp_1)
+            E_8 = E_6 != E_7
+            if E_8:
+                temp_0 = inject_bool(1)
+            else:
+                temp_0 = inject_bool(0)
+else:
+    E_9 = is_bool(e_temp_0)
+    if E_9:
+        E_10 = is_int(e_temp_1)
+        if E_10:
+            E_11 = project_int(e_temp_0)
+            E_12 = project_int(e_temp_1)
+            E_13 = E_11 != E_12
+            if E_13:
+                temp_0 = inject_bool(1)
+            else:
+                temp_0 = inject_bool(0)
+        else:
+            E_14 = is_bool(e_temp_1)
+            if E_14:
+                E_15 = project_int(e_temp_0)
+                E_16 = project_int(e_temp_1)
+                E_17 = E_15 != E_16
+                if E_17:
+                    temp_0 = inject_bool(1)
+                else:
+                    temp_0 = inject_bool(0)
+e_temp_2 = is_true(temp_0)
+while e_temp_2:
+    e_temp_3 = s_z
+    e_temp_4 = s_x
+    E_0 = is_int(e_temp_3)
+    if E_0:
+        E_1 = is_int(e_temp_4)
+        if E_1:
+            E_2 = project_int(e_temp_3)
+            E_3 = project_int(e_temp_4)
+            E_4 = E_2 + E_3
+            s_z = inject_int(E_4)
+        else:
+            E_5 = is_bool(e_temp_4)
+            if E_5:
+                E_6 = project_int(e_temp_3)
+                E_7 = project_bool(e_temp_4)
+                E_8 = E_6 + E_7
+                s_z = inject_int(E_8)
+    else:
+        E_9 = is_bool(e_temp_3)
+        if E_9:
+            E_10 = is_int(e_temp_4)
+            if E_10:
+                E_11 = project_bool(e_temp_3)
+                E_12 = project_int(e_temp_4)
+                E_13 = E_11 + E_12
+                s_z = inject_int(E_13)
+            else:
+                E_14 = is_bool(e_temp_4)
+                if E_14:
+                    E_15 = project_bool(e_temp_3)
+                    E_16 = project_bool(e_temp_4)
+                    E_17 = E_15 + E_16
+                    s_z = inject_int(E_17)
+    e_temp_5 = s_x
+    e_temp_6 = inject_int(10)
+    E_0 = is_int(e_temp_5)
+    if E_0:
+        E_1 = is_int(e_temp_6)
+        if E_1:
+            E_2 = project_int(e_temp_5)
+            E_3 = project_int(e_temp_6)
+            E_4 = E_2 != E_3
+            if E_4:
+                temp_0 = inject_bool(1)
+            else:
+                temp_0 = inject_bool(0)
+        else:
+            E_5 = is_bool(e_temp_6)
+            if E_5:
+                E_6 = project_int(e_temp_5)
+                E_7 = project_int(e_temp_6)
+                E_8 = E_6 != E_7
+                if E_8:
+                    temp_0 = inject_bool(1)
+                else:
+                    temp_0 = inject_bool(0)
+    else:
+        E_9 = is_bool(e_temp_5)
+        if E_9:
+            E_10 = is_int(e_temp_6)
+            if E_10:
+                E_11 = project_int(e_temp_5)
+                E_12 = project_int(e_temp_6)
+                E_13 = E_11 != E_12
+                if E_13:
+                    temp_0 = inject_bool(1)
+                else:
+                    temp_0 = inject_bool(0)
+            else:
+                E_14 = is_bool(e_temp_6)
+                if E_14:
+                    E_15 = project_int(e_temp_5)
+                    E_16 = project_int(e_temp_6)
+                    E_17 = E_15 != E_16
+                    if E_17:
+                        temp_0 = inject_bool(1)
+                    else:
+                        temp_0 = inject_bool(0)
+    e_temp_2 = is_true(temp_0)
+print_any(s_z)
+==================================================
+========================BBL========================
+====BLOCK_1====
+inject_int(0) s_x---------------------------------LBefore = [1mset()[0m
+inject_int(1) s_z---------------------------------LBefore = [1mset()[0m
+movl s_x, e_temp_0--------------------------------LBefore = [1mset()[0m
+inject_int(10) e_temp_1---------------------------LBefore = [1mset()[0m
+is_int(e_temp_0) E_0------------------------------LBefore = [1mset()[0m
+cmpl 0, E_0---------------------------------------LBefore = [1mset()[0m
+je else0------------------------------------------LBefore = [1mset()[0m
+
+====BLOCK_2====
+then0:--------------------------------------------LBefore = [1mset()[0m
+    is_int(e_temp_1) E_1--------------------------LBefore = [1mset()[0m
+    cmpl 0, E_1-----------------------------------LBefore = [1mset()[0m
+    je else1--------------------------------------LBefore = [1mset()[0m
+
+====BLOCK_3====
+    then1:----------------------------------------LBefore = [1mset()[0m
+        project_int(e_temp_0) E_2-----------------LBefore = [1mset()[0m
+        project_int(e_temp_1) E_3-----------------LBefore = [1mset()[0m
+        cmpl E_2, E_3-----------------------------LBefore = [1mset()[0m
+        setne %al---------------------------------LBefore = [1mset()[0m
+        movzbl %al, E_4---------------------------LBefore = [1mset()[0m
+        cmpl 0, E_4-------------------------------LBefore = [1mset()[0m
+        je else2----------------------------------LBefore = [1mset()[0m
+
+====BLOCK_4====
+        then2:------------------------------------LBefore = [1mset()[0m
+            inject_bool(1) temp_0-----------------LBefore = [1mset()[0m
+            jmp end2------------------------------LBefore = [1mset()[0m
+
+====BLOCK_5====
+        else2:------------------------------------LBefore = [1mset()[0m
+            inject_bool(0) temp_0-----------------LBefore = [1mset()[0m
+
+====BLOCK_6====
+        end2:-------------------------------------LBefore = [1mset()[0m
+        jmp end1----------------------------------LBefore = [1mset()[0m
+
+====BLOCK_7====
+    else1:----------------------------------------LBefore = [1mset()[0m
+        is_bool(e_temp_1) E_5---------------------LBefore = [1mset()[0m
+        cmpl 0, E_5-------------------------------LBefore = [1mset()[0m
+        je else3----------------------------------LBefore = [1mset()[0m
+
+====BLOCK_8====
+        then3:------------------------------------LBefore = [1mset()[0m
+            project_int(e_temp_0) E_6-------------LBefore = [1mset()[0m
+            project_int(e_temp_1) E_7-------------LBefore = [1mset()[0m
+            cmpl E_6, E_7-------------------------LBefore = [1mset()[0m
+            setne %al-----------------------------LBefore = [1mset()[0m
+            movzbl %al, E_8-----------------------LBefore = [1mset()[0m
+            cmpl 0, E_8---------------------------LBefore = [1mset()[0m
+            je else4------------------------------LBefore = [1mset()[0m
+
+====BLOCK_9====
+            then4:--------------------------------LBefore = [1mset()[0m
+                inject_bool(1) temp_0-------------LBefore = [1mset()[0m
+                jmp end4--------------------------LBefore = [1mset()[0m
+
+====BLOCK_10====
+            else4:--------------------------------LBefore = [1mset()[0m
+                inject_bool(0) temp_0-------------LBefore = [1mset()[0m
+
+====BLOCK_11====
+            end4:---------------------------------LBefore = [1mset()[0m
+            jmp end3------------------------------LBefore = [1mset()[0m
+
+====BLOCK_12====
+        else3:------------------------------------LBefore = [1mset()[0m
+
+====BLOCK_13====
+        end3:-------------------------------------LBefore = [1mset()[0m
+
+====BLOCK_14====
+    end1:-----------------------------------------LBefore = [1mset()[0m
+    jmp end0--------------------------------------LBefore = [1mset()[0m
+
+====BLOCK_15====
+else0:--------------------------------------------LBefore = [1mset()[0m
+    is_bool(e_temp_0) E_9-------------------------LBefore = [1mset()[0m
+    cmpl 0, E_9-----------------------------------LBefore = [1mset()[0m
+    je else5--------------------------------------LBefore = [1mset()[0m
+
+====BLOCK_16====
+    then5:----------------------------------------LBefore = [1mset()[0m
+        is_int(e_temp_1) E_10---------------------LBefore = [1mset()[0m
+        cmpl 0, E_10------------------------------LBefore = [1mset()[0m
+        je else6----------------------------------LBefore = [1mset()[0m
+
+====BLOCK_17====
+        then6:------------------------------------LBefore = [1mset()[0m
+            project_int(e_temp_0) E_11------------LBefore = [1mset()[0m
+            project_int(e_temp_1) E_12------------LBefore = [1mset()[0m
+            cmpl E_11, E_12-----------------------LBefore = [1mset()[0m
+            setne %al-----------------------------LBefore = [1mset()[0m
+            movzbl %al, E_13----------------------LBefore = [1mset()[0m
+            cmpl 0, E_13--------------------------LBefore = [1mset()[0m
+            je else7------------------------------LBefore = [1mset()[0m
+
+====BLOCK_18====
+            then7:--------------------------------LBefore = [1mset()[0m
+                inject_bool(1) temp_0-------------LBefore = [1mset()[0m
+                jmp end7--------------------------LBefore = [1mset()[0m
+
+====BLOCK_19====
+            else7:--------------------------------LBefore = [1mset()[0m
+                inject_bool(0) temp_0-------------LBefore = [1mset()[0m
+
+====BLOCK_20====
+            end7:---------------------------------LBefore = [1mset()[0m
+            jmp end6------------------------------LBefore = [1mset()[0m
+
+====BLOCK_21====
+        else6:------------------------------------LBefore = [1mset()[0m
+            is_bool(e_temp_1) E_14----------------LBefore = [1mset()[0m
+            cmpl 0, E_14--------------------------LBefore = [1mset()[0m
+            je else8------------------------------LBefore = [1mset()[0m
+
+====BLOCK_22====
+            then8:--------------------------------LBefore = [1mset()[0m
+                project_int(e_temp_0) E_15--------LBefore = [1mset()[0m
+                project_int(e_temp_1) E_16--------LBefore = [1mset()[0m
+                cmpl E_15, E_16-------------------LBefore = [1mset()[0m
+                setne %al-------------------------LBefore = [1mset()[0m
+                movzbl %al, E_17------------------LBefore = [1mset()[0m
+                cmpl 0, E_17----------------------LBefore = [1mset()[0m
+                je else9--------------------------LBefore = [1mset()[0m
+
+====BLOCK_23====
+                then9:----------------------------LBefore = [1mset()[0m
+                    inject_bool(1) temp_0---------LBefore = [1mset()[0m
+                    jmp end9----------------------LBefore = [1mset()[0m
+
+====BLOCK_24====
+                else9:----------------------------LBefore = [1mset()[0m
+                    inject_bool(0) temp_0---------LBefore = [1mset()[0m
+
+====BLOCK_25====
+                end9:-----------------------------LBefore = [1mset()[0m
+                jmp end8--------------------------LBefore = [1mset()[0m
+
+====BLOCK_26====
+            else8:--------------------------------LBefore = [1mset()[0m
+
+====BLOCK_27====
+            end8:---------------------------------LBefore = [1mset()[0m
+
+====BLOCK_28====
+        end6:-------------------------------------LBefore = [1mset()[0m
+        jmp end5----------------------------------LBefore = [1mset()[0m
+
+====BLOCK_29====
+    else5:----------------------------------------LBefore = [1mset()[0m
+
+====BLOCK_30====
+    end5:-----------------------------------------LBefore = [1mset()[0m
+
+====BLOCK_31====
+end0:---------------------------------------------LBefore = [1mset()[0m
+is_true(temp_0) e_temp_2--------------------------LBefore = [1mset()[0m
+
+====BLOCK_32====
+while10:------------------------------------------LBefore = [1mset()[0m
+    cmpl 0, e_temp_2------------------------------LBefore = [1mset()[0m
+    je end10--------------------------------------LBefore = [1mset()[0m
+
+====BLOCK_33====
+    movl s_z, e_temp_3----------------------------LBefore = [1mset()[0m
+    movl s_x, e_temp_4----------------------------LBefore = [1mset()[0m
+    is_int(e_temp_3) E_0--------------------------LBefore = [1mset()[0m
+    cmpl 0, E_0-----------------------------------LBefore = [1mset()[0m
+    je else11-------------------------------------LBefore = [1mset()[0m
+
+====BLOCK_34====
+    then11:---------------------------------------LBefore = [1mset()[0m
+        is_int(e_temp_4) E_1----------------------LBefore = [1mset()[0m
+        cmpl 0, E_1-------------------------------LBefore = [1mset()[0m
+        je else12---------------------------------LBefore = [1mset()[0m
+
+====BLOCK_35====
+        then12:-----------------------------------LBefore = [1mset()[0m
+            project_int(e_temp_3) E_2-------------LBefore = [1mset()[0m
+            project_int(e_temp_4) E_3-------------LBefore = [1mset()[0m
+            movl E_2, E_4-------------------------LBefore = [1mset()[0m
+            addl E_3, E_4-------------------------LBefore = [1mset()[0m
+            inject_int(E_4) s_z-------------------LBefore = [1mset()[0m
+            jmp end12-----------------------------LBefore = [1mset()[0m
+
+====BLOCK_36====
+        else12:-----------------------------------LBefore = [1mset()[0m
+            is_bool(e_temp_4) E_5-----------------LBefore = [1mset()[0m
+            cmpl 0, E_5---------------------------LBefore = [1mset()[0m
+            je else13-----------------------------LBefore = [1mset()[0m
+
+====BLOCK_37====
+            then13:-------------------------------LBefore = [1mset()[0m
+                project_int(e_temp_3) E_6---------LBefore = [1mset()[0m
+                project_bool(e_temp_4) E_7--------LBefore = [1mset()[0m
+                movl E_6, E_8---------------------LBefore = [1mset()[0m
+                addl E_7, E_8---------------------LBefore = [1mset()[0m
+                inject_int(E_8) s_z---------------LBefore = [1mset()[0m
+                jmp end13-------------------------LBefore = [1mset()[0m
+
+====BLOCK_38====
+            else13:-------------------------------LBefore = [1mset()[0m
+
+====BLOCK_39====
+            end13:--------------------------------LBefore = [1mset()[0m
+
+====BLOCK_40====
+        end12:------------------------------------LBefore = [1mset()[0m
+        jmp end11---------------------------------LBefore = [1mset()[0m
+
+====BLOCK_41====
+    else11:---------------------------------------LBefore = [1mset()[0m
+        is_bool(e_temp_3) E_9---------------------LBefore = [1mset()[0m
+        cmpl 0, E_9-------------------------------LBefore = [1mset()[0m
+        je else14---------------------------------LBefore = [1mset()[0m
+
+====BLOCK_42====
+        then14:-----------------------------------LBefore = [1mset()[0m
+            is_int(e_temp_4) E_10-----------------LBefore = [1mset()[0m
+            cmpl 0, E_10--------------------------LBefore = [1mset()[0m
+            je else15-----------------------------LBefore = [1mset()[0m
+
+====BLOCK_43====
+            then15:-------------------------------LBefore = [1mset()[0m
+                project_bool(e_temp_3) E_11-------LBefore = [1mset()[0m
+                project_int(e_temp_4) E_12--------LBefore = [1mset()[0m
+                movl E_11, E_13-------------------LBefore = [1mset()[0m
+                addl E_12, E_13-------------------LBefore = [1mset()[0m
+                inject_int(E_13) s_z--------------LBefore = [1mset()[0m
+                jmp end15-------------------------LBefore = [1mset()[0m
+
+====BLOCK_44====
+            else15:-------------------------------LBefore = [1mset()[0m
+                is_bool(e_temp_4) E_14------------LBefore = [1mset()[0m
+                cmpl 0, E_14----------------------LBefore = [1mset()[0m
+                je else16-------------------------LBefore = [1mset()[0m
+
+====BLOCK_45====
+                then16:---------------------------LBefore = [1mset()[0m
+                    project_bool(e_temp_3) E_15---LBefore = [1mset()[0m
+                    project_bool(e_temp_4) E_16---LBefore = [1mset()[0m
+                    movl E_15, E_17---------------LBefore = [1mset()[0m
+                    addl E_16, E_17---------------LBefore = [1mset()[0m
+                    inject_int(E_17) s_z----------LBefore = [1mset()[0m
+                    jmp end16---------------------LBefore = [1mset()[0m
+
+====BLOCK_46====
+                else16:---------------------------LBefore = [1mset()[0m
+
+====BLOCK_47====
+                end16:----------------------------LBefore = [1mset()[0m
+
+====BLOCK_48====
+            end15:--------------------------------LBefore = [1mset()[0m
+            jmp end14-----------------------------LBefore = [1mset()[0m
+
+====BLOCK_49====
+        else14:-----------------------------------LBefore = [1mset()[0m
+
+====BLOCK_50====
+        end14:------------------------------------LBefore = [1mset()[0m
+
+====BLOCK_51====
+    end11:----------------------------------------LBefore = [1mset()[0m
+    movl s_x, e_temp_5----------------------------LBefore = [1mset()[0m
+    inject_int(10) e_temp_6-----------------------LBefore = [1mset()[0m
+    is_int(e_temp_5) E_0--------------------------LBefore = [1mset()[0m
+    cmpl 0, E_0-----------------------------------LBefore = [1mset()[0m
+    je else17-------------------------------------LBefore = [1mset()[0m
+
+====BLOCK_52====
+    then17:---------------------------------------LBefore = [1mset()[0m
+        is_int(e_temp_6) E_1----------------------LBefore = [1mset()[0m
+        cmpl 0, E_1-------------------------------LBefore = [1mset()[0m
+        je else18---------------------------------LBefore = [1mset()[0m
+
+====BLOCK_53====
+        then18:-----------------------------------LBefore = [1mset()[0m
+            project_int(e_temp_5) E_2-------------LBefore = [1mset()[0m
+            project_int(e_temp_6) E_3-------------LBefore = [1mset()[0m
+            cmpl E_2, E_3-------------------------LBefore = [1mset()[0m
+            setne %al-----------------------------LBefore = [1mset()[0m
+            movzbl %al, E_4-----------------------LBefore = [1mset()[0m
+            cmpl 0, E_4---------------------------LBefore = [1mset()[0m
+            je else19-----------------------------LBefore = [1mset()[0m
+
+====BLOCK_54====
+            then19:-------------------------------LBefore = [1mset()[0m
+                inject_bool(1) temp_0-------------LBefore = [1mset()[0m
+                jmp end19-------------------------LBefore = [1mset()[0m
+
+====BLOCK_55====
+            else19:-------------------------------LBefore = [1mset()[0m
+                inject_bool(0) temp_0-------------LBefore = [1mset()[0m
+
+====BLOCK_56====
+            end19:--------------------------------LBefore = [1mset()[0m
+            jmp end18-----------------------------LBefore = [1mset()[0m
+
+====BLOCK_57====
+        else18:-----------------------------------LBefore = [1mset()[0m
+            is_bool(e_temp_6) E_5-----------------LBefore = [1mset()[0m
+            cmpl 0, E_5---------------------------LBefore = [1mset()[0m
+            je else20-----------------------------LBefore = [1mset()[0m
+
+====BLOCK_58====
+            then20:-------------------------------LBefore = [1mset()[0m
+                project_int(e_temp_5) E_6---------LBefore = [1mset()[0m
+                project_int(e_temp_6) E_7---------LBefore = [1mset()[0m
+                cmpl E_6, E_7---------------------LBefore = [1mset()[0m
+                setne %al-------------------------LBefore = [1mset()[0m
+                movzbl %al, E_8-------------------LBefore = [1mset()[0m
+                cmpl 0, E_8-----------------------LBefore = [1mset()[0m
+                je else21-------------------------LBefore = [1mset()[0m
+
+====BLOCK_59====
+                then21:---------------------------LBefore = [1mset()[0m
+                    inject_bool(1) temp_0---------LBefore = [1mset()[0m
+                    jmp end21---------------------LBefore = [1mset()[0m
+
+====BLOCK_60====
+                else21:---------------------------LBefore = [1mset()[0m
+                    inject_bool(0) temp_0---------LBefore = [1mset()[0m
+
+====BLOCK_61====
+                end21:----------------------------LBefore = [1mset()[0m
+                jmp end20-------------------------LBefore = [1mset()[0m
+
+====BLOCK_62====
+            else20:-------------------------------LBefore = [1mset()[0m
+
+====BLOCK_63====
+            end20:--------------------------------LBefore = [1mset()[0m
+
+====BLOCK_64====
+        end18:------------------------------------LBefore = [1mset()[0m
+        jmp end17---------------------------------LBefore = [1mset()[0m
+
+====BLOCK_65====
+    else17:---------------------------------------LBefore = [1mset()[0m
+        is_bool(e_temp_5) E_9---------------------LBefore = [1mset()[0m
+        cmpl 0, E_9-------------------------------LBefore = [1mset()[0m
+        je else22---------------------------------LBefore = [1mset()[0m
+
+====BLOCK_66====
+        then22:-----------------------------------LBefore = [1mset()[0m
+            is_int(e_temp_6) E_10-----------------LBefore = [1mset()[0m
+            cmpl 0, E_10--------------------------LBefore = [1mset()[0m
+            je else23-----------------------------LBefore = [1mset()[0m
+
+====BLOCK_67====
+            then23:-------------------------------LBefore = [1mset()[0m
+                project_int(e_temp_5) E_11--------LBefore = [1mset()[0m
+                project_int(e_temp_6) E_12--------LBefore = [1mset()[0m
+                cmpl E_11, E_12-------------------LBefore = [1mset()[0m
+                setne %al-------------------------LBefore = [1mset()[0m
+                movzbl %al, E_13------------------LBefore = [1mset()[0m
+                cmpl 0, E_13----------------------LBefore = [1mset()[0m
+                je else24-------------------------LBefore = [1mset()[0m
+
+====BLOCK_68====
+                then24:---------------------------LBefore = [1mset()[0m
+                    inject_bool(1) temp_0---------LBefore = [1mset()[0m
+                    jmp end24---------------------LBefore = [1mset()[0m
+
+====BLOCK_69====
+                else24:---------------------------LBefore = [1mset()[0m
+                    inject_bool(0) temp_0---------LBefore = [1mset()[0m
+
+====BLOCK_70====
+                end24:----------------------------LBefore = [1mset()[0m
+                jmp end23-------------------------LBefore = [1mset()[0m
+
+====BLOCK_71====
+            else23:-------------------------------LBefore = [1mset()[0m
+                is_bool(e_temp_6) E_14------------LBefore = [1mset()[0m
+                cmpl 0, E_14----------------------LBefore = [1mset()[0m
+                je else25-------------------------LBefore = [1mset()[0m
+
+====BLOCK_72====
+                then25:---------------------------LBefore = [1mset()[0m
+                    project_int(e_temp_5) E_15----LBefore = [1mset()[0m
+                    project_int(e_temp_6) E_16----LBefore = [1mset()[0m
+                    cmpl E_15, E_16---------------LBefore = [1mset()[0m
+                    setne %al---------------------LBefore = [1mset()[0m
+                    movzbl %al, E_17--------------LBefore = [1mset()[0m
+                    cmpl 0, E_17------------------LBefore = [1mset()[0m
+                    je else26---------------------LBefore = [1mset()[0m
+
+====BLOCK_73====
+                    then26:-----------------------LBefore = [1mset()[0m
+                        inject_bool(1) temp_0-----LBefore = [1mset()[0m
+                        jmp end26-----------------LBefore = [1mset()[0m
+
+====BLOCK_74====
+                    else26:-----------------------LBefore = [1mset()[0m
+                        inject_bool(0) temp_0-----LBefore = [1mset()[0m
+
+====BLOCK_75====
+                    end26:------------------------LBefore = [1mset()[0m
+                    jmp end25---------------------LBefore = [1mset()[0m
+
+====BLOCK_76====
+                else25:---------------------------LBefore = [1mset()[0m
+
+====BLOCK_77====
+                end25:----------------------------LBefore = [1mset()[0m
+
+====BLOCK_78====
+            end23:--------------------------------LBefore = [1mset()[0m
+            jmp end22-----------------------------LBefore = [1mset()[0m
+
+====BLOCK_79====
+        else22:-----------------------------------LBefore = [1mset()[0m
+
+====BLOCK_80====
+        end22:------------------------------------LBefore = [1mset()[0m
+
+====BLOCK_81====
+    end17:----------------------------------------LBefore = [1mset()[0m
+    is_true(temp_0) e_temp_2----------------------LBefore = [1mset()[0m
+    jmp while10-----------------------------------LBefore = [1mset()[0m
+
+====BLOCK_82====
+end10:--------------------------------------------LBefore = [1mset()[0m
+print_any s_z-------------------------------------LBefore = [1mset()[0m
+
+
+==================================================
+WARNING : initial liveness_set {'temp_0'} NOT empty
+=====================Liveness=====================
+====BLOCK_1====
+inject_int(0) s_x---------------------------------LBefore = [1m{'temp_0'}[0m
+inject_int(1) s_z---------------------------------LBefore = [1m{'temp_0', 's_x'}[0m
+movl s_x, e_temp_0--------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+inject_int(10) e_temp_1---------------------------LBefore = [1m{'e_temp_0', 's_z', 'temp_0', 's_x'}[0m
+is_int(e_temp_0) E_0------------------------------LBefore = [1m{'e_temp_1', 'temp_0', 'e_temp_0', 's_z', 's_x'}[0m
+cmpl 0, E_0---------------------------------------LBefore = [1m{'e_temp_1', 'temp_0', 'e_temp_0', 's_z', 's_x', 'E_0'}[0m
+je else0------------------------------------------LBefore = [1m{'e_temp_1', 'temp_0', 'e_temp_0', 's_z', 's_x'}[0m
+
+====BLOCK_2====
+then0:--------------------------------------------LBefore = [1m{'e_temp_1', 'temp_0', 'e_temp_0', 's_z', 's_x'}[0m
+    is_int(e_temp_1) E_1--------------------------LBefore = [1m{'e_temp_1', 'temp_0', 'e_temp_0', 's_z', 's_x'}[0m
+    cmpl 0, E_1-----------------------------------LBefore = [1m{'e_temp_1', 'temp_0', 'E_1', 'e_temp_0', 's_z', 's_x'}[0m
+    je else1--------------------------------------LBefore = [1m{'e_temp_1', 'temp_0', 'e_temp_0', 's_z', 's_x'}[0m
+
+====BLOCK_3====
+    then1:----------------------------------------LBefore = [1m{'e_temp_0', 's_z', 'e_temp_1', 's_x'}[0m
+        project_int(e_temp_0) E_2-----------------LBefore = [1m{'e_temp_0', 's_z', 'e_temp_1', 's_x'}[0m
+        project_int(e_temp_1) E_3-----------------LBefore = [1m{'s_z', 'e_temp_1', 's_x', 'E_2'}[0m
+        cmpl E_2, E_3-----------------------------LBefore = [1m{'E_3', 's_z', 's_x', 'E_2'}[0m
+        setne %al---------------------------------LBefore = [1m{'s_x', 's_z'}[0m
+        movzbl %al, E_4---------------------------LBefore = [1m{'s_x', 's_z'}[0m
+        cmpl 0, E_4-------------------------------LBefore = [1m{'s_z', 'E_4', 's_x'}[0m
+        je else2----------------------------------LBefore = [1m{'s_x', 's_z'}[0m
+
+====BLOCK_4====
+        then2:------------------------------------LBefore = [1m{'s_x', 's_z'}[0m
+            inject_bool(1) temp_0-----------------LBefore = [1m{'s_x', 's_z'}[0m
+            jmp end2------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_5====
+        else2:------------------------------------LBefore = [1m{'s_x', 's_z'}[0m
+            inject_bool(0) temp_0-----------------LBefore = [1m{'s_x', 's_z'}[0m
+
+====BLOCK_6====
+        end2:-------------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+        jmp end1----------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_7====
+    else1:----------------------------------------LBefore = [1m{'e_temp_1', 'temp_0', 'e_temp_0', 's_z', 's_x'}[0m
+        is_bool(e_temp_1) E_5---------------------LBefore = [1m{'e_temp_1', 'temp_0', 'e_temp_0', 's_z', 's_x'}[0m
+        cmpl 0, E_5-------------------------------LBefore = [1m{'e_temp_1', 'temp_0', 'e_temp_0', 's_z', 's_x', 'E_5'}[0m
+        je else3----------------------------------LBefore = [1m{'e_temp_1', 'temp_0', 'e_temp_0', 's_z', 's_x'}[0m
+
+====BLOCK_8====
+        then3:------------------------------------LBefore = [1m{'e_temp_0', 's_z', 'e_temp_1', 's_x'}[0m
+            project_int(e_temp_0) E_6-------------LBefore = [1m{'e_temp_0', 's_z', 'e_temp_1', 's_x'}[0m
+            project_int(e_temp_1) E_7-------------LBefore = [1m{'s_z', 'e_temp_1', 'E_6', 's_x'}[0m
+            cmpl E_6, E_7-------------------------LBefore = [1m{'s_z', 'E_6', 's_x', 'E_7'}[0m
+            setne %al-----------------------------LBefore = [1m{'s_x', 's_z'}[0m
+            movzbl %al, E_8-----------------------LBefore = [1m{'s_x', 's_z'}[0m
+            cmpl 0, E_8---------------------------LBefore = [1m{'s_z', 'E_8', 's_x'}[0m
+            je else4------------------------------LBefore = [1m{'s_x', 's_z'}[0m
+
+====BLOCK_9====
+            then4:--------------------------------LBefore = [1m{'s_x', 's_z'}[0m
+                inject_bool(1) temp_0-------------LBefore = [1m{'s_x', 's_z'}[0m
+                jmp end4--------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_10====
+            else4:--------------------------------LBefore = [1m{'s_x', 's_z'}[0m
+                inject_bool(0) temp_0-------------LBefore = [1m{'s_x', 's_z'}[0m
+
+====BLOCK_11====
+            end4:---------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+            jmp end3------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_12====
+        else3:------------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_13====
+        end3:-------------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_14====
+    end1:-----------------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+    jmp end0--------------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_15====
+else0:--------------------------------------------LBefore = [1m{'e_temp_1', 'temp_0', 'e_temp_0', 's_z', 's_x'}[0m
+    is_bool(e_temp_0) E_9-------------------------LBefore = [1m{'e_temp_1', 'temp_0', 'e_temp_0', 's_z', 's_x'}[0m
+    cmpl 0, E_9-----------------------------------LBefore = [1m{'E_9', 'e_temp_1', 'temp_0', 'e_temp_0', 's_z', 's_x'}[0m
+    je else5--------------------------------------LBefore = [1m{'e_temp_1', 'temp_0', 'e_temp_0', 's_z', 's_x'}[0m
+
+====BLOCK_16====
+    then5:----------------------------------------LBefore = [1m{'e_temp_1', 'temp_0', 'e_temp_0', 's_z', 's_x'}[0m
+        is_int(e_temp_1) E_10---------------------LBefore = [1m{'e_temp_1', 'temp_0', 'e_temp_0', 's_z', 's_x'}[0m
+        cmpl 0, E_10------------------------------LBefore = [1m{'e_temp_1', 'temp_0', 'e_temp_0', 's_z', 'E_10', 's_x'}[0m
+        je else6----------------------------------LBefore = [1m{'e_temp_1', 'temp_0', 'e_temp_0', 's_z', 's_x'}[0m
+
+====BLOCK_17====
+        then6:------------------------------------LBefore = [1m{'e_temp_0', 's_z', 'e_temp_1', 's_x'}[0m
+            project_int(e_temp_0) E_11------------LBefore = [1m{'e_temp_0', 's_z', 'e_temp_1', 's_x'}[0m
+            project_int(e_temp_1) E_12------------LBefore = [1m{'s_z', 'e_temp_1', 'E_11', 's_x'}[0m
+            cmpl E_11, E_12-----------------------LBefore = [1m{'s_z', 'E_11', 'E_12', 's_x'}[0m
+            setne %al-----------------------------LBefore = [1m{'s_x', 's_z'}[0m
+            movzbl %al, E_13----------------------LBefore = [1m{'s_x', 's_z'}[0m
+            cmpl 0, E_13--------------------------LBefore = [1m{'s_z', 'E_13', 's_x'}[0m
+            je else7------------------------------LBefore = [1m{'s_x', 's_z'}[0m
+
+====BLOCK_18====
+            then7:--------------------------------LBefore = [1m{'s_x', 's_z'}[0m
+                inject_bool(1) temp_0-------------LBefore = [1m{'s_x', 's_z'}[0m
+                jmp end7--------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_19====
+            else7:--------------------------------LBefore = [1m{'s_x', 's_z'}[0m
+                inject_bool(0) temp_0-------------LBefore = [1m{'s_x', 's_z'}[0m
+
+====BLOCK_20====
+            end7:---------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+            jmp end6------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_21====
+        else6:------------------------------------LBefore = [1m{'e_temp_1', 'temp_0', 'e_temp_0', 's_z', 's_x'}[0m
+            is_bool(e_temp_1) E_14----------------LBefore = [1m{'e_temp_1', 'temp_0', 'e_temp_0', 's_z', 's_x'}[0m
+            cmpl 0, E_14--------------------------LBefore = [1m{'e_temp_1', 'E_14', 'temp_0', 'e_temp_0', 's_z', 's_x'}[0m
+            je else8------------------------------LBefore = [1m{'e_temp_1', 'temp_0', 'e_temp_0', 's_z', 's_x'}[0m
+
+====BLOCK_22====
+            then8:--------------------------------LBefore = [1m{'e_temp_0', 's_z', 'e_temp_1', 's_x'}[0m
+                project_int(e_temp_0) E_15--------LBefore = [1m{'e_temp_0', 's_z', 'e_temp_1', 's_x'}[0m
+                project_int(e_temp_1) E_16--------LBefore = [1m{'s_z', 'E_15', 'e_temp_1', 's_x'}[0m
+                cmpl E_15, E_16-------------------LBefore = [1m{'s_z', 'E_15', 'E_16', 's_x'}[0m
+                setne %al-------------------------LBefore = [1m{'s_x', 's_z'}[0m
+                movzbl %al, E_17------------------LBefore = [1m{'s_x', 's_z'}[0m
+                cmpl 0, E_17----------------------LBefore = [1m{'s_z', 's_x', 'E_17'}[0m
+                je else9--------------------------LBefore = [1m{'s_x', 's_z'}[0m
+
+====BLOCK_23====
+                then9:----------------------------LBefore = [1m{'s_x', 's_z'}[0m
+                    inject_bool(1) temp_0---------LBefore = [1m{'s_x', 's_z'}[0m
+                    jmp end9----------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_24====
+                else9:----------------------------LBefore = [1m{'s_x', 's_z'}[0m
+                    inject_bool(0) temp_0---------LBefore = [1m{'s_x', 's_z'}[0m
+
+====BLOCK_25====
+                end9:-----------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+                jmp end8--------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_26====
+            else8:--------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_27====
+            end8:---------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_28====
+        end6:-------------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+        jmp end5----------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_29====
+    else5:----------------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_30====
+    end5:-----------------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_31====
+end0:---------------------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+is_true(temp_0) e_temp_2--------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_32====
+while10:------------------------------------------LBefore = [1m{'s_z', 'temp_0', 'e_temp_2', 's_x'}[0m
+    cmpl 0, e_temp_2------------------------------LBefore = [1m{'s_z', 'temp_0', 'e_temp_2', 's_x'}[0m
+    je end10--------------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_33====
+    movl s_z, e_temp_3----------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+    movl s_x, e_temp_4----------------------------LBefore = [1m{'s_z', 'e_temp_3', 's_x', 'temp_0'}[0m
+    is_int(e_temp_3) E_0--------------------------LBefore = [1m{'e_temp_4', 'e_temp_3', 'temp_0', 's_z', 's_x'}[0m
+    cmpl 0, E_0-----------------------------------LBefore = [1m{'e_temp_3', 'e_temp_4', 'temp_0', 's_z', 's_x', 'E_0'}[0m
+    je else11-------------------------------------LBefore = [1m{'e_temp_4', 'e_temp_3', 'temp_0', 's_z', 's_x'}[0m
+
+====BLOCK_34====
+    then11:---------------------------------------LBefore = [1m{'e_temp_4', 'e_temp_3', 'temp_0', 's_z', 's_x'}[0m
+        is_int(e_temp_4) E_1----------------------LBefore = [1m{'e_temp_4', 'e_temp_3', 'temp_0', 's_z', 's_x'}[0m
+        cmpl 0, E_1-------------------------------LBefore = [1m{'e_temp_3', 'e_temp_4', 'temp_0', 'E_1', 's_z', 's_x'}[0m
+        je else12---------------------------------LBefore = [1m{'e_temp_4', 'e_temp_3', 'temp_0', 's_z', 's_x'}[0m
+
+====BLOCK_35====
+        then12:-----------------------------------LBefore = [1m{'e_temp_4', 'e_temp_3', 's_x', 'temp_0'}[0m
+            project_int(e_temp_3) E_2-------------LBefore = [1m{'e_temp_4', 'e_temp_3', 's_x', 'temp_0'}[0m
+            project_int(e_temp_4) E_3-------------LBefore = [1m{'temp_0', 'e_temp_4', 's_x', 'E_2'}[0m
+            movl E_2, E_4-------------------------LBefore = [1m{'E_3', 'temp_0', 's_x', 'E_2'}[0m
+            addl E_3, E_4-------------------------LBefore = [1m{'E_3', 'E_4', 'temp_0', 's_x'}[0m
+            inject_int(E_4) s_z-------------------LBefore = [1m{'E_4', 'temp_0', 's_x'}[0m
+            jmp end12-----------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_36====
+        else12:-----------------------------------LBefore = [1m{'e_temp_3', 'e_temp_4', 'temp_0', 's_z', 's_x'}[0m
+            is_bool(e_temp_4) E_5-----------------LBefore = [1m{'e_temp_3', 'e_temp_4', 'temp_0', 's_z', 's_x'}[0m
+            cmpl 0, E_5---------------------------LBefore = [1m{'e_temp_4', 'e_temp_3', 'temp_0', 's_z', 's_x', 'E_5'}[0m
+            je else13-----------------------------LBefore = [1m{'temp_0', 'e_temp_3', 'e_temp_4', 's_z', 's_x'}[0m
+
+====BLOCK_37====
+            then13:-------------------------------LBefore = [1m{'e_temp_3', 'e_temp_4', 'temp_0', 's_x'}[0m
+                project_int(e_temp_3) E_6---------LBefore = [1m{'e_temp_3', 'e_temp_4', 'temp_0', 's_x'}[0m
+                project_bool(e_temp_4) E_7--------LBefore = [1m{'e_temp_4', 'temp_0', 'E_6', 's_x'}[0m
+                movl E_6, E_8---------------------LBefore = [1m{'temp_0', 'E_6', 's_x', 'E_7'}[0m
+                addl E_7, E_8---------------------LBefore = [1m{'temp_0', 'E_8', 's_x', 'E_7'}[0m
+                inject_int(E_8) s_z---------------LBefore = [1m{'temp_0', 'E_8', 's_x'}[0m
+                jmp end13-------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_38====
+            else13:-------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_39====
+            end13:--------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_40====
+        end12:------------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+        jmp end11---------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_41====
+    else11:---------------------------------------LBefore = [1m{'e_temp_4', 'e_temp_3', 'temp_0', 's_z', 's_x'}[0m
+        is_bool(e_temp_3) E_9---------------------LBefore = [1m{'e_temp_4', 'e_temp_3', 'temp_0', 's_z', 's_x'}[0m
+        cmpl 0, E_9-------------------------------LBefore = [1m{'E_9', 'e_temp_3', 'e_temp_4', 'temp_0', 's_z', 's_x'}[0m
+        je else14---------------------------------LBefore = [1m{'e_temp_4', 'e_temp_3', 'temp_0', 's_z', 's_x'}[0m
+
+====BLOCK_42====
+        then14:-----------------------------------LBefore = [1m{'e_temp_4', 'e_temp_3', 'temp_0', 's_z', 's_x'}[0m
+            is_int(e_temp_4) E_10-----------------LBefore = [1m{'e_temp_4', 'e_temp_3', 'temp_0', 's_z', 's_x'}[0m
+            cmpl 0, E_10--------------------------LBefore = [1m{'e_temp_3', 'e_temp_4', 'temp_0', 's_z', 'E_10', 's_x'}[0m
+            je else15-----------------------------LBefore = [1m{'e_temp_4', 'e_temp_3', 'temp_0', 's_z', 's_x'}[0m
+
+====BLOCK_43====
+            then15:-------------------------------LBefore = [1m{'e_temp_4', 'e_temp_3', 's_x', 'temp_0'}[0m
+                project_bool(e_temp_3) E_11-------LBefore = [1m{'e_temp_4', 'e_temp_3', 's_x', 'temp_0'}[0m
+                project_int(e_temp_4) E_12--------LBefore = [1m{'e_temp_4', 's_x', 'E_11', 'temp_0'}[0m
+                movl E_11, E_13-------------------LBefore = [1m{'E_11', 'E_12', 's_x', 'temp_0'}[0m
+                addl E_12, E_13-------------------LBefore = [1m{'E_13', 'temp_0', 'E_12', 's_x'}[0m
+                inject_int(E_13) s_z--------------LBefore = [1m{'E_13', 'temp_0', 's_x'}[0m
+                jmp end15-------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_44====
+            else15:-------------------------------LBefore = [1m{'e_temp_4', 'e_temp_3', 'temp_0', 's_z', 's_x'}[0m
+                is_bool(e_temp_4) E_14------------LBefore = [1m{'e_temp_4', 'e_temp_3', 'temp_0', 's_z', 's_x'}[0m
+                cmpl 0, E_14----------------------LBefore = [1m{'E_14', 'e_temp_3', 'e_temp_4', 'temp_0', 's_z', 's_x'}[0m
+                je else16-------------------------LBefore = [1m{'e_temp_4', 'e_temp_3', 'temp_0', 's_z', 's_x'}[0m
+
+====BLOCK_45====
+                then16:---------------------------LBefore = [1m{'e_temp_4', 'e_temp_3', 's_x', 'temp_0'}[0m
+                    project_bool(e_temp_3) E_15---LBefore = [1m{'e_temp_4', 'e_temp_3', 's_x', 'temp_0'}[0m
+                    project_bool(e_temp_4) E_16---LBefore = [1m{'E_15', 'e_temp_4', 's_x', 'temp_0'}[0m
+                    movl E_15, E_17---------------LBefore = [1m{'E_15', 'E_16', 'temp_0', 's_x'}[0m
+                    addl E_16, E_17---------------LBefore = [1m{'E_16', 'temp_0', 's_x', 'E_17'}[0m
+                    inject_int(E_17) s_z----------LBefore = [1m{'temp_0', 's_x', 'E_17'}[0m
+                    jmp end16---------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_46====
+                else16:---------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_47====
+                end16:----------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_48====
+            end15:--------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+            jmp end14-----------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_49====
+        else14:-----------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_50====
+        end14:------------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_51====
+    end11:----------------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+    movl s_x, e_temp_5----------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+    inject_int(10) e_temp_6-----------------------LBefore = [1m{'s_z', 'temp_0', 'e_temp_5', 's_x'}[0m
+    is_int(e_temp_5) E_0--------------------------LBefore = [1m{'temp_0', 'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+    cmpl 0, E_0-----------------------------------LBefore = [1m{'temp_0', 'e_temp_6', 's_z', 'e_temp_5', 's_x', 'E_0'}[0m
+    je else17-------------------------------------LBefore = [1m{'temp_0', 'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+
+====BLOCK_52====
+    then17:---------------------------------------LBefore = [1m{'temp_0', 'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+        is_int(e_temp_6) E_1----------------------LBefore = [1m{'temp_0', 'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+        cmpl 0, E_1-------------------------------LBefore = [1m{'temp_0', 'e_temp_6', 'E_1', 's_z', 'e_temp_5', 's_x'}[0m
+        je else18---------------------------------LBefore = [1m{'temp_0', 'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+
+====BLOCK_53====
+        then18:-----------------------------------LBefore = [1m{'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+            project_int(e_temp_5) E_2-------------LBefore = [1m{'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+            project_int(e_temp_6) E_3-------------LBefore = [1m{'s_z', 'e_temp_6', 's_x', 'E_2'}[0m
+            cmpl E_2, E_3-------------------------LBefore = [1m{'E_3', 's_z', 's_x', 'E_2'}[0m
+            setne %al-----------------------------LBefore = [1m{'s_x', 's_z'}[0m
+            movzbl %al, E_4-----------------------LBefore = [1m{'s_x', 's_z'}[0m
+            cmpl 0, E_4---------------------------LBefore = [1m{'s_z', 'E_4', 's_x'}[0m
+            je else19-----------------------------LBefore = [1m{'s_x', 's_z'}[0m
+
+====BLOCK_54====
+            then19:-------------------------------LBefore = [1m{'s_x', 's_z'}[0m
+                inject_bool(1) temp_0-------------LBefore = [1m{'s_x', 's_z'}[0m
+                jmp end19-------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_55====
+            else19:-------------------------------LBefore = [1m{'s_z', 's_x'}[0m
+                inject_bool(0) temp_0-------------LBefore = [1m{'s_z', 's_x'}[0m
+
+====BLOCK_56====
+            end19:--------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+            jmp end18-----------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_57====
+        else18:-----------------------------------LBefore = [1m{'temp_0', 'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+            is_bool(e_temp_6) E_5-----------------LBefore = [1m{'temp_0', 'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+            cmpl 0, E_5---------------------------LBefore = [1m{'temp_0', 'e_temp_6', 's_z', 'e_temp_5', 's_x', 'E_5'}[0m
+            je else20-----------------------------LBefore = [1m{'temp_0', 'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+
+====BLOCK_58====
+            then20:-------------------------------LBefore = [1m{'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+                project_int(e_temp_5) E_6---------LBefore = [1m{'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+                project_int(e_temp_6) E_7---------LBefore = [1m{'e_temp_6', 's_z', 'E_6', 's_x'}[0m
+                cmpl E_6, E_7---------------------LBefore = [1m{'s_z', 'E_6', 's_x', 'E_7'}[0m
+                setne %al-------------------------LBefore = [1m{'s_z', 's_x'}[0m
+                movzbl %al, E_8-------------------LBefore = [1m{'s_z', 's_x'}[0m
+                cmpl 0, E_8-----------------------LBefore = [1m{'s_z', 'E_8', 's_x'}[0m
+                je else21-------------------------LBefore = [1m{'s_x', 's_z'}[0m
+
+====BLOCK_59====
+                then21:---------------------------LBefore = [1m{'s_z', 's_x'}[0m
+                    inject_bool(1) temp_0---------LBefore = [1m{'s_z', 's_x'}[0m
+                    jmp end21---------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_60====
+                else21:---------------------------LBefore = [1m{'s_z', 's_x'}[0m
+                    inject_bool(0) temp_0---------LBefore = [1m{'s_z', 's_x'}[0m
+
+====BLOCK_61====
+                end21:----------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+                jmp end20-------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_62====
+            else20:-------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_63====
+            end20:--------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_64====
+        end18:------------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+        jmp end17---------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_65====
+    else17:---------------------------------------LBefore = [1m{'temp_0', 'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+        is_bool(e_temp_5) E_9---------------------LBefore = [1m{'temp_0', 'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+        cmpl 0, E_9-------------------------------LBefore = [1m{'E_9', 'temp_0', 'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+        je else22---------------------------------LBefore = [1m{'temp_0', 'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+
+====BLOCK_66====
+        then22:-----------------------------------LBefore = [1m{'temp_0', 'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+            is_int(e_temp_6) E_10-----------------LBefore = [1m{'temp_0', 'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+            cmpl 0, E_10--------------------------LBefore = [1m{'temp_0', 'e_temp_6', 's_z', 'E_10', 'e_temp_5', 's_x'}[0m
+            je else23-----------------------------LBefore = [1m{'temp_0', 'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+
+====BLOCK_67====
+            then23:-------------------------------LBefore = [1m{'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+                project_int(e_temp_5) E_11--------LBefore = [1m{'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+                project_int(e_temp_6) E_12--------LBefore = [1m{'E_11', 'e_temp_6', 's_z', 's_x'}[0m
+                cmpl E_11, E_12-------------------LBefore = [1m{'E_11', 'E_12', 's_z', 's_x'}[0m
+                setne %al-------------------------LBefore = [1m{'s_z', 's_x'}[0m
+                movzbl %al, E_13------------------LBefore = [1m{'s_z', 's_x'}[0m
+                cmpl 0, E_13----------------------LBefore = [1m{'s_z', 'E_13', 's_x'}[0m
+                je else24-------------------------LBefore = [1m{'s_x', 's_z'}[0m
+
+====BLOCK_68====
+                then24:---------------------------LBefore = [1m{'s_z', 's_x'}[0m
+                    inject_bool(1) temp_0---------LBefore = [1m{'s_z', 's_x'}[0m
+                    jmp end24---------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_69====
+                else24:---------------------------LBefore = [1m{'s_z', 's_x'}[0m
+                    inject_bool(0) temp_0---------LBefore = [1m{'s_z', 's_x'}[0m
+
+====BLOCK_70====
+                end24:----------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+                jmp end23-------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_71====
+            else23:-------------------------------LBefore = [1m{'temp_0', 'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+                is_bool(e_temp_6) E_14------------LBefore = [1m{'temp_0', 'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+                cmpl 0, E_14----------------------LBefore = [1m{'E_14', 'temp_0', 'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+                je else25-------------------------LBefore = [1m{'temp_0', 'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+
+====BLOCK_72====
+                then25:---------------------------LBefore = [1m{'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+                    project_int(e_temp_5) E_15----LBefore = [1m{'e_temp_6', 's_z', 'e_temp_5', 's_x'}[0m
+                    project_int(e_temp_6) E_16----LBefore = [1m{'E_15', 'e_temp_6', 's_z', 's_x'}[0m
+                    cmpl E_15, E_16---------------LBefore = [1m{'E_15', 's_z', 'E_16', 's_x'}[0m
+                    setne %al---------------------LBefore = [1m{'s_z', 's_x'}[0m
+                    movzbl %al, E_17--------------LBefore = [1m{'s_z', 's_x'}[0m
+                    cmpl 0, E_17------------------LBefore = [1m{'s_z', 's_x', 'E_17'}[0m
+                    je else26---------------------LBefore = [1m{'s_x', 's_z'}[0m
+
+====BLOCK_73====
+                    then26:-----------------------LBefore = [1m{'s_z', 's_x'}[0m
+                        inject_bool(1) temp_0-----LBefore = [1m{'s_z', 's_x'}[0m
+                        jmp end26-----------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_74====
+                    else26:-----------------------LBefore = [1m{'s_z', 's_x'}[0m
+                        inject_bool(0) temp_0-----LBefore = [1m{'s_z', 's_x'}[0m
+
+====BLOCK_75====
+                    end26:------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+                    jmp end25---------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_76====
+                else25:---------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_77====
+                end25:----------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_78====
+            end23:--------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+            jmp end22-----------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_79====
+        else22:-----------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_80====
+        end22:------------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+
+====BLOCK_81====
+    end17:----------------------------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+    is_true(temp_0) e_temp_2----------------------LBefore = [1m{'s_z', 'temp_0', 's_x'}[0m
+    jmp while10-----------------------------------LBefore = [1m{'s_z', 'temp_0', 'e_temp_2', 's_x'}[0m
+
+====BLOCK_82====
+end10:--------------------------------------------LBefore = [1m{'s_z'}[0m
+print_any s_z-------------------------------------LBefore = [1m{'s_z'}[0m
+
+
+==================================================
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+[WARNING] SPILL required
+============INTERFERENCE GRAPH + COLORS============
+[1ms_x[0m ([1m4[0m) : [[1meax, [0m[1mecx, [0m[1medx, [0m[1mtemp_0, [0m[1ms_z, [0m[1me_temp_1, [0m[1mE_0, [0m[1mE_1, [0m[1mE_2, [0m[1mE_3, [0m[1mE_4, [0m[1mE_5, [0m[1mE_6, [0m[1mE_7, [0m[1mE_8, [0m[1mE_9, [0m[1mE_10, [0m[1mE_11, [0m[1mE_12, [0m[1mE_13, [0m[1mE_14, [0m[1mE_15, [0m[1mE_16, [0m[1mE_17, [0m[1me_temp_2, [0m[1me_temp_3, [0m[1me_temp_6[0m]
+[1ms_z[0m ([1m5[0m) : [[1meax, [0m[1mecx, [0m[1medx, [0m[1mtemp_0, [0m[1ms_x, [0m[1me_temp_0, [0m[1me_temp_1, [0m[1mE_0, [0m[1mE_1, [0m[1mE_2, [0m[1mE_3, [0m[1mE_4, [0m[1mE_5, [0m[1mE_6, [0m[1mE_7, [0m[1mE_8, [0m[1mE_9, [0m[1mE_10, [0m[1mE_11, [0m[1mE_12, [0m[1mE_13, [0m[1mE_14, [0m[1mE_15, [0m[1mE_16, [0m[1mE_17, [0m[1me_temp_2, [0m[1me_temp_4, [0m[1me_temp_5, [0m[1me_temp_6[0m]
+[1me_temp_0[0m ([1m4[0m) : [[1ms_z, [0m[1mtemp_0, [0m[1meax, [0m[1mecx, [0m[1medx, [0m[1me_temp_1, [0m[1mE_0, [0m[1mE_1, [0m[1mE_5, [0m[1mE_9, [0m[1mE_10, [0m[1mE_14[0m]
+[1me_temp_1[0m ([1m6[0m) : [[1meax, [0m[1mecx, [0m[1medx, [0m[1mtemp_0, [0m[1me_temp_0, [0m[1ms_z, [0m[1ms_x, [0m[1mE_0, [0m[1mE_1, [0m[1mE_2, [0m[1mE_5, [0m[1mE_6, [0m[1mE_9, [0m[1mE_10, [0m[1mE_11, [0m[1mE_14, [0m[1mE_15[0m]
+[1mE_0[0m ([1m7[0m) : [[1meax, [0m[1mecx, [0m[1medx, [0m[1me_temp_1, [0m[1mtemp_0, [0m[1me_temp_0, [0m[1ms_z, [0m[1ms_x, [0m[1me_temp_3, [0m[1me_temp_4, [0m[1me_temp_6, [0m[1me_temp_5[0m]
+[1mE_1[0m ([1m9[0m) : [[1meax, [0m[1mecx, [0m[1medx, [0m[1me_temp_1, [0m[1mtemp_0, [0m[1me_temp_0, [0m[1ms_z, [0m[1ms_x, [0m[1me_temp_3, [0m[1me_temp_4, [0m[1me_temp_6, [0m[1me_temp_5[0m]
+[1mE_2[0m ([1m10[0m) : [[1meax, [0m[1mecx, [0m[1medx, [0m[1ms_z, [0m[1me_temp_1, [0m[1ms_x, [0m[1mE_3, [0m[1mtemp_0, [0m[1me_temp_4, [0m[1me_temp_6[0m]
+[1mE_3[0m ([1m6[0m) : [[1meax, [0m[1mecx, [0m[1medx, [0m[1ms_z, [0m[1ms_x, [0m[1mE_2, [0m[1mtemp_0, [0m[1mE_4[0m]
+[1mE_4[0m ([1m1[0m) : [[1ms_z, [0m[1ms_x, [0m[1mE_3, [0m[1mtemp_0[0m]
+[1mtemp_0[0m ([1m8[0m) : [[1meax, [0m[1mecx, [0m[1medx, [0m[1ms_x, [0m[1ms_z, [0m[1me_temp_0, [0m[1me_temp_1, [0m[1mE_0, [0m[1mE_1, [0m[1mE_5, [0m[1mE_9, [0m[1mE_10, [0m[1mE_14, [0m[1me_temp_2, [0m[1me_temp_3, [0m[1me_temp_4, [0m[1mE_2, [0m[1mE_3, [0m[1mE_4, [0m[1mE_6, [0m[1mE_7, [0m[1mE_8, [0m[1mE_11, [0m[1mE_12, [0m[1mE_13, [0m[1mE_15, [0m[1mE_16, [0m[1mE_17, [0m[1me_temp_5, [0m[1me_temp_6[0m]
+[1mE_5[0m ([1m11[0m) : [[1meax, [0m[1mecx, [0m[1medx, [0m[1me_temp_1, [0m[1mtemp_0, [0m[1me_temp_0, [0m[1ms_z, [0m[1ms_x, [0m[1me_temp_4, [0m[1me_temp_3, [0m[1me_temp_6, [0m[1me_temp_5[0m]
+[1mE_6[0m ([1m12[0m) : [[1meax, [0m[1mecx, [0m[1medx, [0m[1ms_z, [0m[1me_temp_1, [0m[1ms_x, [0m[1mE_7, [0m[1me_temp_4, [0m[1mtemp_0, [0m[1me_temp_6[0m]
+[1mE_7[0m ([1m6[0m) : [[1meax, [0m[1mecx, [0m[1medx, [0m[1ms_z, [0m[1mE_6, [0m[1ms_x, [0m[1mtemp_0, [0m[1mE_8[0m]
+[1mE_8[0m ([1m1[0m) : [[1ms_z, [0m[1ms_x, [0m[1mtemp_0, [0m[1mE_7[0m]
+[1mE_9[0m ([1m15[0m) : [[1meax, [0m[1mecx, [0m[1medx, [0m[1me_temp_1, [0m[1mtemp_0, [0m[1me_temp_0, [0m[1ms_z, [0m[1ms_x, [0m[1me_temp_3, [0m[1me_temp_4, [0m[1me_temp_6, [0m[1me_temp_5[0m]
+[1mE_10[0m ([1m16[0m) : [[1meax, [0m[1mecx, [0m[1medx, [0m[1me_temp_1, [0m[1mtemp_0, [0m[1me_temp_0, [0m[1ms_z, [0m[1ms_x, [0m[1me_temp_3, [0m[1me_temp_4, [0m[1me_temp_6, [0m[1me_temp_5[0m]
+[1mE_11[0m ([1m13[0m) : [[1meax, [0m[1mecx, [0m[1medx, [0m[1ms_z, [0m[1me_temp_1, [0m[1ms_x, [0m[1mE_12, [0m[1me_temp_4, [0m[1mtemp_0, [0m[1me_temp_6[0m]
+[1mE_12[0m ([1m6[0m) : [[1meax, [0m[1mecx, [0m[1medx, [0m[1ms_z, [0m[1mE_11, [0m[1ms_x, [0m[1mtemp_0, [0m[1mE_13[0m]
+[1mE_13[0m ([1m1[0m) : [[1ms_z, [0m[1ms_x, [0m[1mtemp_0, [0m[1mE_12[0m]
+[1mE_14[0m ([1m17[0m) : [[1meax, [0m[1mecx, [0m[1medx, [0m[1me_temp_1, [0m[1mtemp_0, [0m[1me_temp_0, [0m[1ms_z, [0m[1ms_x, [0m[1me_temp_3, [0m[1me_temp_4, [0m[1me_temp_6, [0m[1me_temp_5[0m]
+[1mE_15[0m ([1m14[0m) : [[1meax, [0m[1mecx, [0m[1medx, [0m[1ms_z, [0m[1me_temp_1, [0m[1ms_x, [0m[1mE_16, [0m[1me_temp_4, [0m[1mtemp_0, [0m[1me_temp_6[0m]
+[1mE_16[0m ([1m6[0m) : [[1meax, [0m[1mecx, [0m[1medx, [0m[1ms_z, [0m[1mE_15, [0m[1ms_x, [0m[1mtemp_0, [0m[1mE_17[0m]
+[1mE_17[0m ([1m1[0m) : [[1ms_z, [0m[1ms_x, [0m[1mE_16, [0m[1mtemp_0[0m]
+[1me_temp_2[0m ([1m6[0m) : [[1meax, [0m[1mecx, [0m[1medx, [0m[1ms_z, [0m[1mtemp_0, [0m[1ms_x[0m]
+[1me_temp_3[0m ([1m5[0m) : [[1ms_x, [0m[1mtemp_0, [0m[1me_temp_4, [0m[1meax, [0m[1mecx, [0m[1medx, [0m[1mE_0, [0m[1mE_1, [0m[1mE_5, [0m[1mE_9, [0m[1mE_10, [0m[1mE_14[0m]
+[1me_temp_4[0m ([1m4[0m) : [[1me_temp_3, [0m[1mtemp_0, [0m[1ms_z, [0m[1meax, [0m[1mecx, [0m[1medx, [0m[1mE_0, [0m[1mE_1, [0m[1mE_2, [0m[1mE_5, [0m[1mE_6, [0m[1mE_9, [0m[1mE_10, [0m[1mE_11, [0m[1mE_14, [0m[1mE_15[0m]
+[1me_temp_5[0m ([1m4[0m) : [[1ms_z, [0m[1mtemp_0, [0m[1meax, [0m[1mecx, [0m[1medx, [0m[1me_temp_6, [0m[1mE_0, [0m[1mE_1, [0m[1mE_5, [0m[1mE_9, [0m[1mE_10, [0m[1mE_14[0m]
+[1me_temp_6[0m ([1m6[0m) : [[1meax, [0m[1mecx, [0m[1medx, [0m[1mtemp_0, [0m[1ms_z, [0m[1me_temp_5, [0m[1ms_x, [0m[1mE_0, [0m[1mE_1, [0m[1mE_2, [0m[1mE_5, [0m[1mE_6, [0m[1mE_9, [0m[1mE_10, [0m[1mE_11, [0m[1mE_14, [0m[1mE_15[0m]
+[1meax[0m ([1m1[0m) : [[1mtemp_0, [0m[1ms_x, [0m[1ms_z, [0m[1me_temp_1, [0m[1me_temp_0, [0m[1mE_0, [0m[1mE_1, [0m[1mE_2, [0m[1mE_3, [0m[1mE_5, [0m[1mE_6, [0m[1mE_7, [0m[1mE_9, [0m[1mE_10, [0m[1mE_11, [0m[1mE_12, [0m[1mE_14, [0m[1mE_15, [0m[1mE_16, [0m[1me_temp_2, [0m[1me_temp_3, [0m[1me_temp_4, [0m[1me_temp_6, [0m[1me_temp_5[0m]
+[1mecx[0m ([1m2[0m) : [[1mtemp_0, [0m[1ms_x, [0m[1ms_z, [0m[1me_temp_1, [0m[1me_temp_0, [0m[1mE_0, [0m[1mE_1, [0m[1mE_2, [0m[1mE_3, [0m[1mE_5, [0m[1mE_6, [0m[1mE_7, [0m[1mE_9, [0m[1mE_10, [0m[1mE_11, [0m[1mE_12, [0m[1mE_14, [0m[1mE_15, [0m[1mE_16, [0m[1me_temp_2, [0m[1me_temp_3, [0m[1me_temp_4, [0m[1me_temp_6, [0m[1me_temp_5[0m]
+[1medx[0m ([1m3[0m) : [[1mtemp_0, [0m[1ms_x, [0m[1ms_z, [0m[1me_temp_1, [0m[1me_temp_0, [0m[1mE_0, [0m[1mE_1, [0m[1mE_2, [0m[1mE_3, [0m[1mE_5, [0m[1mE_6, [0m[1mE_7, [0m[1mE_9, [0m[1mE_10, [0m[1mE_11, [0m[1mE_12, [0m[1mE_14, [0m[1mE_15, [0m[1mE_16, [0m[1me_temp_2, [0m[1me_temp_3, [0m[1me_temp_4, [0m[1me_temp_6, [0m[1me_temp_5[0m]
+[1mebx[0m ([1m4[0m) : []
+[1medi[0m ([1m5[0m) : []
+[1mesi[0m ([1m6[0m) : []
+==================================================
+==================HOMES ASSIGNED==================
+s_x : ebx
+s_z : edi
+e_temp_0 : ebx
+e_temp_1 : esi
+E_0 : -4(%ebp)
+E_1 : -12(%ebp)
+E_2 : -16(%ebp)
+E_3 : esi
+E_4 : eax
+temp_0 : -8(%ebp)
+E_5 : -20(%ebp)
+E_6 : -24(%ebp)
+E_7 : esi
+E_8 : eax
+E_9 : -36(%ebp)
+E_10 : -40(%ebp)
+E_11 : -28(%ebp)
+E_12 : esi
+E_13 : eax
+E_14 : -44(%ebp)
+E_15 : -32(%ebp)
+E_16 : esi
+E_17 : eax
+e_temp_2 : esi
+e_temp_3 : edi
+e_temp_4 : ebx
+e_temp_5 : ebx
+e_temp_6 : esi
+==================================================
+============NUMBER OF SPILLED VARIABLES============
+11
+==================================================
+
+*****EXITING, No Spill-required instructions (2-address stack refs, movzbl stack refs)
+
+===================GENERATED X86===================
+.globl main
+main:
+    pushl %ebp ## save caller's base pointer
+    movl %esp, %ebp ## set our base pointer
+    subl $44, %esp ## allocate for local vars
+    pushl %ebx ## save callee saved registers
+    pushl %esi
+    pushl %edi
+
+    pushl $0
+    call inject_int
+    addl $4, %esp
+    movl %eax, %ebx
+    pushl $1
+    call inject_int
+    addl $4, %esp
+    movl %eax, %edi
+    pushl $10
+    call inject_int
+    addl $4, %esp
+    movl %eax, %esi
+    pushl %ebx
+    call is_int
+    addl $4, %esp
+    movl %eax, -4(%ebp)
+    cmpl $0, -4(%ebp)
+    je else0
+    
+    then0:
+    pushl %esi
+    call is_int
+    addl $4, %esp
+    movl %eax, -12(%ebp)
+    cmpl $0, -12(%ebp)
+    je else1
+    
+    then1:
+    pushl %ebx
+    call project_int
+    addl $4, %esp
+    movl %eax, -16(%ebp)
+    pushl %esi
+    call project_int
+    addl $4, %esp
+    movl %eax, %esi
+    cmpl -16(%ebp), %esi
+    setne %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else2
+    
+    then2:
+    pushl $1
+    call inject_bool
+    addl $4, %esp
+    movl %eax, -8(%ebp)
+    jmp end2
+    
+    else2:
+    pushl $0
+    call inject_bool
+    addl $4, %esp
+    movl %eax, -8(%ebp)
+    
+    end2:
+    jmp end1
+    
+    else1:
+    pushl %esi
+    call is_bool
+    addl $4, %esp
+    movl %eax, -20(%ebp)
+    cmpl $0, -20(%ebp)
+    je else3
+    
+    then3:
+    pushl %ebx
+    call project_int
+    addl $4, %esp
+    movl %eax, -24(%ebp)
+    pushl %esi
+    call project_int
+    addl $4, %esp
+    movl %eax, %esi
+    cmpl -24(%ebp), %esi
+    setne %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else4
+    
+    then4:
+    pushl $1
+    call inject_bool
+    addl $4, %esp
+    movl %eax, -8(%ebp)
+    jmp end4
+    
+    else4:
+    pushl $0
+    call inject_bool
+    addl $4, %esp
+    movl %eax, -8(%ebp)
+    
+    end4:
+    jmp end3
+    
+    else3:
+    
+    end3:
+    
+    end1:
+    jmp end0
+    
+    else0:
+    pushl %ebx
+    call is_bool
+    addl $4, %esp
+    movl %eax, -36(%ebp)
+    cmpl $0, -36(%ebp)
+    je else5
+    
+    then5:
+    pushl %esi
+    call is_int
+    addl $4, %esp
+    movl %eax, -40(%ebp)
+    cmpl $0, -40(%ebp)
+    je else6
+    
+    then6:
+    pushl %ebx
+    call project_int
+    addl $4, %esp
+    movl %eax, -28(%ebp)
+    pushl %esi
+    call project_int
+    addl $4, %esp
+    movl %eax, %esi
+    cmpl -28(%ebp), %esi
+    setne %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else7
+    
+    then7:
+    pushl $1
+    call inject_bool
+    addl $4, %esp
+    movl %eax, -8(%ebp)
+    jmp end7
+    
+    else7:
+    pushl $0
+    call inject_bool
+    addl $4, %esp
+    movl %eax, -8(%ebp)
+    
+    end7:
+    jmp end6
+    
+    else6:
+    pushl %esi
+    call is_bool
+    addl $4, %esp
+    movl %eax, -44(%ebp)
+    cmpl $0, -44(%ebp)
+    je else8
+    
+    then8:
+    pushl %ebx
+    call project_int
+    addl $4, %esp
+    movl %eax, -32(%ebp)
+    pushl %esi
+    call project_int
+    addl $4, %esp
+    movl %eax, %esi
+    cmpl -32(%ebp), %esi
+    setne %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else9
+    
+    then9:
+    pushl $1
+    call inject_bool
+    addl $4, %esp
+    movl %eax, -8(%ebp)
+    jmp end9
+    
+    else9:
+    pushl $0
+    call inject_bool
+    addl $4, %esp
+    movl %eax, -8(%ebp)
+    
+    end9:
+    jmp end8
+    
+    else8:
+    
+    end8:
+    
+    end6:
+    jmp end5
+    
+    else5:
+    
+    end5:
+    
+    end0:
+    pushl -8(%ebp)
+    call is_true
+    addl $4, %esp
+    movl %eax, %esi
+    
+    while10:
+    cmpl $0, %esi
+    je end10
+    pushl %edi
+    call is_int
+    addl $4, %esp
+    movl %eax, -4(%ebp)
+    cmpl $0, -4(%ebp)
+    je else11
+    
+    then11:
+    pushl %ebx
+    call is_int
+    addl $4, %esp
+    movl %eax, -12(%ebp)
+    cmpl $0, -12(%ebp)
+    je else12
+    
+    then12:
+    pushl %edi
+    call project_int
+    addl $4, %esp
+    movl %eax, -16(%ebp)
+    pushl %ebx
+    call project_int
+    addl $4, %esp
+    movl %eax, %esi
+    movl -16(%ebp), %eax
+    addl %esi, %eax
+    pushl %eax
+    call inject_int
+    addl $4, %esp
+    movl %eax, %edi
+    jmp end12
+    
+    else12:
+    pushl %ebx
+    call is_bool
+    addl $4, %esp
+    movl %eax, -20(%ebp)
+    cmpl $0, -20(%ebp)
+    je else13
+    
+    then13:
+    pushl %edi
+    call project_int
+    addl $4, %esp
+    movl %eax, -24(%ebp)
+    pushl %ebx
+    call project_bool
+    addl $4, %esp
+    movl %eax, %esi
+    movl -24(%ebp), %eax
+    addl %esi, %eax
+    pushl %eax
+    call inject_int
+    addl $4, %esp
+    movl %eax, %edi
+    jmp end13
+    
+    else13:
+    
+    end13:
+    
+    end12:
+    jmp end11
+    
+    else11:
+    pushl %edi
+    call is_bool
+    addl $4, %esp
+    movl %eax, -36(%ebp)
+    cmpl $0, -36(%ebp)
+    je else14
+    
+    then14:
+    pushl %ebx
+    call is_int
+    addl $4, %esp
+    movl %eax, -40(%ebp)
+    cmpl $0, -40(%ebp)
+    je else15
+    
+    then15:
+    pushl %edi
+    call project_bool
+    addl $4, %esp
+    movl %eax, -28(%ebp)
+    pushl %ebx
+    call project_int
+    addl $4, %esp
+    movl %eax, %esi
+    movl -28(%ebp), %eax
+    addl %esi, %eax
+    pushl %eax
+    call inject_int
+    addl $4, %esp
+    movl %eax, %edi
+    jmp end15
+    
+    else15:
+    pushl %ebx
+    call is_bool
+    addl $4, %esp
+    movl %eax, -44(%ebp)
+    cmpl $0, -44(%ebp)
+    je else16
+    
+    then16:
+    pushl %edi
+    call project_bool
+    addl $4, %esp
+    movl %eax, -32(%ebp)
+    pushl %ebx
+    call project_bool
+    addl $4, %esp
+    movl %eax, %esi
+    movl -32(%ebp), %eax
+    addl %esi, %eax
+    pushl %eax
+    call inject_int
+    addl $4, %esp
+    movl %eax, %edi
+    jmp end16
+    
+    else16:
+    
+    end16:
+    
+    end15:
+    jmp end14
+    
+    else14:
+    
+    end14:
+    
+    end11:
+    pushl $10
+    call inject_int
+    addl $4, %esp
+    movl %eax, %esi
+    pushl %ebx
+    call is_int
+    addl $4, %esp
+    movl %eax, -4(%ebp)
+    cmpl $0, -4(%ebp)
+    je else17
+    
+    then17:
+    pushl %esi
+    call is_int
+    addl $4, %esp
+    movl %eax, -12(%ebp)
+    cmpl $0, -12(%ebp)
+    je else18
+    
+    then18:
+    pushl %ebx
+    call project_int
+    addl $4, %esp
+    movl %eax, -16(%ebp)
+    pushl %esi
+    call project_int
+    addl $4, %esp
+    movl %eax, %esi
+    cmpl -16(%ebp), %esi
+    setne %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else19
+    
+    then19:
+    pushl $1
+    call inject_bool
+    addl $4, %esp
+    movl %eax, -8(%ebp)
+    jmp end19
+    
+    else19:
+    pushl $0
+    call inject_bool
+    addl $4, %esp
+    movl %eax, -8(%ebp)
+    
+    end19:
+    jmp end18
+    
+    else18:
+    pushl %esi
+    call is_bool
+    addl $4, %esp
+    movl %eax, -20(%ebp)
+    cmpl $0, -20(%ebp)
+    je else20
+    
+    then20:
+    pushl %ebx
+    call project_int
+    addl $4, %esp
+    movl %eax, -24(%ebp)
+    pushl %esi
+    call project_int
+    addl $4, %esp
+    movl %eax, %esi
+    cmpl -24(%ebp), %esi
+    setne %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else21
+    
+    then21:
+    pushl $1
+    call inject_bool
+    addl $4, %esp
+    movl %eax, -8(%ebp)
+    jmp end21
+    
+    else21:
+    pushl $0
+    call inject_bool
+    addl $4, %esp
+    movl %eax, -8(%ebp)
+    
+    end21:
+    jmp end20
+    
+    else20:
+    
+    end20:
+    
+    end18:
+    jmp end17
+    
+    else17:
+    pushl %ebx
+    call is_bool
+    addl $4, %esp
+    movl %eax, -36(%ebp)
+    cmpl $0, -36(%ebp)
+    je else22
+    
+    then22:
+    pushl %esi
+    call is_int
+    addl $4, %esp
+    movl %eax, -40(%ebp)
+    cmpl $0, -40(%ebp)
+    je else23
+    
+    then23:
+    pushl %ebx
+    call project_int
+    addl $4, %esp
+    movl %eax, -28(%ebp)
+    pushl %esi
+    call project_int
+    addl $4, %esp
+    movl %eax, %esi
+    cmpl -28(%ebp), %esi
+    setne %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else24
+    
+    then24:
+    pushl $1
+    call inject_bool
+    addl $4, %esp
+    movl %eax, -8(%ebp)
+    jmp end24
+    
+    else24:
+    pushl $0
+    call inject_bool
+    addl $4, %esp
+    movl %eax, -8(%ebp)
+    
+    end24:
+    jmp end23
+    
+    else23:
+    pushl %esi
+    call is_bool
+    addl $4, %esp
+    movl %eax, -44(%ebp)
+    cmpl $0, -44(%ebp)
+    je else25
+    
+    then25:
+    pushl %ebx
+    call project_int
+    addl $4, %esp
+    movl %eax, -32(%ebp)
+    pushl %esi
+    call project_int
+    addl $4, %esp
+    movl %eax, %esi
+    cmpl -32(%ebp), %esi
+    setne %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else26
+    
+    then26:
+    pushl $1
+    call inject_bool
+    addl $4, %esp
+    movl %eax, -8(%ebp)
+    jmp end26
+    
+    else26:
+    pushl $0
+    call inject_bool
+    addl $4, %esp
+    movl %eax, -8(%ebp)
+    
+    end26:
+    jmp end25
+    
+    else25:
+    
+    end25:
+    
+    end23:
+    jmp end22
+    
+    else22:
+    
+    end22:
+    
+    end17:
+    pushl -8(%ebp)
+    call is_true
+    addl $4, %esp
+    movl %eax, %esi
+    jmp while10
+    
+    end10:
+    movl %edi, %eax
+    pushl %eax
+    call print_any
+    addl $4, %esp
+
+    popl %edi ## restore callee saved registers
+    popl %esi
+    popl %ebx
+    movl $0, %eax ## set return value
+    movl %ebp, %esp ## restore esp
+    popl %ebp ## restore ebp (alt. “leave”)
+    ret ## jump execution to call site
+    ==================================================
+[+] Removed 4 trivial move instructions (a -> a)
+[+] Removed 0 trivial swap-move instructions (a -> b, b -> a)
+x86 code length (lines) : 566
+FINISHED IN 1 iterations

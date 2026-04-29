@@ -1,0 +1,161 @@
+movl $1, %ecx
+    movl $2, %edx
+    movl $0, %ebx
+    movl $1, %eax
+    cmpl $5, %ecx
+    setne %al
+    movzbl %al, %eax
+    
+    while0:
+    cmpl $0, %eax
+    je end0
+    cmpl $1, %ecx
+    sete %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    sete %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else1
+    
+    then1:
+    cmpl $4, %ecx
+    sete %al
+    movzbl %al, %eax
+    jmp end1
+    
+    else1:
+    
+    end1:
+    cmpl $0, %eax
+    je else2
+    
+    then2:
+    cmpl $2, %edx
+    sete %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else3
+    
+    then3:
+    addl $1, %ebx
+    jmp end3
+    
+    else3:
+    cmpl $1, %edx
+    sete %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else4
+    
+    then4:
+    addl $2, %ebx
+    jmp end4
+    
+    else4:
+    addl $3, %ebx
+    
+    end4:
+    
+    end3:
+    jmp end2
+    
+    else2:
+    cmpl $2, %ecx
+    sete %al
+    movzbl %al, %ecx
+    cmpl $0, %ecx
+    sete %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else5
+    
+    then5:
+    cmpl $5, %ecx
+    sete %al
+    movzbl %al, %eax
+    jmp end5
+    
+    else5:
+    movl %ecx, %eax
+    
+    end5:
+    cmpl $0, %eax
+    je else6
+    
+    then6:
+    cmpl $2, %edx
+    sete %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else7
+    
+    then7:
+    addl $2, %ebx
+    jmp end7
+    
+    else7:
+    cmpl $1, %edx
+    sete %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else8
+    
+    then8:
+    addl $3, %ebx
+    jmp end8
+    
+    else8:
+    addl $1, %ebx
+    
+    end8:
+    
+    end7:
+    jmp end6
+    
+    else6:
+    cmpl $2, %edx
+    sete %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else9
+    
+    then9:
+    addl $3, %ebx
+    jmp end9
+    
+    else9:
+    cmpl $1, %edx
+    sete %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else10
+    
+    then10:
+    addl $1, %ebx
+    jmp end10
+    
+    else10:
+    addl $2, %ebx
+    
+    end10:
+    
+    end9:
+    
+    end6:
+    
+    end2:
+    addl $1, %ecx
+    movl $1, %eax
+    negl %eax
+    addl %eax, %edx
+    cmpl $5, %ecx
+    setne %al
+    movzbl %al, %eax
+    jmp while0
+    
+    end0:
+    movl %ebx, %eax
+    pushl %eax
+    call print_int_nl
+    addl $4, %esp

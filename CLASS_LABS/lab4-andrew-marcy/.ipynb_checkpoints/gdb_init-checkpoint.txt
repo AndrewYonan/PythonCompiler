@@ -1,0 +1,3 @@
+run < tests/mytests/test1.in
+start
+layout asm

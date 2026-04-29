@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cat $1 > tests/mytests/test1.py
+./pyyc tests/mytests/test1.py

@@ -1,0 +1,528 @@
+========================IR========================
+eval_input temp_0
+movl 1, s_x
+addl temp_0, s_x
+movl s_x, s_y
+addl s_x, s_y
+movl s_y, s_z
+addl s_y, s_z
+movl s_z, s_w
+addl s_z, s_w
+movl s_w, s_a
+addl s_w, s_a
+movl s_a, s_b
+addl s_a, s_b
+movl s_b, s_c
+addl s_b, s_c
+movl s_c, s_d
+addl s_c, s_d
+movl s_d, s_e
+addl s_d, s_e
+movl s_x, temp_1
+addl s_y, temp_1
+movl temp_1, temp_2
+addl s_z, temp_2
+movl temp_2, temp_3
+addl s_w, temp_3
+movl temp_3, temp_4
+addl s_a, temp_4
+movl temp_4, temp_5
+addl s_b, temp_5
+movl temp_5, temp_6
+addl s_c, temp_6
+movl temp_6, temp_7
+addl s_d, temp_7
+movl temp_7, s_f
+addl s_e, s_f
+print s_c
+==================================================
+===================LIVENESS SETS===================
+eval_input temp_0 : L_BEFORE = set() 
+movl 1, s_x : L_BEFORE = {'temp_0'} 
+addl temp_0, s_x : L_BEFORE = {'s_x', 'temp_0'} 
+movl s_x, s_y : L_BEFORE = {'s_x'} 
+addl s_x, s_y : L_BEFORE = {'s_x', 's_y'} 
+movl s_y, s_z : L_BEFORE = {'s_x', 's_y'} 
+addl s_y, s_z : L_BEFORE = {'s_z', 's_x', 's_y'} 
+movl s_z, s_w : L_BEFORE = {'s_z', 's_x', 's_y'} 
+addl s_z, s_w : L_BEFORE = {'s_z', 's_w', 's_y', 's_x'} 
+movl s_w, s_a : L_BEFORE = {'s_z', 's_w', 's_y', 's_x'} 
+addl s_w, s_a : L_BEFORE = {'s_w', 's_y', 's_z', 's_x', 's_a'} 
+movl s_a, s_b : L_BEFORE = {'s_w', 's_y', 's_z', 's_x', 's_a'} 
+addl s_a, s_b : L_BEFORE = {'s_b', 's_w', 's_y', 's_z', 's_x', 's_a'} 
+movl s_b, s_c : L_BEFORE = {'s_b', 's_w', 's_y', 's_z', 's_x', 's_a'} 
+addl s_b, s_c : L_BEFORE = {'s_b', 's_w', 's_y', 's_c', 's_z', 's_x', 's_a'} 
+movl s_c, s_d : L_BEFORE = {'s_b', 's_w', 's_y', 's_c', 's_z', 's_x', 's_a'} 
+addl s_c, s_d : L_BEFORE = {'s_b', 's_d', 's_w', 's_y', 's_c', 's_z', 's_x', 's_a'} 
+movl s_d, s_e : L_BEFORE = {'s_b', 's_d', 's_w', 's_y', 's_c', 's_z', 's_x', 's_a'} 
+addl s_d, s_e : L_BEFORE = {'s_b', 's_d', 's_w', 's_y', 's_c', 's_z', 's_x', 's_e', 's_a'} 
+movl s_x, temp_1 : L_BEFORE = {'s_b', 's_d', 's_w', 's_y', 's_c', 's_z', 's_x', 's_e', 's_a'} 
+addl s_y, temp_1 : L_BEFORE = {'s_b', 's_d', 'temp_1', 's_y', 's_c', 's_z', 's_w', 's_e', 's_a'} 
+movl temp_1, temp_2 : L_BEFORE = {'s_b', 's_d', 'temp_1', 's_c', 's_z', 's_w', 's_e', 's_a'} 
+addl s_z, temp_2 : L_BEFORE = {'s_b', 's_d', 's_a', 's_c', 's_z', 's_w', 's_e', 'temp_2'} 
+movl temp_2, temp_3 : L_BEFORE = {'s_b', 's_d', 's_a', 's_c', 's_w', 's_e', 'temp_2'} 
+addl s_w, temp_3 : L_BEFORE = {'s_b', 's_d', 'temp_3', 's_c', 's_w', 's_e', 's_a'} 
+movl temp_3, temp_4 : L_BEFORE = {'s_b', 's_d', 'temp_3', 's_c', 's_e', 's_a'} 
+addl s_a, temp_4 : L_BEFORE = {'s_b', 's_d', 'temp_4', 's_c', 's_e', 's_a'} 
+movl temp_4, temp_5 : L_BEFORE = {'s_b', 's_d', 'temp_4', 's_c', 's_e'} 
+addl s_b, temp_5 : L_BEFORE = {'s_b', 's_d', 's_c', 'temp_5', 's_e'} 
+movl temp_5, temp_6 : L_BEFORE = {'s_d', 's_c', 's_e', 'temp_5'} 
+addl s_c, temp_6 : L_BEFORE = {'s_d', 's_e', 's_c', 'temp_6'} 
+movl temp_6, temp_7 : L_BEFORE = {'s_d', 's_e', 's_c', 'temp_6'} 
+addl s_d, temp_7 : L_BEFORE = {'s_d', 's_c', 'temp_7', 's_e'} 
+movl temp_7, s_f : L_BEFORE = {'s_c', 'temp_7', 's_e'} 
+addl s_e, s_f : L_BEFORE = {'s_c', 's_e', 's_f'} 
+print s_c : L_BEFORE = {'s_c'} 
+==================================================
+====================LOCAL VARS====================
+['s_d', 'temp_7', 'temp_1', 's_f', 'temp_0', 's_w', 's_e', 's_a', 's_b', 'temp_3', 'temp_4', 's_y', 's_c', 'temp_5', 'temp_6', 's_z', 's_x', 'temp_2']
+==================================================
+[+] SPILL required
+[+] SPILL required
+[+] SPILL required
+[+] Graph colored successfully
+============INTERFERENCE GRAPH + COLORS============
+s_d (2) : [s_b, s_w, s_y, s_z, s_x, s_a, s_c, s_e, temp_1, temp_2, temp_3, temp_4, temp_5, temp_6, temp_7]
+temp_7 (1) : [s_d, s_c, s_e]
+temp_1 (1) : [s_b, s_d, s_y, s_c, s_z, s_w, s_e, s_a]
+s_f (1) : [s_c, s_e]
+temp_0 (4) : [eax, ecx, edx, s_x]
+s_w (3) : [s_y, s_x, s_z, s_a, s_b, s_c, s_d, s_e, temp_1, temp_2, temp_3]
+s_e (4) : [s_b, s_w, s_y, s_c, s_z, s_x, s_a, s_d, temp_1, temp_2, temp_3, temp_4, temp_5, temp_6, temp_7, s_f]
+s_a (5) : [s_y, s_z, s_x, s_w, s_b, s_c, s_d, s_e, temp_1, temp_2, temp_3, temp_4]
+s_b (6) : [s_w, s_y, s_z, s_x, s_a, s_c, s_d, s_e, temp_1, temp_2, temp_3, temp_4, temp_5]
+temp_3 (1) : [s_b, s_d, s_c, s_w, s_e, s_a]
+temp_4 (1) : [s_b, s_d, s_c, s_e, s_a]
+s_y (7) : [s_x, s_z, s_w, s_a, s_b, s_c, s_d, s_e, temp_1]
+s_c (8) : [s_w, s_y, s_z, s_x, s_a, s_b, s_d, s_e, temp_1, temp_2, temp_3, temp_4, temp_5, temp_6, temp_7, s_f]
+temp_5 (1) : [s_b, s_d, s_c, s_e]
+temp_6 (1) : [s_d, s_e, s_c]
+s_z (9) : [s_x, s_y, s_w, s_a, s_b, s_c, s_d, s_e, temp_1, temp_2]
+s_x (1) : [temp_0, s_y, s_z, s_w, s_a, s_b, s_c, s_d, s_e]
+temp_2 (1) : [s_b, s_d, s_a, s_c, s_z, s_w, s_e]
+eax (1) : [temp_0]
+ecx (2) : [temp_0]
+edx (3) : [temp_0]
+ebx (4) : []
+edi (5) : []
+esi (6) : []
+==================================================
+==================HOMES ASSIGNED==================
+s_d : ecx
+temp_7 : eax
+temp_1 : eax
+s_f : eax
+temp_0 : ebx
+s_w : edx
+s_e : ebx
+s_a : edi
+s_b : esi
+temp_3 : eax
+temp_4 : eax
+s_y : -4(%ebp)
+s_c : -8(%ebp)
+temp_5 : eax
+temp_6 : eax
+s_z : -12(%ebp)
+s_x : eax
+temp_2 : eax
+==================================================
+=====================SPILLAGE=====================
+[('s_y', '-4(%ebp)'), ('s_c', '-8(%ebp)'), ('s_z', '-12(%ebp)')]
+==================================================
+============NUMBER OF SPILLED VARIABLES============
+3
+==================================================
+Replacing instruction movl s_y, s_z with spill code
+Replacing instruction addl s_y, s_z with spill code
+=================UN-spillable vars=================
+['temp0_UNSPILL', 'temp1_UNSPILL', 'temp2_UNSPILL']
+==================================================
+**************************************************************************
+******************* NEW COMPILER PIPLINE ITERATION (1) ***********************
+**************************************************************************
+========================IR========================
+eval_input temp_0
+movl 1, s_x
+addl temp_0, s_x
+movl s_x, s_y
+addl s_x, s_y
+movl s_y, temp0_UNSPILL
+movl temp0_UNSPILL, s_z
+movl s_y, temp1_UNSPILL
+movl s_z, temp2_UNSPILL
+addl temp1_UNSPILL, temp2_UNSPILL
+movl temp2_UNSPILL, s_z
+movl s_z, s_w
+addl s_z, s_w
+movl s_w, s_a
+addl s_w, s_a
+movl s_a, s_b
+addl s_a, s_b
+movl s_b, s_c
+addl s_b, s_c
+movl s_c, s_d
+addl s_c, s_d
+movl s_d, s_e
+addl s_d, s_e
+movl s_x, temp_1
+addl s_y, temp_1
+movl temp_1, temp_2
+addl s_z, temp_2
+movl temp_2, temp_3
+addl s_w, temp_3
+movl temp_3, temp_4
+addl s_a, temp_4
+movl temp_4, temp_5
+addl s_b, temp_5
+movl temp_5, temp_6
+addl s_c, temp_6
+movl temp_6, temp_7
+addl s_d, temp_7
+movl temp_7, s_f
+addl s_e, s_f
+print s_c
+==================================================
+===================LIVENESS SETS===================
+eval_input temp_0 : L_BEFORE = set() 
+movl 1, s_x : L_BEFORE = {'temp_0'} 
+addl temp_0, s_x : L_BEFORE = {'s_x', 'temp_0'} 
+movl s_x, s_y : L_BEFORE = {'s_x'} 
+addl s_x, s_y : L_BEFORE = {'s_x', 's_y'} 
+movl s_y, temp0_UNSPILL : L_BEFORE = {'s_x', 's_y'} 
+movl temp0_UNSPILL, s_z : L_BEFORE = {'s_x', 'temp0_UNSPILL', 's_y'} 
+movl s_y, temp1_UNSPILL : L_BEFORE = {'s_z', 's_x', 's_y'} 
+movl s_z, temp2_UNSPILL : L_BEFORE = {'s_z', 's_x', 'temp1_UNSPILL', 's_y'} 
+addl temp1_UNSPILL, temp2_UNSPILL : L_BEFORE = {'s_x', 'temp2_UNSPILL', 'temp1_UNSPILL', 's_y'} 
+movl temp2_UNSPILL, s_z : L_BEFORE = {'s_x', 'temp2_UNSPILL', 's_y'} 
+movl s_z, s_w : L_BEFORE = {'s_z', 's_x', 's_y'} 
+addl s_z, s_w : L_BEFORE = {'s_z', 's_w', 's_y', 's_x'} 
+movl s_w, s_a : L_BEFORE = {'s_z', 's_w', 's_y', 's_x'} 
+addl s_w, s_a : L_BEFORE = {'s_w', 's_y', 's_z', 's_x', 's_a'} 
+movl s_a, s_b : L_BEFORE = {'s_w', 's_y', 's_z', 's_x', 's_a'} 
+addl s_a, s_b : L_BEFORE = {'s_b', 's_w', 's_y', 's_z', 's_x', 's_a'} 
+movl s_b, s_c : L_BEFORE = {'s_b', 's_w', 's_y', 's_z', 's_x', 's_a'} 
+addl s_b, s_c : L_BEFORE = {'s_b', 's_w', 's_y', 's_c', 's_z', 's_x', 's_a'} 
+movl s_c, s_d : L_BEFORE = {'s_b', 's_w', 's_y', 's_c', 's_z', 's_x', 's_a'} 
+addl s_c, s_d : L_BEFORE = {'s_b', 's_d', 's_w', 's_y', 's_c', 's_z', 's_x', 's_a'} 
+movl s_d, s_e : L_BEFORE = {'s_b', 's_d', 's_w', 's_y', 's_c', 's_z', 's_x', 's_a'} 
+addl s_d, s_e : L_BEFORE = {'s_b', 's_d', 's_w', 's_y', 's_c', 's_z', 's_x', 's_e', 's_a'} 
+movl s_x, temp_1 : L_BEFORE = {'s_b', 's_d', 's_w', 's_y', 's_c', 's_z', 's_x', 's_e', 's_a'} 
+addl s_y, temp_1 : L_BEFORE = {'s_b', 's_d', 'temp_1', 's_y', 's_c', 's_z', 's_w', 's_e', 's_a'} 
+movl temp_1, temp_2 : L_BEFORE = {'s_b', 's_d', 'temp_1', 's_c', 's_z', 's_w', 's_e', 's_a'} 
+addl s_z, temp_2 : L_BEFORE = {'s_b', 's_d', 's_a', 's_c', 's_z', 's_w', 's_e', 'temp_2'} 
+movl temp_2, temp_3 : L_BEFORE = {'s_b', 's_d', 's_a', 's_c', 's_w', 's_e', 'temp_2'} 
+addl s_w, temp_3 : L_BEFORE = {'s_b', 's_d', 'temp_3', 's_c', 's_w', 's_e', 's_a'} 
+movl temp_3, temp_4 : L_BEFORE = {'s_b', 's_d', 'temp_3', 's_c', 's_e', 's_a'} 
+addl s_a, temp_4 : L_BEFORE = {'s_b', 's_d', 'temp_4', 's_c', 's_e', 's_a'} 
+movl temp_4, temp_5 : L_BEFORE = {'s_b', 's_d', 'temp_4', 's_c', 's_e'} 
+addl s_b, temp_5 : L_BEFORE = {'s_b', 's_d', 's_c', 'temp_5', 's_e'} 
+movl temp_5, temp_6 : L_BEFORE = {'s_d', 's_c', 's_e', 'temp_5'} 
+addl s_c, temp_6 : L_BEFORE = {'s_d', 's_e', 's_c', 'temp_6'} 
+movl temp_6, temp_7 : L_BEFORE = {'s_d', 's_e', 's_c', 'temp_6'} 
+addl s_d, temp_7 : L_BEFORE = {'s_d', 's_c', 'temp_7', 's_e'} 
+movl temp_7, s_f : L_BEFORE = {'s_c', 'temp_7', 's_e'} 
+addl s_e, s_f : L_BEFORE = {'s_c', 's_e', 's_f'} 
+print s_c : L_BEFORE = {'s_c'} 
+==================================================
+====================LOCAL VARS====================
+['s_d', 'temp_7', 'temp_1', 'temp1_UNSPILL', 's_f', 'temp_0', 's_w', 'temp2_UNSPILL', 's_e', 's_a', 's_b', 'temp_3', 'temp_4', 's_y', 's_c', 'temp0_UNSPILL', 'temp_5', 'temp_6', 's_z', 's_x', 'temp_2']
+==================================================
+returning highest_satur_UNSPILLABLE temp0_UNSPILL of satur 1
+[+++++] END get_most_satureated_node
+returning highest_satur_UNSPILLABLE temp2_UNSPILL of satur 1
+[+++++] END get_most_satureated_node
+returning highest_satur_UNSPILLABLE temp1_UNSPILL of satur 2
+[+++++] END get_most_satureated_node
+[+] SPILL required
+[+] SPILL required
+[+] SPILL required
+[+] Graph colored successfully
+============INTERFERENCE GRAPH + COLORS============
+s_d (1) : [s_b, s_w, s_y, s_z, s_x, s_a, s_c, s_e, temp_1, temp_2, temp_3, temp_4, temp_5, temp_6, temp_7]
+temp_7 (2) : [s_d, s_c, s_e]
+temp_1 (3) : [s_b, s_d, s_y, s_c, s_z, s_w, s_e, s_a]
+temp1_UNSPILL (2) : [s_z, s_x, temp2_UNSPILL]
+s_f (1) : [s_c, s_e]
+temp_0 (4) : [eax, ecx, edx, s_x]
+s_w (4) : [s_y, s_x, s_z, s_a, s_b, s_c, s_d, s_e, temp_1, temp_2, temp_3]
+temp2_UNSPILL (1) : [s_x, temp1_UNSPILL, s_y]
+s_e (5) : [s_b, s_w, s_y, s_c, s_z, s_x, s_a, s_d, temp_1, temp_2, temp_3, temp_4, temp_5, temp_6, temp_7, s_f]
+s_a (6) : [s_y, s_z, s_x, s_w, s_b, s_c, s_d, s_e, temp_1, temp_2, temp_3, temp_4]
+s_b (7) : [s_w, s_y, s_z, s_x, s_a, s_c, s_d, s_e, temp_1, temp_2, temp_3, temp_4, temp_5]
+temp_3 (2) : [s_b, s_d, s_c, s_w, s_e, s_a]
+temp_4 (2) : [s_b, s_d, s_c, s_e, s_a]
+s_y (2) : [s_x, s_z, temp2_UNSPILL, s_w, s_a, s_b, s_c, s_d, s_e, temp_1]
+s_c (8) : [s_w, s_y, s_z, s_x, s_a, s_b, s_d, s_e, temp_1, temp_2, temp_3, temp_4, temp_5, temp_6, temp_7, s_f]
+temp0_UNSPILL (1) : [s_x]
+temp_5 (2) : [s_b, s_d, s_c, s_e]
+temp_6 (2) : [s_d, s_e, s_c]
+s_z (9) : [s_x, s_y, temp1_UNSPILL, s_w, s_a, s_b, s_c, s_d, s_e, temp_1, temp_2]
+s_x (3) : [temp_0, s_y, temp0_UNSPILL, s_z, temp1_UNSPILL, temp2_UNSPILL, s_w, s_a, s_b, s_c, s_d, s_e]
+temp_2 (2) : [s_b, s_d, s_a, s_c, s_z, s_w, s_e]
+eax (1) : [temp_0]
+ecx (2) : [temp_0]
+edx (3) : [temp_0]
+ebx (4) : []
+edi (5) : []
+esi (6) : []
+==================================================
+==================HOMES ASSIGNED==================
+s_d : eax
+temp_7 : ecx
+temp_1 : edx
+temp1_UNSPILL : ecx
+s_f : eax
+temp_0 : ebx
+s_w : ebx
+temp2_UNSPILL : eax
+s_e : edi
+s_a : esi
+s_b : -4(%ebp)
+temp_3 : ecx
+temp_4 : ecx
+s_y : ecx
+s_c : -8(%ebp)
+temp0_UNSPILL : eax
+temp_5 : ecx
+temp_6 : ecx
+s_z : -12(%ebp)
+s_x : edx
+temp_2 : ecx
+==================================================
+=====================SPILLAGE=====================
+[('s_b', '-4(%ebp)'), ('s_c', '-8(%ebp)'), ('s_z', '-12(%ebp)')]
+==================================================
+============NUMBER OF SPILLED VARIABLES============
+3
+==================================================
+Replacing instruction movl s_b, s_c with spill code
+Replacing instruction addl s_b, s_c with spill code
+=================UN-spillable vars=================
+['temp0_UNSPILL', 'temp1_UNSPILL', 'temp2_UNSPILL']
+==================================================
+**************************************************************************
+******************* NEW COMPILER PIPLINE ITERATION (2) ***********************
+**************************************************************************
+========================IR========================
+eval_input temp_0
+movl 1, s_x
+addl temp_0, s_x
+movl s_x, s_y
+addl s_x, s_y
+movl s_y, temp0_UNSPILL
+movl temp0_UNSPILL, s_z
+movl s_y, temp1_UNSPILL
+movl s_z, temp2_UNSPILL
+addl temp1_UNSPILL, temp2_UNSPILL
+movl temp2_UNSPILL, s_z
+movl s_z, s_w
+addl s_z, s_w
+movl s_w, s_a
+addl s_w, s_a
+movl s_a, s_b
+addl s_a, s_b
+movl s_b, temp0_UNSPILL
+movl temp0_UNSPILL, s_c
+movl s_b, temp1_UNSPILL
+movl s_c, temp2_UNSPILL
+addl temp1_UNSPILL, temp2_UNSPILL
+movl temp2_UNSPILL, s_c
+movl s_c, s_d
+addl s_c, s_d
+movl s_d, s_e
+addl s_d, s_e
+movl s_x, temp_1
+addl s_y, temp_1
+movl temp_1, temp_2
+addl s_z, temp_2
+movl temp_2, temp_3
+addl s_w, temp_3
+movl temp_3, temp_4
+addl s_a, temp_4
+movl temp_4, temp_5
+addl s_b, temp_5
+movl temp_5, temp_6
+addl s_c, temp_6
+movl temp_6, temp_7
+addl s_d, temp_7
+movl temp_7, s_f
+addl s_e, s_f
+print s_c
+==================================================
+===================LIVENESS SETS===================
+eval_input temp_0 : L_BEFORE = set() 
+movl 1, s_x : L_BEFORE = {'temp_0'} 
+addl temp_0, s_x : L_BEFORE = {'s_x', 'temp_0'} 
+movl s_x, s_y : L_BEFORE = {'s_x'} 
+addl s_x, s_y : L_BEFORE = {'s_x', 's_y'} 
+movl s_y, temp0_UNSPILL : L_BEFORE = {'s_x', 's_y'} 
+movl temp0_UNSPILL, s_z : L_BEFORE = {'s_x', 'temp0_UNSPILL', 's_y'} 
+movl s_y, temp1_UNSPILL : L_BEFORE = {'s_z', 's_x', 's_y'} 
+movl s_z, temp2_UNSPILL : L_BEFORE = {'s_z', 's_x', 'temp1_UNSPILL', 's_y'} 
+addl temp1_UNSPILL, temp2_UNSPILL : L_BEFORE = {'s_x', 'temp2_UNSPILL', 'temp1_UNSPILL', 's_y'} 
+movl temp2_UNSPILL, s_z : L_BEFORE = {'s_x', 'temp2_UNSPILL', 's_y'} 
+movl s_z, s_w : L_BEFORE = {'s_z', 's_x', 's_y'} 
+addl s_z, s_w : L_BEFORE = {'s_z', 's_w', 's_y', 's_x'} 
+movl s_w, s_a : L_BEFORE = {'s_z', 's_w', 's_y', 's_x'} 
+addl s_w, s_a : L_BEFORE = {'s_y', 's_x', 's_z', 's_w', 's_a'} 
+movl s_a, s_b : L_BEFORE = {'s_y', 's_x', 's_z', 's_w', 's_a'} 
+addl s_a, s_b : L_BEFORE = {'s_b', 's_y', 's_x', 's_z', 's_w', 's_a'} 
+movl s_b, temp0_UNSPILL : L_BEFORE = {'s_b', 's_y', 's_x', 's_z', 's_w', 's_a'} 
+movl temp0_UNSPILL, s_c : L_BEFORE = {'s_b', 's_y', 'temp0_UNSPILL', 's_x', 's_z', 's_w', 's_a'} 
+movl s_b, temp1_UNSPILL : L_BEFORE = {'s_b', 's_w', 's_y', 's_c', 's_z', 's_x', 's_a'} 
+movl s_c, temp2_UNSPILL : L_BEFORE = {'s_b', 's_w', 'temp1_UNSPILL', 's_y', 's_c', 's_z', 's_x', 's_a'} 
+addl temp1_UNSPILL, temp2_UNSPILL : L_BEFORE = {'s_b', 's_w', 'temp1_UNSPILL', 's_y', 's_z', 's_x', 'temp2_UNSPILL', 's_a'} 
+movl temp2_UNSPILL, s_c : L_BEFORE = {'s_b', 's_w', 's_y', 's_z', 's_x', 'temp2_UNSPILL', 's_a'} 
+movl s_c, s_d : L_BEFORE = {'s_b', 's_w', 's_y', 's_c', 's_z', 's_x', 's_a'} 
+addl s_c, s_d : L_BEFORE = {'s_b', 's_d', 's_w', 's_y', 's_c', 's_z', 's_x', 's_a'} 
+movl s_d, s_e : L_BEFORE = {'s_b', 's_d', 's_w', 's_y', 's_c', 's_z', 's_x', 's_a'} 
+addl s_d, s_e : L_BEFORE = {'s_b', 's_d', 's_w', 's_y', 's_c', 's_z', 's_x', 's_e', 's_a'} 
+movl s_x, temp_1 : L_BEFORE = {'s_b', 's_d', 's_w', 's_y', 's_c', 's_z', 's_x', 's_e', 's_a'} 
+addl s_y, temp_1 : L_BEFORE = {'s_b', 's_d', 'temp_1', 's_y', 's_c', 's_z', 's_w', 's_e', 's_a'} 
+movl temp_1, temp_2 : L_BEFORE = {'s_b', 's_d', 'temp_1', 's_c', 's_z', 's_w', 's_e', 's_a'} 
+addl s_z, temp_2 : L_BEFORE = {'s_b', 's_d', 's_a', 's_c', 's_z', 's_w', 's_e', 'temp_2'} 
+movl temp_2, temp_3 : L_BEFORE = {'s_b', 's_d', 's_a', 's_c', 's_w', 's_e', 'temp_2'} 
+addl s_w, temp_3 : L_BEFORE = {'s_b', 's_d', 'temp_3', 's_c', 's_w', 's_e', 's_a'} 
+movl temp_3, temp_4 : L_BEFORE = {'s_b', 's_d', 'temp_3', 's_c', 's_e', 's_a'} 
+addl s_a, temp_4 : L_BEFORE = {'s_b', 's_d', 'temp_4', 's_c', 's_e', 's_a'} 
+movl temp_4, temp_5 : L_BEFORE = {'s_b', 's_d', 'temp_4', 's_c', 's_e'} 
+addl s_b, temp_5 : L_BEFORE = {'s_b', 's_d', 's_c', 'temp_5', 's_e'} 
+movl temp_5, temp_6 : L_BEFORE = {'s_d', 's_c', 's_e', 'temp_5'} 
+addl s_c, temp_6 : L_BEFORE = {'s_d', 's_e', 's_c', 'temp_6'} 
+movl temp_6, temp_7 : L_BEFORE = {'s_d', 's_e', 's_c', 'temp_6'} 
+addl s_d, temp_7 : L_BEFORE = {'s_d', 's_c', 'temp_7', 's_e'} 
+movl temp_7, s_f : L_BEFORE = {'s_c', 'temp_7', 's_e'} 
+addl s_e, s_f : L_BEFORE = {'s_c', 's_e', 's_f'} 
+print s_c : L_BEFORE = {'s_c'} 
+==================================================
+====================LOCAL VARS====================
+['s_d', 'temp_7', 'temp_1', 'temp1_UNSPILL', 's_f', 'temp_0', 's_w', 'temp2_UNSPILL', 's_e', 's_a', 's_b', 'temp_3', 'temp_4', 's_y', 's_c', 'temp0_UNSPILL', 'temp_5', 'temp_6', 's_z', 's_x', 'temp_2']
+==================================================
+returning highest_satur_UNSPILLABLE temp0_UNSPILL of satur 1
+[+++++] END get_most_satureated_node
+returning highest_satur_UNSPILLABLE temp2_UNSPILL of satur 1
+[+++++] END get_most_satureated_node
+returning highest_satur_UNSPILLABLE temp1_UNSPILL of satur 2
+[+++++] END get_most_satureated_node
+[+] SPILL required
+[+] SPILL required
+[+] SPILL required
+[+] Graph colored successfully
+============INTERFERENCE GRAPH + COLORS============
+s_d (1) : [s_b, s_w, s_y, s_z, s_x, s_a, s_c, s_e, temp_1, temp_2, temp_3, temp_4, temp_5, temp_6, temp_7]
+temp_7 (2) : [s_d, s_c, s_e]
+temp_1 (3) : [s_b, s_d, s_y, s_c, s_z, s_w, s_e, s_a]
+temp1_UNSPILL (2) : [s_z, s_x, temp2_UNSPILL, s_w, s_y, s_c, s_a]
+s_f (1) : [s_c, s_e]
+temp_0 (4) : [eax, ecx, edx, s_x]
+s_w (4) : [s_y, s_x, s_z, s_a, s_b, temp0_UNSPILL, s_c, temp1_UNSPILL, temp2_UNSPILL, s_d, s_e, temp_1, temp_2, temp_3]
+temp2_UNSPILL (1) : [s_x, temp1_UNSPILL, s_y, s_b, s_w, s_z, s_a]
+s_e (8) : [s_b, s_w, s_y, s_c, s_z, s_x, s_a, s_d, temp_1, temp_2, temp_3, temp_4, temp_5, temp_6, temp_7, s_f]
+s_a (5) : [s_y, s_x, s_z, s_w, s_b, temp0_UNSPILL, s_c, temp1_UNSPILL, temp2_UNSPILL, s_d, s_e, temp_1, temp_2, temp_3, temp_4]
+s_b (2) : [s_y, s_x, s_z, s_w, s_a, s_c, temp2_UNSPILL, s_d, s_e, temp_1, temp_2, temp_3, temp_4, temp_5]
+temp_3 (3) : [s_b, s_d, s_c, s_w, s_e, s_a]
+temp_4 (3) : [s_b, s_d, s_c, s_e, s_a]
+s_y (6) : [s_x, s_z, temp2_UNSPILL, s_w, s_a, s_b, temp0_UNSPILL, s_c, temp1_UNSPILL, s_d, s_e, temp_1]
+s_c (9) : [s_b, s_w, s_y, s_z, s_x, s_a, temp1_UNSPILL, s_d, s_e, temp_1, temp_2, temp_3, temp_4, temp_5, temp_6, temp_7, s_f]
+temp0_UNSPILL (1) : [s_x, s_y, s_z, s_w, s_a]
+temp_5 (3) : [s_b, s_d, s_c, s_e]
+temp_6 (2) : [s_d, s_e, s_c]
+s_z (7) : [s_x, s_y, temp1_UNSPILL, s_w, s_a, s_b, temp0_UNSPILL, s_c, temp2_UNSPILL, s_d, s_e, temp_1, temp_2]
+s_x (3) : [temp_0, s_y, temp0_UNSPILL, s_z, temp1_UNSPILL, temp2_UNSPILL, s_w, s_a, s_b, s_c, s_d, s_e]
+temp_2 (3) : [s_b, s_d, s_a, s_c, s_z, s_w, s_e]
+eax (1) : [temp_0]
+ecx (2) : [temp_0]
+edx (3) : [temp_0]
+ebx (4) : []
+edi (5) : []
+esi (6) : []
+==================================================
+==================HOMES ASSIGNED==================
+s_d : eax
+temp_7 : ecx
+temp_1 : edx
+temp1_UNSPILL : ecx
+s_f : eax
+temp_0 : ebx
+s_w : ebx
+temp2_UNSPILL : eax
+s_e : -8(%ebp)
+s_a : edi
+s_b : ecx
+temp_3 : edx
+temp_4 : edx
+s_y : esi
+s_c : -12(%ebp)
+temp0_UNSPILL : eax
+temp_5 : edx
+temp_6 : ecx
+s_z : -4(%ebp)
+s_x : edx
+temp_2 : edx
+==================================================
+=====================SPILLAGE=====================
+[('s_e', '-8(%ebp)'), ('s_c', '-12(%ebp)'), ('s_z', '-4(%ebp)')]
+==================================================
+============NUMBER OF SPILLED VARIABLES============
+3
+==================================================
+*****EXITING, No double stack references
+===================GENERATED X86===================
+.globl main
+main:
+    pushl %ebp ## save caller's base pointer
+    movl %esp, %ebp ## set our base pointer
+    pushl %ebx ## save callee saved registers
+    pushl %esi
+    pushl %edi
+
+    call eval_input_int
+    movl %eax, %ebx
+    movl $1, %edx
+    addl %ebx, %edx
+    movl %edx, %esi
+    addl %edx, %esi
+    movl %esi, %eax
+    movl %eax, -4(%ebp)
+    movl %esi, %ecx
+    movl -4(%ebp), %eax
+    addl %ecx, %eax
+    movl %eax, -4(%ebp)
+    movl -4(%ebp), %ebx
+    addl -4(%ebp), %ebx
+    movl %ebx, %edi
+    addl %ebx, %edi
+    movl %edi, %ecx
+    addl %edi, %ecx
+    movl %ecx, %eax
+    movl %eax, -12(%ebp)
+    addl %ecx, %eax
+    movl %eax, -12(%ebp)
+    addl -12(%ebp), %eax
+    movl %eax, -8(%ebp)
+    addl %eax, -8(%ebp)
+    addl %esi, %edx
+    addl -4(%ebp), %edx
+    addl %ebx, %edx
+    addl %edi, %edx
+    addl %ecx, %edx
+    movl %edx, %ecx
+    addl -12(%ebp), %ecx
+    addl %eax, %ecx
+    movl %ecx, %eax
+    addl -8(%ebp), %eax
+    movl -12(%ebp), %eax
+    pushl %eax
+    call print_int_nl
+    addl $4, %esp
+
+    popl %edi ## restore callee saved registers
+    popl %esi
+    popl %ebx
+    movl $0, %eax ## set return value
+    movl %ebp, %esp ## restore esp
+    popl %ebp ## restore ebp (alt. “leave”)
+    ret ## jump execution to call site
+    ==================================================
+FINISHED IN 3 iterations

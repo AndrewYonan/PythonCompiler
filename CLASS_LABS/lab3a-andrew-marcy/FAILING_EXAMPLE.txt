@@ -1,0 +1,51 @@
+movl $1, %ecx
+    movl $0, %edx
+    cmpl $5, %ecx
+    setne %al
+    movzbl %al, %eax
+    
+    while0:
+    cmpl $0, %eax
+    je end0
+    cmpl $1, %ecx
+    sete %al
+    movzbl %al, %ecx
+    cmpl $0, %ecx
+    sete %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else1
+    
+    then1:
+    cmpl $4, %ecx
+    sete %al
+    movzbl %al, %eax
+    jmp end1
+    
+    else1:
+    movl %ecx, %eax
+    
+    end1:
+    cmpl $0, %eax
+    je else2
+    
+    then2:
+    movl %edx, %edx
+    addl $1, %edx
+    jmp end2
+    
+    else2:
+    
+    end2:
+    movl %ecx, %ecx
+    addl $1, %ecx
+    cmpl $5, %ecx
+    setne %al
+    movzbl %al, %eax
+    jmp while0
+    
+    end0:
+    movl %edx, %eax
+    pushl %eax
+    call print_int_nl
+    addl $4, %esp

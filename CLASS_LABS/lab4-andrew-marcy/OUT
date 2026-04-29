@@ -1,0 +1,614 @@
+
+
+===================PYTHON3 PROG===================
+x = 1
+y = True
+print(x == y)
+
+
+==================================================
+=====================FLAT PROG=====================
+s_x = 1
+s_y = True
+temp_0 = s_x == s_y
+print(temp_0)
+==================================================
+=====================FLAT TREE=====================
+Module(
+  body=[
+    Assign(
+      targets=[
+        Name(id='s_x', ctx=Store())],
+      value=Constant(value=1)),
+    Assign(
+      targets=[
+        Name(id='s_y', ctx=Store())],
+      value=Constant(value=True)),
+    Assign(
+      targets=[
+        Name(id='temp_0', ctx=Store())],
+      value=Compare(
+        left=Name(id='s_x', ctx=Load()),
+        ops=[
+          Eq()],
+        comparators=[
+          Name(id='s_y', ctx=Load())])),
+    Expr(
+      value=Call(
+        func=Name(id='print', ctx=Load()),
+        args=[
+          Name(id='temp_0', ctx=Load())],
+        keywords=[]))],
+  type_ignores=[])
+==================================================
+==============FLAT (explicated) PROG==============
+s_x = inject_int(1)
+s_y = inject_bool(1)
+e_temp_0 = s_x
+e_temp_1 = s_y
+E_0 = is_int(e_temp_0)
+if E_0:
+    E_1 = is_int(e_temp_1)
+    if E_1:
+        E_2 = project_int(e_temp_0)
+        E_3 = project_int(e_temp_1)
+        E_4 = E_2 == E_3
+        if E_4:
+            temp_0 = inject_bool(1)
+        else:
+            temp_0 = inject_bool(0)
+    else:
+        E_5 = is_bool(e_temp_1)
+        if E_5:
+            E_6 = project_int(e_temp_0)
+            E_7 = project_int(e_temp_1)
+            E_8 = E_6 == E_7
+            if E_8:
+                temp_0 = inject_bool(1)
+            else:
+                temp_0 = inject_bool(0)
+else:
+    E_9 = is_bool(e_temp_0)
+    if E_9:
+        E_10 = is_int(e_temp_1)
+        if E_10:
+            E_11 = project_int(e_temp_0)
+            E_12 = project_int(e_temp_1)
+            E_13 = E_11 == E_12
+            if E_13:
+                temp_0 = inject_bool(1)
+            else:
+                temp_0 = inject_bool(0)
+        else:
+            E_14 = is_bool(e_temp_1)
+            if E_14:
+                E_15 = project_int(e_temp_0)
+                E_16 = project_int(e_temp_1)
+                E_17 = E_15 == E_16
+                if E_17:
+                    temp_0 = inject_bool(1)
+                else:
+                    temp_0 = inject_bool(0)
+print_any(temp_0)
+==================================================
+=====================EXP TREE=====================
+Module(
+  body=[
+    [
+      Assign(
+        targets=[
+          Name(id='s_x', ctx=Store())],
+        value=Call(
+          func=Name(id='inject_int', ctx=Load()),
+          args=[
+            Constant(value=1)],
+          keywords=[]))],
+    [
+      Assign(
+        targets=[
+          Name(id='s_y', ctx=Store())],
+        value=Call(
+          func=Name(id='inject_bool', ctx=Load()),
+          args=[
+            Constant(value=1)],
+          keywords=[]))],
+    [
+      Assign(
+        targets=[
+          Name(id='e_temp_0', ctx=Store())],
+        value=Name(id='s_x', ctx=Load())),
+      Assign(
+        targets=[
+          Name(id='e_temp_1', ctx=Store())],
+        value=Name(id='s_y', ctx=Load())),
+      Assign(
+        targets=[
+          Name(id='E_0', ctx=Store())],
+        value=Call(
+          func=Name(id='is_int', ctx=Load()),
+          args=[
+            Name(id='e_temp_0', ctx=Load())],
+          keywords=[])),
+      If(
+        test=Name(id='E_0', ctx=Load()),
+        body=[
+          Assign(
+            targets=[
+              Name(id='E_1', ctx=Store())],
+            value=Call(
+              func=Name(id='is_int', ctx=Load()),
+              args=[
+                Name(id='e_temp_1', ctx=Load())],
+              keywords=[])),
+          If(
+            test=Name(id='E_1', ctx=Load()),
+            body=[
+              Assign(
+                targets=[
+                  Name(id='E_2', ctx=Store())],
+                value=Call(
+                  func=Name(id='project_int', ctx=Load()),
+                  args=[
+                    Name(id='e_temp_0', ctx=Load())],
+                  keywords=[])),
+              Assign(
+                targets=[
+                  Name(id='E_3', ctx=Store())],
+                value=Call(
+                  func=Name(id='project_int', ctx=Load()),
+                  args=[
+                    Name(id='e_temp_1', ctx=Load())],
+                  keywords=[])),
+              Assign(
+                targets=[
+                  Name(id='E_4', ctx=Store())],
+                value=Compare(
+                  left=Name(id='E_2', ctx=Load()),
+                  ops=[
+                    Eq()],
+                  comparators=[
+                    Name(id='E_3', ctx=Load())])),
+              If(
+                test=Name(id='E_4', ctx=Load()),
+                body=[
+                  Assign(
+                    targets=[
+                      Name(id='temp_0', ctx=Store())],
+                    value=Call(
+                      func=Name(id='inject_bool', ctx=Load()),
+                      args=[
+                        Constant(value=1)],
+                      keywords=[]))],
+                orelse=[
+                  Assign(
+                    targets=[
+                      Name(id='temp_0', ctx=Store())],
+                    value=Call(
+                      func=Name(id='inject_bool', ctx=Load()),
+                      args=[
+                        Constant(value=0)],
+                      keywords=[]))])],
+            orelse=[
+              Assign(
+                targets=[
+                  Name(id='E_5', ctx=Store())],
+                value=Call(
+                  func=Name(id='is_bool', ctx=Load()),
+                  args=[
+                    Name(id='e_temp_1', ctx=Load())],
+                  keywords=[])),
+              If(
+                test=Name(id='E_5', ctx=Load()),
+                body=[
+                  Assign(
+                    targets=[
+                      Name(id='E_6', ctx=Store())],
+                    value=Call(
+                      func=Name(id='project_int', ctx=Load()),
+                      args=[
+                        Name(id='e_temp_0', ctx=Load())],
+                      keywords=[])),
+                  Assign(
+                    targets=[
+                      Name(id='E_7', ctx=Store())],
+                    value=Call(
+                      func=Name(id='project_int', ctx=Load()),
+                      args=[
+                        Name(id='e_temp_1', ctx=Load())],
+                      keywords=[])),
+                  Assign(
+                    targets=[
+                      Name(id='E_8', ctx=Store())],
+                    value=Compare(
+                      left=Name(id='E_6', ctx=Load()),
+                      ops=[
+                        Eq()],
+                      comparators=[
+                        Name(id='E_7', ctx=Load())])),
+                  If(
+                    test=Name(id='E_8', ctx=Load()),
+                    body=[
+                      Assign(
+                        targets=[
+                          Name(id='temp_0', ctx=Store())],
+                        value=Call(
+                          func=Name(id='inject_bool', ctx=Load()),
+                          args=[
+                            Constant(value=1)],
+                          keywords=[]))],
+                    orelse=[
+                      Assign(
+                        targets=[
+                          Name(id='temp_0', ctx=Store())],
+                        value=Call(
+                          func=Name(id='inject_bool', ctx=Load()),
+                          args=[
+                            Constant(value=0)],
+                          keywords=[]))])],
+                orelse=[])])],
+        orelse=[
+          Assign(
+            targets=[
+              Name(id='E_9', ctx=Store())],
+            value=Call(
+              func=Name(id='is_bool', ctx=Load()),
+              args=[
+                Name(id='e_temp_0', ctx=Load())],
+              keywords=[])),
+          If(
+            test=Name(id='E_9', ctx=Load()),
+            body=[
+              Assign(
+                targets=[
+                  Name(id='E_10', ctx=Store())],
+                value=Call(
+                  func=Name(id='is_int', ctx=Load()),
+                  args=[
+                    Name(id='e_temp_1', ctx=Load())],
+                  keywords=[])),
+              If(
+                test=Name(id='E_10', ctx=Load()),
+                body=[
+                  Assign(
+                    targets=[
+                      Name(id='E_11', ctx=Store())],
+                    value=Call(
+                      func=Name(id='project_int', ctx=Load()),
+                      args=[
+                        Name(id='e_temp_0', ctx=Load())],
+                      keywords=[])),
+                  Assign(
+                    targets=[
+                      Name(id='E_12', ctx=Store())],
+                    value=Call(
+                      func=Name(id='project_int', ctx=Load()),
+                      args=[
+                        Name(id='e_temp_1', ctx=Load())],
+                      keywords=[])),
+                  Assign(
+                    targets=[
+                      Name(id='E_13', ctx=Store())],
+                    value=Compare(
+                      left=Name(id='E_11', ctx=Load()),
+                      ops=[
+                        Eq()],
+                      comparators=[
+                        Name(id='E_12', ctx=Load())])),
+                  If(
+                    test=Name(id='E_13', ctx=Load()),
+                    body=[
+                      Assign(
+                        targets=[
+                          Name(id='temp_0', ctx=Store())],
+                        value=Call(
+                          func=Name(id='inject_bool', ctx=Load()),
+                          args=[
+                            Constant(value=1)],
+                          keywords=[]))],
+                    orelse=[
+                      Assign(
+                        targets=[
+                          Name(id='temp_0', ctx=Store())],
+                        value=Call(
+                          func=Name(id='inject_bool', ctx=Load()),
+                          args=[
+                            Constant(value=0)],
+                          keywords=[]))])],
+                orelse=[
+                  Assign(
+                    targets=[
+                      Name(id='E_14', ctx=Store())],
+                    value=Call(
+                      func=Name(id='is_bool', ctx=Load()),
+                      args=[
+                        Name(id='e_temp_1', ctx=Load())],
+                      keywords=[])),
+                  If(
+                    test=Name(id='E_14', ctx=Load()),
+                    body=[
+                      Assign(
+                        targets=[
+                          Name(id='E_15', ctx=Store())],
+                        value=Call(
+                          func=Name(id='project_int', ctx=Load()),
+                          args=[
+                            Name(id='e_temp_0', ctx=Load())],
+                          keywords=[])),
+                      Assign(
+                        targets=[
+                          Name(id='E_16', ctx=Store())],
+                        value=Call(
+                          func=Name(id='project_int', ctx=Load()),
+                          args=[
+                            Name(id='e_temp_1', ctx=Load())],
+                          keywords=[])),
+                      Assign(
+                        targets=[
+                          Name(id='E_17', ctx=Store())],
+                        value=Compare(
+                          left=Name(id='E_15', ctx=Load()),
+                          ops=[
+                            Eq()],
+                          comparators=[
+                            Name(id='E_16', ctx=Load())])),
+                      If(
+                        test=Name(id='E_17', ctx=Load()),
+                        body=[
+                          Assign(
+                            targets=[
+                              Name(id='temp_0', ctx=Store())],
+                            value=Call(
+                              func=Name(id='inject_bool', ctx=Load()),
+                              args=[
+                                Constant(value=1)],
+                              keywords=[]))],
+                        orelse=[
+                          Assign(
+                            targets=[
+                              Name(id='temp_0', ctx=Store())],
+                            value=Call(
+                              func=Name(id='inject_bool', ctx=Load()),
+                              args=[
+                                Constant(value=0)],
+                              keywords=[]))])],
+                    orelse=[])])],
+            orelse=[])])],
+    [
+      Expr(
+        value=Call(
+          func=Name(id='print_any', ctx=Load()),
+          args=[
+            Name(id='temp_0', ctx=Load())],
+          keywords=[]))]],
+  type_ignores=[])
+==================================================
+
+*****EXITING, No Spill-required instructions (2-address stack refs, movzbl stack refs)
+
+===================GENERATED X86===================
+.globl main
+main:
+    pushl %ebp ## save caller's base pointer
+    movl %esp, %ebp ## set our base pointer
+    subl $24, %esp ## allocate for local vars
+    pushl %ebx ## save callee saved registers
+    pushl %esi
+    pushl %edi
+
+    pushl $1
+    call inject_int
+    addl $4, %esp
+    movl %eax, %ebx
+    pushl $1
+    call inject_bool
+    addl $4, %esp
+    movl %eax, %edi
+    pushl %ebx
+    call is_int
+    addl $4, %esp
+    movl %eax, -4(%ebp)
+    cmpl $0, -4(%ebp)
+    je else0
+    
+    then0:
+    pushl %edi
+    call is_int
+    addl $4, %esp
+    movl %eax, -8(%ebp)
+    cmpl $0, -8(%ebp)
+    je else1
+    
+    then1:
+    pushl %ebx
+    call project_int
+    addl $4, %esp
+    movl %eax, %ebx
+    pushl %edi
+    call project_int
+    addl $4, %esp
+    movl %eax, %edi
+    cmpl %ebx, %edi
+    sete %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else2
+    
+    then2:
+    pushl $1
+    call inject_bool
+    addl $4, %esp
+    movl %eax, %esi
+    jmp end2
+    
+    else2:
+    pushl $0
+    call inject_bool
+    addl $4, %esp
+    movl %eax, %esi
+    
+    end2:
+    jmp end1
+    
+    else1:
+    pushl %edi
+    call is_bool
+    addl $4, %esp
+    movl %eax, -12(%ebp)
+    cmpl $0, -12(%ebp)
+    je else3
+    
+    then3:
+    pushl %ebx
+    call project_int
+    addl $4, %esp
+    movl %eax, %ebx
+    pushl %edi
+    call project_int
+    addl $4, %esp
+    movl %eax, %edi
+    cmpl %ebx, %edi
+    sete %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else4
+    
+    then4:
+    pushl $1
+    call inject_bool
+    addl $4, %esp
+    movl %eax, %esi
+    jmp end4
+    
+    else4:
+    pushl $0
+    call inject_bool
+    addl $4, %esp
+    movl %eax, %esi
+    
+    end4:
+    jmp end3
+    
+    else3:
+    
+    end3:
+    
+    end1:
+    jmp end0
+    
+    else0:
+    pushl %ebx
+    call is_bool
+    addl $4, %esp
+    movl %eax, -16(%ebp)
+    cmpl $0, -16(%ebp)
+    je else5
+    
+    then5:
+    pushl %edi
+    call is_int
+    addl $4, %esp
+    movl %eax, -20(%ebp)
+    cmpl $0, -20(%ebp)
+    je else6
+    
+    then6:
+    pushl %ebx
+    call project_int
+    addl $4, %esp
+    movl %eax, %ebx
+    pushl %edi
+    call project_int
+    addl $4, %esp
+    movl %eax, %edi
+    cmpl %ebx, %edi
+    sete %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else7
+    
+    then7:
+    pushl $1
+    call inject_bool
+    addl $4, %esp
+    movl %eax, %esi
+    jmp end7
+    
+    else7:
+    pushl $0
+    call inject_bool
+    addl $4, %esp
+    movl %eax, %esi
+    
+    end7:
+    jmp end6
+    
+    else6:
+    pushl %edi
+    call is_bool
+    addl $4, %esp
+    movl %eax, -24(%ebp)
+    cmpl $0, -24(%ebp)
+    je else8
+    
+    then8:
+    pushl %ebx
+    call project_int
+    addl $4, %esp
+    movl %eax, %ebx
+    pushl %edi
+    call project_int
+    addl $4, %esp
+    movl %eax, %edi
+    cmpl %ebx, %edi
+    sete %al
+    movzbl %al, %eax
+    cmpl $0, %eax
+    je else9
+    
+    then9:
+    pushl $1
+    call inject_bool
+    addl $4, %esp
+    movl %eax, %esi
+    jmp end9
+    
+    else9:
+    pushl $0
+    call inject_bool
+    addl $4, %esp
+    movl %eax, %esi
+    
+    end9:
+    jmp end8
+    
+    else8:
+    
+    end8:
+    
+    end6:
+    jmp end5
+    
+    else5:
+    
+    end5:
+    
+    end0:
+    movl %esi, %eax
+    pushl %eax
+    call print_any
+    addl $4, %esp
+
+    popl %edi ## restore callee saved registers
+    popl %esi
+    popl %ebx
+    movl $0, %eax ## set return value
+    movl %ebp, %esp ## restore esp
+    popl %ebp ## restore ebp (alt. “leave”)
+    ret ## jump execution to call site
+    ==================================================
+[+] Removed 2 trivial move instructions (a -> a)
+[+] Removed 0 trivial swap-move instructions (a -> b, b -> a)
+x86 code length (lines) : 219
+Liveness recursive solve() diagnostics
+
+FINISHED IN 1 iterations

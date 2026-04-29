@@ -1,0 +1,4 @@
+break then2
+run
+info registers
+quit
